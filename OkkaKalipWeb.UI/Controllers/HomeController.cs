@@ -18,6 +18,7 @@ namespace OkkaKalipWeb.UI.Controllers
         }
         public IActionResult Index()
         {
+            ViewBag.SelectedMenu = RouteData.Values["controller"];
             return View(new ProductListModel()
             {
                 Products = _productService.GetAll()
