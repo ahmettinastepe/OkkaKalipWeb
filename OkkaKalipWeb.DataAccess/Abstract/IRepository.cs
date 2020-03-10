@@ -9,7 +9,7 @@ namespace OkkaKalipWeb.DataAccess.Abstract
     {
         TEntity GetById(int Id);
         TEntity GetOne(Expression<Func<TEntity, bool>> filter);
-        IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null);
+        List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null);
 
         void Create(TEntity entity);
         void Update(TEntity entity);
