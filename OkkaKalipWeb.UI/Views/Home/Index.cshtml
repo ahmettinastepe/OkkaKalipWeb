@@ -1,19 +1,23 @@
-﻿@model OkkaKalipWeb.UI.Models.ProductListModel
+﻿
 @{
-    Layout = null;
+    ViewData["Title"] = "Okka Kalıp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+<!-- Slider -->
+<partial name="Components/_slider" />
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    @foreach (var item in Model.Products)
-    {
-        <p>@item.Name</p>
-    }
-</body>
-</html>
+<!-- Our Services -->
+<partial name="Components/_ourServices" />
+
+<!-- Our Story And Recruitment And Get a Quote -->
+<partial name="Components/_ourStory" />
+
+<!-- Featured Project -->
+<partial name="Components/_featuredProject" />
+
+<!-- Testimonial -->
+<partial name="Components/_testimonial" />
+
+<!-- The News -->
+<partial name="Components/_theNews" />

@@ -1,0 +1,55 @@
+﻿
+@{
+    ViewData["Title"] = "Okka Kalıp - Shop";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="page-header" style="background: url('https://via.placeholder.com/1920x450.png') no-repeat center center;">
+    <div class="container">
+        <div class="breadc-box no-line">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-title">Industris shop</h2>
+                    <ul id="breadcrumbs" class="breadcrumbs none-style">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Shop</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar Product -->
+            <partial name="Components/_sidebarProduct" />
+
+            <div class="col-md-8">
+                <div class="row">
+                    <!-- Single Product -->
+                    <partial name="Components/_singleProduct" />
+
+                    <!-- Single Product -->
+                    <partial name="Components/_singleProduct" />
+
+                    <!-- Single Product -->
+                    <partial name="Components/_singleProduct" />
+
+                    <!-- Single Product -->
+                    <partial name="Components/_singleProduct" />
+
+                    <!-- Single Product -->
+                    <partial name="Components/_singleProduct" />
+
+                    <!-- Single Product -->
+                    <partial name="Components/_singleProduct" />
+
+                    <!-- Pagination -->
+                    <partial name="Components/_pagination" />
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
