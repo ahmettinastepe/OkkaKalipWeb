@@ -10,7 +10,9 @@ using Microsoft.Extensions.Hosting;
 using OkkaKalipWeb.Business.Abstract;
 using OkkaKalipWeb.Business.Concrete;
 using OkkaKalipWeb.DataAccess.Abstract;
+using OkkaKalipWeb.DataAccess.Concrete.EfCore;
 using OkkaKalipWeb.DataAccess.Concrete.Memory;
+using OkkaKalipWeb.UI.Middlewares;
 
 namespace OkkaKalipWeb.UI
 {
@@ -22,7 +24,7 @@ namespace OkkaKalipWeb.UI
         {
             services.AddRazorPages();
 
-            services.AddScoped<IProductDal, MemoryProductDal>();
+            services.AddScoped<IProductDal, EfCoreProductDal>();
             services.AddScoped<IProductService, ProductManager>();
         }
 
@@ -32,9 +34,12 @@ namespace OkkaKalipWeb.UI
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                SeedDatabase.Seed();
             }
 
             app.UseRouting();
+            app.UseStaticFiles();
+            app.CustomStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {

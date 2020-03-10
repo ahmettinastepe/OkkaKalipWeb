@@ -36,7 +36,7 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
             }
         }
 
-        public IEnumerable<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
+        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
         {
             using (var context = new TContext())
             {
