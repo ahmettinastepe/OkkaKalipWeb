@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using OkkaKalipWeb.Business.Abstract;
+using OkkaKalipWeb.Business.Concrete;
+using OkkaKalipWeb.DataAccess.Abstract;
+using OkkaKalipWeb.DataAccess.Concrete.Memory;
 
 namespace OkkaKalipWeb.UI
 {
@@ -16,6 +20,10 @@ namespace OkkaKalipWeb.UI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddRazorPages();
+
+            services.AddScoped<IProductDal, MemoryProductDal>();
+            services.AddScoped<IProductService, ProductManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,10 +38,7 @@ namespace OkkaKalipWeb.UI
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

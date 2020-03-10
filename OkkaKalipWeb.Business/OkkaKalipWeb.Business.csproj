@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\OkkaKalipWeb.DataAccess\OkkaKalipWeb.DataAccess.csproj" />
+    <ProjectReference Include="..\OkkaKalipWeb.Entities\OkkaKalipWeb.Entities.csproj" />
+  </ItemGroup>
+
 </Project>
