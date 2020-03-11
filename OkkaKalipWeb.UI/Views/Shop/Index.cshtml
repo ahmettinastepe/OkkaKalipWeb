@@ -1,4 +1,4 @@
-﻿
+﻿@model ProductListModel
 @{
     ViewData["Title"] = "Okka Kalıp - Shop";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -24,27 +24,14 @@
     <div class="container">
         <div class="row">
             <!-- Sidebar Product -->
-            <partial name="Components/_sidebarProduct" />
+            <partial name="Components/_sidebarCategory" />
 
             <div class="col-md-8">
                 <div class="row">
-                    <!-- Single Product -->
-                    <partial name="Components/_singleProduct" />
-
-                    <!-- Single Product -->
-                    <partial name="Components/_singleProduct" />
-
-                    <!-- Single Product -->
-                    <partial name="Components/_singleProduct" />
-
-                    <!-- Single Product -->
-                    <partial name="Components/_singleProduct" />
-
-                    <!-- Single Product -->
-                    <partial name="Components/_singleProduct" />
-
-                    <!-- Single Product -->
-                    <partial name="Components/_singleProduct" />
+                    @foreach (var product in Model.Products)
+                    {
+                        <partial name="Components/_singleProduct" for="@product" />
+                    }
 
                     <!-- Pagination -->
                     <partial name="Components/_pagination" />

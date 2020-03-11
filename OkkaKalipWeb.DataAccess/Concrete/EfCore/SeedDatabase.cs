@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OkkaKalipWeb.Entities;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 {
@@ -19,25 +16,40 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
                     context.Categories.AddRange(Categories);
 
                 if (context.Products.Count() == 0)
+                {
                     context.Products.AddRange(Products);
-            }
+                    context.AddRange(ProductCategoies);
+                }
 
-            context.SaveChanges();
+                context.SaveChanges();
+            }
         }
 
         private static Category[] Categories =
         {
             new Category() {Name="Telefon"},
-            new Category() {Name="Bilgisayar"}
+            new Category() {Name="Bilgisayar"},
+            new Category() {Name="Elektronik"}
         };
 
         private static Product[] Products =
         {
-            new Product(){Name="Samsung S5",Price=1000,ImageUrl="https://via.placeholder.com/750x750.png"},
-            new Product(){Name="Samsung S6",Price=2000,ImageUrl="https://via.placeholder.com/750x750.png"},
-            new Product(){Name="Samsung S7",Price=3000,ImageUrl="https://via.placeholder.com/750x750.png"},
-            new Product(){Name="Samsung S8",Price=4000,ImageUrl="https://via.placeholder.com/750x750.png"},
-            new Product(){Name="Samsung S9",Price=5000,ImageUrl="https://via.placeholder.com/750x750.png"}
+            new Product() {Name="Samsung S5",Price=1000,ImageUrl="https://via.placeholder.com/750x750.png", Description="Güzel Ürün 1"},
+            new Product() {Name="Samsung S6",Price=2000,ImageUrl="https://via.placeholder.com/750x750.png", Description="Güzel Ürün 2"},
+            new Product() {Name="Samsung S7",Price=3000,ImageUrl="https://via.placeholder.com/750x750.png", Description="Güzel Ürün 3"},
+            new Product() {Name="Samsung S8",Price=4000,ImageUrl="https://via.placeholder.com/750x750.png", Description="Güzel Ürün 4"},
+            new Product() {Name="Samsung S9",Price=5000,ImageUrl="https://via.placeholder.com/750x750.png", Description="Güzel Ürün 5"}
+        };
+
+        private static ProductCategory[] ProductCategoies =
+        {
+            new ProductCategory() { Product= Products[0],Category= Categories[0]},
+            new ProductCategory() { Product= Products[0],Category= Categories[2]},
+            new ProductCategory() { Product= Products[1],Category= Categories[0]},
+            new ProductCategory() { Product= Products[1],Category= Categories[1]},
+            new ProductCategory() { Product= Products[2],Category= Categories[0]},
+            new ProductCategory() { Product= Products[2],Category= Categories[2]},
+            new ProductCategory() { Product= Products[3],Category= Categories[1]}
         };
     }
 }
