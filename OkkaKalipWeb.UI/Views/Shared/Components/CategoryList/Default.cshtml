@@ -1,0 +1,15 @@
+﻿@model CategoryListViewModel
+
+<ul>
+    @foreach (var category in Model.Categories)
+    {
+        <li class="cat-item cat-item-5 @(Model.SelectedCategory==category.Name.ToLower()?"current-menu-item":"")">
+            <a 
+               asp-controller="Shop" 
+               asp-action="Index" 
+               asp-route-category="@category.Name">
+                @category.Name
+            </a>
+        </li>
+    }
+</ul>

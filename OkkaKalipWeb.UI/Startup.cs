@@ -1,17 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OkkaKalipWeb.Business.Abstract;
 using OkkaKalipWeb.Business.Concrete;
 using OkkaKalipWeb.DataAccess.Abstract;
 using OkkaKalipWeb.DataAccess.Concrete.EfCore;
-using OkkaKalipWeb.DataAccess.Concrete.Memory;
 using OkkaKalipWeb.UI.Middlewares;
 
 namespace OkkaKalipWeb.UI
@@ -25,7 +19,9 @@ namespace OkkaKalipWeb.UI
             services.AddRazorPages();
 
             services.AddScoped<IProductDal, EfCoreProductDal>();
+            services.AddScoped<ICategoryDal, EfCoreCategoryDal>();
             services.AddScoped<IProductService, ProductManager>();
+            services.AddScoped<ICategoryService, CategoryManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +39,8 @@ namespace OkkaKalipWeb.UI
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute("default", "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(name: "products", "products/{category?}", defaults: new { controller = "Shop", action = "Index" });
+                endpoints.MapControllerRoute(name: "default", "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

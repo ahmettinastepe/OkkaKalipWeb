@@ -20,7 +20,6 @@
 /* Reset
 ----------------------------------------------------------*/
 
-
 html {
   line-height: 1.15;
   /* 1 */
@@ -1759,6 +1758,12 @@ input.form-control, select.form-control {
 .page-pagination li a {
   color:#707070;
   background-color: #f2f4f6;
+}
+/* My Css (Author Ahmet Tınastepe)*/
+.page-pagination li a.current-paging {
+    color:#ffffff;
+    background-color:#03132b;
+    font-weight:bold;
 }
 .page-pagination li a:hover {
   color:#ffffff;

@@ -17,4 +17,8 @@
     <ProjectReference Include="..\OkkaKalipWeb.Entities\OkkaKalipWeb.Entities.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Concrete\Memory\" />
+  </ItemGroup>
+
 </Project>

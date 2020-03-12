@@ -1,10 +1,7 @@
 ﻿using OkkaKalipWeb.Business.Abstract;
 using OkkaKalipWeb.DataAccess.Abstract;
 using OkkaKalipWeb.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace OkkaKalipWeb.Business.Concrete
 {
@@ -42,14 +39,19 @@ namespace OkkaKalipWeb.Business.Concrete
             return _productDal.GetById(id);
         }
 
-        public List<Product> GetPopularProducts()
-        {
-            return _productDal.GetAll();
-        }
-
         public Product GetProductDetails(int id)
         {
             return _productDal.GetProductDetails(id);
+        }
+
+        public List<Product> GetProductsByCategory(string category, int page, int pageSize)
+        {
+            return _productDal.GetProductsByCategory(category, page, pageSize);
+        }
+
+        public int GetCountByCategory(string category)
+        {
+            return _productDal.GetProductsByCategory(category);
         }
     }
 }

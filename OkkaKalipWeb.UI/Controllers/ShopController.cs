@@ -14,12 +14,23 @@ namespace OkkaKalipWeb.UI.Controllers
         {
             _productService = productService;
         }
-        public IActionResult Index()
+
+        public IActionResult Index(string category, int page = 1)
         {
             ViewBag.SelectedMenu = RouteData.Values["controller"];
+
+            const int pageSize = 3;
             return View(new ProductListModel()
             {
-                Products = _productService.GetAll()
+                PageInfo = new PageInfo()
+                {
+                    TotalItems = _productService.GetCountByCategory(category),
+                    CurrentPage = page,
+                    ItemsPerPage = pageSize,
+                    CurrentCategory = category
+                },
+
+                Products = _productService.GetProductsByCategory(category, page, pageSize)
             });
         }
 
