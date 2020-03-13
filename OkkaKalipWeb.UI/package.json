@@ -5,6 +5,8 @@
   "devDependencies": {
   },
   "dependencies": {
-    "ckeditor4": "4.14.0"
+    "ckeditor4": "4.14.0",
+    "jquery": "3.4.1",
+    "bootstrap": "4.4.1"
   }
 }
