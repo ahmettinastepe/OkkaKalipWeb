@@ -1,0 +1,57 @@
+﻿@model CategoryListModel
+@{
+    ViewData["Title"] = "Kategori Listesi";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title mr-4">Ürün Listesi</h3>
+        <a class="btn btn-primary" asp-controller="Product" asp-action="CreateCategory">Yeni Kategori</a>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        @if (Model.Categories.Count() > 0)
+        {
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th width="30">Id</th>
+                        <th>Kategori İsmi</th>
+                        <th width="130"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Categories)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>
+                                <a class="btn btn-primary btn-sm mr-2" href="/product/editcategory/@item.Id">Güncelle</a>
+
+                                <form action="/product/deletecategory" method="post" style="display:inline">
+                                    <input type="hidden" name="Id" value="@item.Id" />
+                                    <button class="btn btn-danger btn-sm" type="submit">Sil</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th width="30">Id</th>
+                        <th>Kategori İsmi</th>
+                        <th width="130"></th>
+                    </tr>
+                </tfoot>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-warning">Henüz Bir Ürün Eklemediniz.</div>
+        }
+    </div>
+    <!-- /.card-body -->
+</div>

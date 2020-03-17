@@ -28,6 +28,10 @@ namespace OkkaKalipWeb.Business.Concrete
         {
             _productDal.Update(entity);
         }
+        public void Update(Product entity, int[] categoryIds)
+        {
+            _productDal.Update(entity, categoryIds);
+        }
 
         public List<Product> GetAll()
         {
@@ -53,5 +57,11 @@ namespace OkkaKalipWeb.Business.Concrete
         {
             return _productDal.GetProductsByCategory(category);
         }
+
+        public Product GetByIdWithCategories(int id)
+        {
+            return _productDal.GetByIdWithCategories(id);
+        }
+
     }
 }

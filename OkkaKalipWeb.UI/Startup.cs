@@ -39,6 +39,8 @@ namespace OkkaKalipWeb.UI
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(name: "adminProducts", "admin/products", defaults: new { controller = "Product", action = "ProductList" });
+                endpoints.MapControllerRoute(name: "adminProducts", "admin/products/{id?}", defaults: new { controller = "Product", action = "EditProduct" });
                 endpoints.MapControllerRoute(name: "products", "products/{category?}", defaults: new { controller = "Shop", action = "Index" });
                 endpoints.MapControllerRoute(name: "default", "{controller=Home}/{action=Index}/{id?}");
             });

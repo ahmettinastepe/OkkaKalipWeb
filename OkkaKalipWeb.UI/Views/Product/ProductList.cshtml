@@ -1,0 +1,65 @@
+﻿@model ProductListModel
+@{
+    ViewData["Title"] = "Ürün Listesi";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title mr-4">Ürün Listesi</h3>
+        <a class="btn btn-primary" asp-controller="Product" asp-action="CreateProduct">Ürün Ekle</a>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        @if (Model.Products.Count() > 0)
+        {
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th  width="30">Id</th>
+                        <th width="100">Ürün Resmi</th>
+                        <th>Ürün İsmi</th>
+                        <th width="100">Fiyatı</th>
+                        <th width="130"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Products)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>
+                                <img src="@item.ImageUrl" width="100"/>
+                            </td>
+                            <td>@item.Name</td>
+                            <td>@item.Price</td>
+                            <td>
+                                <a class="btn btn-primary btn-sm mr-2" href="/admin/products/@item.Id">Güncelle</a>
+
+                                <form action="/product/deleteproduct" method="post" style="display:inline">
+                                    <input type="hidden" name="Id" value="@item.Id" />
+                                    <button class="btn btn-danger btn-sm" type="submit">Sil</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Ürün Resmi</th>
+                        <th>Ürün İsmi</th>
+                        <th>Fiyatı</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-warning">Henüz Bir Ürün Eklemediniz.</div>
+        }
+    </div>
+    <!-- /.card-body -->
+</div>

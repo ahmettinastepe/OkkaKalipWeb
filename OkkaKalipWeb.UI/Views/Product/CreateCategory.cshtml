@@ -1,0 +1,30 @@
+﻿@model CategoryModel
+@{
+    ViewData["Title"] = "Yeni Kategori Ekle";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Ürün İşlemleri</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+                <form asp-controller="Product" asp-action="CreateCategory" method="post">
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label asp-for="Name">Ürün Adı</label>
+                            <input asp-for="Name" class="form-control" placeholder="Kategori Adı Giriniz...">
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Kaydet</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>

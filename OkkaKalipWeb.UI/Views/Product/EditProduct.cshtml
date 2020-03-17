@@ -1,0 +1,78 @@
+﻿@model ProductModel
+@{
+    ViewData["Title"] = Model.Name + " adlı ürün için güncelleme işlemi";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<form asp-controller="Product" asp-action="EditProduct" method="post">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Ürün İşlemleri</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+
+                <input type="hidden" asp-for="Id" value="@Model.Id" />
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label asp-for="Name">Ürün Adı</label>
+                        <input asp-for="Name" value="@Model.Name" class="form-control" placeholder="Ürün Adı Giriniz...">
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="ImageUrl">Image</label>
+                        <input asp-for="ImageUrl" value="@Model.ImageUrl" class="form-control" placeholder="Ürün Resmi Yükleyiniz...">
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Price">Fiyatı</label>
+                        <input asp-for="Price" value="@Model.Price" class="form-control" placeholder="Ürün Fiyatı Giriniz...">
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Description">Açıklama</label>
+                        <textarea asp-for="Description" value="@Model.Description" id="editor" class="form-control" rows="3" placeholder="Ürün Açıklaması ..."></textarea>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="card card-success">
+                <div class="card-header">
+                    <h3 class="card-title">Tüm Kategoriler</h3>
+                </div>
+                <div class="card-body">
+                    <!-- Minimal style -->
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- checkbox -->
+                            <div class="form-group clearfix">
+                                @foreach (var item in (List<Category>)ViewBag.Categories)
+                                {
+                                    <div class="icheck-primary">
+                                        <input type="checkbox"
+                                               name="categoryIds"
+                                               value="@item.Id"
+                                               id="category@(item.Id)"
+                                               @(Model.SelectedCategories.Any(x => x.Id == item.Id) ? "checked" : "")>
+                                        <label for="category@(item.Id)">@item.Name</label>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    Ürüne ait kategorileri seçiniz.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
