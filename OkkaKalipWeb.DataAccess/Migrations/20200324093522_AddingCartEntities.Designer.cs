@@ -8,9 +8,9 @@ using OkkaKalipWeb.DataAccess.Concrete.EfCore;
 
 namespace OkkaKalipWeb.DataAccess.Migrations
 {
-    [DbContext(typeof(OkkaKalipContext))]
-    [Migration("20200310104245_CreateDatabase")]
-    partial class CreateDatabase
+    [DbContext(typeof(NakisKalipContext))]
+    [Migration("20200324093522_AddingCartEntities")]
+    partial class AddingCartEntities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,6 +19,46 @@ namespace OkkaKalipWeb.DataAccess.Migrations
                 .HasAnnotation("ProductVersion", "3.1.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("OkkaKalipWeb.Entities.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Carts");
+                });
+
+            modelBuilder.Entity("OkkaKalipWeb.Entities.CartItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CartId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("CartItem");
+                });
 
             modelBuilder.Entity("OkkaKalipWeb.Entities.Category", b =>
                 {
@@ -41,6 +81,9 @@ namespace OkkaKalipWeb.DataAccess.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
@@ -69,6 +112,21 @@ namespace OkkaKalipWeb.DataAccess.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductCategory");
+                });
+
+            modelBuilder.Entity("OkkaKalipWeb.Entities.CartItem", b =>
+                {
+                    b.HasOne("OkkaKalipWeb.Entities.Cart", "Cart")
+                        .WithMany("CartItems")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("OkkaKalipWeb.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("OkkaKalipWeb.Entities.ProductCategory", b =>

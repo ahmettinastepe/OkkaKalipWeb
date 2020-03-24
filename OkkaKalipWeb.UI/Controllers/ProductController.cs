@@ -1,11 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using OkkaKalipWeb.Business.Abstract;
 using OkkaKalipWeb.Entities;
 using OkkaKalipWeb.UI.Models;
+using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace OkkaKalipWeb.UI.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class ProductController : Controller
     {
         private IProductService _productService;
@@ -29,22 +34,27 @@ namespace OkkaKalipWeb.UI.Controllers
         [HttpGet]
         public IActionResult CreateProduct()
         {
-            return View();
+            return View(new ProductModel());
         }
 
         [HttpPost]
         public IActionResult CreateProduct(ProductModel model)
         {
+            if (!ModelState.IsValid) return View(model);
+
             var entity = new Product()
             {
                 Name = model.Name,
-                ImageUrl = model.ImageUrl,
+                ImageUrl = model.ImageUrl == null ? "urun-resim-yok.png" : model.ImageUrl,
                 Description = model.Description,
                 Price = model.Price
             };
-            _productService.Create(entity);
 
-            return RedirectToAction("ProductList");
+            if (_productService.Create(entity))
+                return RedirectToAction("ProductList");
+
+            ViewBag.ErrorMessage = _productService.ErrorMessage;
+            return View(model);
         }
 
         [HttpGet]
@@ -73,20 +83,35 @@ namespace OkkaKalipWeb.UI.Controllers
         }
 
         [HttpPost]
-        public IActionResult EditProduct(ProductModel model, int[] categoryIds)
+        public async Task<IActionResult> EditProduct(ProductModel model, int[] categoryIds, IFormFile file)
         {
             var entity = _productService.GetById(model.Id);
             if (entity == null)
                 return NotFound();
 
-            entity.Name = model.Name;
-            entity.Description = model.Description;
-            entity.ImageUrl = model.ImageUrl;
-            entity.Price = model.Price;
+            if (ModelState.IsValid)
+            {
+                entity.Name = model.Name;
+                entity.Description = model.Description;
+                entity.Price = model.Price;
 
-            _productService.Update(entity, categoryIds);
+                if (file != null)
+                {
+                    entity.ImageUrl = file.FileName;
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\img", file.FileName);
+                    using (var stream = new FileStream(path, FileMode.Create))
+                    {
+                        await file.CopyToAsync(stream);
+                    }
+                }
 
-            return RedirectToAction("ProductList");
+                _productService.Update(entity, categoryIds);
+
+                return RedirectToAction("ProductList");
+            }
+
+            ViewBag.Categories = _categoryService.GetAll();
+            return View(model);
         }
 
         [HttpPost]

@@ -2,7 +2,7 @@
 
 namespace OkkaKalipWeb.DataAccess.Migrations
 {
-    public partial class CreateDatabase : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

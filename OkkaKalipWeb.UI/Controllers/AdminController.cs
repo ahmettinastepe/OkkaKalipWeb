@@ -1,25 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using OkkaKalipWeb.Business.Abstract;
-using OkkaKalipWeb.UI.Models;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace OkkaKalipWeb.UI.Controllers
 {
+    [Authorize(Roles ="admin")]
     public class AdminController : Controller
     {
-        private IProductService _productService;
-
-        public AdminController(IProductService productService)
-        {
-            _productService = productService;
-        }
         public IActionResult Index()
         {
             ViewBag.SelectedMenu = RouteData.Values["controller"];
 
-            return View(new ProductListModel()
-            {
-                Products = _productService.GetAll()
-            });
+            return View();
         }
     }
 }

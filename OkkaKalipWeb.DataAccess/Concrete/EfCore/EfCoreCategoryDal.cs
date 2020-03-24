@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 {
-    public class EfCoreCategoryDal : EfCoreRepository<Category, OkkaKalipContext>, ICategoryDal
+    public class EfCoreCategoryDal : EfCoreRepository<Category, NakisKalipContext>, ICategoryDal
     {
         public void DeleteFromCategory(int categoryId, int productId)
         {
-            using (var context = new OkkaKalipContext())
+            using (var context = new NakisKalipContext())
             {
                 var entity = context.Set<ProductCategory>().Where(x => x.CategoryId == categoryId && x.ProductId == productId).FirstOrDefault();
                 if (entity != null)
@@ -22,7 +22,7 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 
         public Category GetByIdWithProducts(int id)
         {
-            using (var context = new OkkaKalipContext())
+            using (var context = new NakisKalipContext())
             {
                 return context.Categories
                     .Where(x => x.Id == id)

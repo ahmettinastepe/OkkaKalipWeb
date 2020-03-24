@@ -1,0 +1,118 @@
+﻿@model CartModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="content" class="site-content">
+    <div class="page-header" style="background: url('https://via.placeholder.com/1920x450.png') no-repeat center center;">
+        <div class="container">
+            <div class="breadc-box no-line">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="page-title">Cart </h2>
+                        <ul id="breadcrumbs" class="breadcrumbs none-style">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="shop.html">Shop</a></li>
+                            <li class="active">Cart </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="shopping-cart-warp">
+                        <div class="table-responsive">
+
+                            @if (Model.CartItems.Count > 0)
+                            {
+                                <table class="shop_table shop_table_responsive cart table">
+                                    <thead>
+                                        <tr>
+                                            <th class="product-name">Ürün</th>
+                                            <th class="product-price">Fiyat</th>
+                                            <th class="product-quantity">Miktar</th>
+                                            <th class="product-subtotal">Toplam</th>
+                                            <th class="product-remove">&nbsp;</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.CartItems)
+                                        {
+                                            <tr class="cart_item">
+                                                <td class="product-name">
+                                                    <img src="~/img/@item.ImageUrl" width="90" alt="">
+                                                    <a href="#">@item.Name </a>
+                                                </td>
+                                                <td class="product-price">
+                                                    <span class="amount">@item.Price.ToString("c")</span>
+                                                </td>
+                                                <td class="product-quantity">
+                                                    <div class="quantity">
+                                                        <input type="number" size="4" class="input-text qty text" title="Qty" value="@item.Quantity" step="1">
+                                                    </div>
+                                                </td>
+                                                <td class="product-subtotal">
+                                                    <span class="amount">@((item.Quantity * item.Price).ToString("c"))</span>
+                                                </td>
+                                                <td class="product-remove">
+                                                    <form asp-controller="Cart" asp-action="DeleteFromCart" method="post">
+                                                        <input type="hidden" name="productId" value="@item.ProductId" />
+                                                        <button type="submit" class="btn btn-border">
+                                                            <i class="icon ion-md-remove-circle"></i>
+                                                            Kaldır
+                                                        </button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                            else
+                            {
+                                <div class="services-box services-box-hover">
+                                    <div class="services-content">
+                                        <h3>Henüz Sepete Bir Ürün Eklemediniz.</h3>
+                                        <a class="view-detail" asp-controller="Shop" asp-action="Index">Ürünler<i class="icon ion-md-arrow-back"></i></a>
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="industris-space"></div>
+                @if (Model.CartItems.Count > 0)
+                {
+                    <div class="col-md-offset-6 col-md-6">
+                        <h3>Sepet Özeti</h3>
+                        <div class="table-responsive">
+                            <table class="cart-total">
+                                <tbody>
+                                    <tr class="cart-subtotal">
+                                        <th>Ara Toplam</th>
+                                        <td class="text-right" data-title="Subtotal"><span class="text-primary woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₺</span>@Model.TotalPrice()</span></td>
+                                    </tr>
+                                    <tr class="order-total">
+                                        <th>Total</th>
+                                        <td class="text-right" data-title="Total"><span class="text-primary woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">₺</span>@Model.TotalPrice()</span> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="wc-proceed-to-checkout text-right">
+                            <a asp-controller="Shop" asp-action="Index">Ürün Ekle <i class="icon ion-md-add-circle-outline"></i></a>
+                            <a href="#" class="btn btn-primary">Sepeti Onayla</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</div>

@@ -96,8 +96,30 @@
                                 </ul>
                                 -->
                             </li>
+
+                            <li>
+
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <a asp-controller="Account" asp-action="Manage" class="btn btn-outline-primary">@User.Identity.Name</a>
+
+                                    <ul class="sub-menu">
+                                        @if (User.IsInRole("admin"))
+                                        {
+                                            <li class="menu-item"><a target="_blank" asp-controller="Admin" asp-action="Index">Yönetim Paneli</a></li>
+                                        }
+
+                                        <li class="menu-item"><a asp-controller="Cart" asp-action="Index">Sepet</a></li>
+                                        <li class="menu-item"><a asp-controller="Account" asp-action="Logout">Çıkış Yap</a></li>
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <a asp-controller="Account" asp-action="Login" class="btn btn-outline-primary">Giriş Yap</a>
+                                }
+
+                            </li>
                         </ul>
-                        <a asp-controller="Admin" asp-action="Index" class="btn btn-primary">Giriş / Kaydol</a>
                     </div>
                 </div>
             </div>

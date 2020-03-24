@@ -2,9 +2,20 @@
 @{
     ViewData["Title"] = Model.Name + " adlı ürün için güncelleme işlemi";
     Layout = "~/Views/Shared/_adminLayout.cshtml";
+
+    var counter = 0;
 }
 
-<form asp-controller="Product" asp-action="EditProduct" method="post">
+@section Scripts{
+    <script src="~/modules/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/modules/ckeditor4/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace("editor");
+    </script>
+}
+
+<form asp-controller="Product" asp-action="EditProduct" method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-10">
             <div class="card card-primary">
@@ -22,11 +33,13 @@
                     </div>
                     <div class="form-group row">
                         <label asp-for="ImageUrl">Image</label>
-                        <input asp-for="ImageUrl" value="@Model.ImageUrl" class="form-control" placeholder="Ürün Resmi Yükleyiniz...">
+                        <input type="hidden" name="ImageUrl" value="@Model.ImageUrl" />
+                        <img src="~/img/@Model.ImageUrl" width="100" />
+                        <input type="file" name="file" value="" />
                     </div>
                     <div class="form-group row">
                         <label asp-for="Price">Fiyatı</label>
-                        <input asp-for="Price" value="@Model.Price" class="form-control" placeholder="Ürün Fiyatı Giriniz...">
+                        <input type="number" asp-for="Price" value="@Model.Price" class="form-control" placeholder="Ürün Fiyatı Giriniz...">
                     </div>
                     <div class="form-group row">
                         <label asp-for="Description">Açıklama</label>
@@ -54,12 +67,23 @@
                             <div class="form-group clearfix">
                                 @foreach (var item in (List<Category>)ViewBag.Categories)
                                 {
+                                    var isChecked = "";
+                                    if (Model.SelectedCategories.Any(x => x.Id == item.Id))
+                                    {
+                                        isChecked = "checked";
+                                        <input type="hidden" name="SelectedCategories[@counter].Id" value="@item.Id" />
+                                        <input type="hidden" name="SelectedCategories[@counter].Name" value="@item.Name" />
+
+                                        counter++;
+                                    }
+                                    else
+                                    {
+                                        isChecked = "";
+                                    }
+
                                     <div class="icheck-primary">
-                                        <input type="checkbox"
-                                               name="categoryIds"
-                                               value="@item.Id"
-                                               id="category@(item.Id)"
-                                               @(Model.SelectedCategories.Any(x => x.Id == item.Id) ? "checked" : "")>
+                                        <input type="checkbox" name="categoryIds" value="@item.Id"
+                                               id="category@(item.Id)" @isChecked />
                                         <label for="category@(item.Id)">@item.Name</label>
                                     </div>
                                 }

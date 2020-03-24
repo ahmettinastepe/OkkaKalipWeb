@@ -8,7 +8,7 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
     {
         public static void Seed()
         {
-            var context = new OkkaKalipContext();
+            var context = new NakisKalipContext();
 
             if (context.Database.GetPendingMigrations().Count() == 0)
             {
@@ -34,11 +34,11 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 
         private static Product[] Products =
         {
-            new Product() {Name="Samsung S5",Price=1000,ImageUrl="https://via.placeholder.com/750x750.png", Description="Güzel Ürün 1"},
-            new Product() {Name="Samsung S6",Price=2000,ImageUrl="https://via.placeholder.com/750x750.png", Description="Güzel Ürün 2"},
-            new Product() {Name="Samsung S7",Price=3000,ImageUrl="https://via.placeholder.com/750x750.png", Description="Güzel Ürün 3"},
-            new Product() {Name="Samsung S8",Price=4000,ImageUrl="https://via.placeholder.com/750x750.png", Description="Güzel Ürün 4"},
-            new Product() {Name="Samsung S9",Price=5000,ImageUrl="https://via.placeholder.com/750x750.png", Description="Güzel Ürün 5"}
+            new Product() {Name="Samsung S5",Price=1000,ImageUrl="urun-resim-yok.png", Description="Güzel Ürün 1"},
+            new Product() {Name="Samsung S6",Price=2000,ImageUrl="urun-resim-yok.png", Description="Güzel Ürün 2"},
+            new Product() {Name="Samsung S7",Price=3000,ImageUrl="urun-resim-yok.png", Description="Güzel Ürün 3"},
+            new Product() {Name="Samsung S8",Price=4000,ImageUrl="urun-resim-yok.png", Description="Güzel Ürün 4"},
+            new Product() {Name="Samsung S9",Price=5000,ImageUrl="urun-resim-yok.png", Description="Güzel Ürün 5"}
         };
 
         private static ProductCategory[] ProductCategoies =

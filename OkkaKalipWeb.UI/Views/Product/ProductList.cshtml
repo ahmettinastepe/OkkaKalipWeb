@@ -7,7 +7,7 @@
 <div class="card">
     <div class="card-header">
         <h3 class="card-title mr-4">Ürün Listesi</h3>
-        <a class="btn btn-primary" asp-controller="Product" asp-action="CreateProduct">Ürün Ekle</a>
+        <a class="btn btn-primary ml-auto" asp-controller="Product" asp-action="CreateProduct">Ürün Ekle</a>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -16,7 +16,7 @@
             <table id="example1" class="table table-bordered table-striped">
                 <thead>
                     <tr>
-                        <th  width="30">Id</th>
+                        <th width="30">Id</th>
                         <th width="100">Ürün Resmi</th>
                         <th>Ürün İsmi</th>
                         <th width="100">Fiyatı</th>
@@ -29,7 +29,7 @@
                         <tr>
                             <td>@item.Id</td>
                             <td>
-                                <img src="@item.ImageUrl" width="100"/>
+                                <img src="~/img/@item.ImageUrl" width="100" />
                             </td>
                             <td>@item.Name</td>
                             <td>@item.Price</td>

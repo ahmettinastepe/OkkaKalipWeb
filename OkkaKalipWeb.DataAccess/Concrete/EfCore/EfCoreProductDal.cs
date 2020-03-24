@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 {
-    public class EfCoreProductDal : EfCoreRepository<Product, OkkaKalipContext>, IProductDal
+    public class EfCoreProductDal : EfCoreRepository<Product, NakisKalipContext>, IProductDal
     {
         public Product GetByIdWithCategories(int id)
         {
-            using (var context = new OkkaKalipContext())
+            using (var context = new NakisKalipContext())
             {
                 return context.Products
                     .Where(x => x.Id == id)
@@ -22,7 +22,7 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 
         public Product GetProductDetails(int id)
         {
-            using (var context = new OkkaKalipContext())
+            using (var context = new NakisKalipContext())
             {
                 return context.Products
                     .Where(x => x.Id == id)
@@ -34,7 +34,7 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 
         public List<Product> GetProductsByCategory(string category, int page, int pageSize)
         {
-            using (var context = new OkkaKalipContext())
+            using (var context = new NakisKalipContext())
             {
                 var products = context.Products.AsQueryable();
 
@@ -50,7 +50,7 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 
         public int GetProductsByCategory(string category)
         {
-            using (var context = new OkkaKalipContext())
+            using (var context = new NakisKalipContext())
             {
                 var products = context.Products.AsQueryable();
 
@@ -66,7 +66,7 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 
         public void Update(Product entity, int[] categoryIds)
         {
-            using (var context = new OkkaKalipContext())
+            using (var context = new NakisKalipContext())
             {
                 var product = context.Products
                     .Include(x => x.ProductCategories)

@@ -1,16 +1,13 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OkkaKalipWeb.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 {
-    public class OkkaKalipContext : DbContext
+    public class NakisKalipContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\v11.0;Database=OkkaKalipDb;Integrated Security=true;");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\v11.0;Database=NakisKalipDb;Integrated Security=true;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -20,5 +17,6 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Cart> Carts { get; set; }
     }
 }

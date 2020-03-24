@@ -1,0 +1,84 @@
+﻿@model RegisterModel
+@{
+    ViewData["Title"] = "Kayıt Ekranı";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+    <script src="~/modules/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<div id="content" class="site-content">
+    <div class="page-header" style="background: url('https://via.placeholder.com/1920x450.png') no-repeat center center;">
+        <div class="container">
+            <div class="breadc-box no-line">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="page-title">Login</h2>
+                        <ul id="breadcrumbs" class="breadcrumbs none-style">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="active">Login</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Giriş Yap</h3>
+                    @if (ViewBag.ErroMessage != null)
+                    {
+                        <div class="text-danger">@ViewBag.ErrorMessage</div>
+                    }
+                    <form class="login-form" asp-controller="Account" asp-action="Register" method="post">
+                        <div asp-validation-summary="All" class="text-danger"></div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Adınız Soyadınız *</label>
+                                    <input asp-for="FullName" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Kullanıcı Adı *</label>
+                                    <input asp-for="UserName" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Email Adresi *</label>
+                                    <input asp-for="Email" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Şifre *</label>
+                                    <input asp-for="Password" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label>Şifre Tekrar *</label>
+                                    <input asp-for="RePassword" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-block btn-primary">Kayıt Ol</button>
+                                <br>
+                                <div class="industris-space-30"></div>
+                                Hesabın Var mı?
+                                <a class="lost-password" asp-controller="Account" asp-action="Login">Giriş Yap</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
