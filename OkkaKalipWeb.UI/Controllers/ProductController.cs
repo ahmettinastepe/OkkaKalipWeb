@@ -155,6 +155,9 @@ namespace OkkaKalipWeb.UI.Controllers
         {
             var entity = _categoryService.GetByIdWithProducts(id);
 
+            if (entity == null)
+                return NotFound();
+
             return View(new CategoryModel()
             {
                 Id = entity.Id,
