@@ -21,6 +21,9 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
                     context.AddRange(ProductCategoies);
                 }
 
+                if (context.Sliders.Count() == 0)
+                    context.Sliders.AddRange(Sliders);
+
                 context.SaveChanges();
             }
         }
@@ -50,6 +53,13 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
             new ProductCategory() { Product= Products[2],Category= Categories[0]},
             new ProductCategory() { Product= Products[2],Category= Categories[2]},
             new ProductCategory() { Product= Products[3],Category= Categories[1]}
+        };
+
+        private static Slider[] Sliders =
+        {
+            new Slider(){Title="Best solution for Industrial & Factories",Description="WELCOME TO INDUSTRIS...!",ImageUrl="slider-1.jpg"},
+            new Slider(){Title="The leading provider  of Industrial ",Description="WELCOME TO INDUSTRIS...!",ImageUrl="slider-2.jpg"},
+            new Slider(){Title="Leader in power Automation ",Description="WELCOME TO INDUSTRIS...!",ImageUrl="slider-3.jpg"}
         };
     }
 }

@@ -1,54 +1,22 @@
-﻿<div class="slider" data-show="1" data-arrow="true">
-
-    <div>
-        <div class="slider-item">
-            <img src="https://via.placeholder.com/1920x850.png" alt="" class="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="slider-content">
-                            <h4>WELCOME TO INDUSTRIS...!</h4>
-                            <h1>The leading provider  of Industrial </h1>
-                            <a class="btn btn-primary" href="#">Explore now</a>
+﻿@model List<Slider>
+<div class="slider" data-show="1" data-arrow="true">
+    @foreach (var item in Model)
+    {
+        <div>
+            <div class="slider-item">
+                <img src="~/img/slider/@item.ImageUrl" alt="@item.Title" class="">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="slider-content">
+                                <h4>@item.Description</h4>
+                                <h1>@item.Title </h1>
+                                <a class="btn btn-primary" asp-controller="Shop" asp-action="Index">Ürünleri Gör</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div>
-        <div class="slider-item">
-            <img src="https://via.placeholder.com/1920x850.png" alt="" class="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="slider-content">
-                            <h4>WELCOME TO INDUSTRIS...!</h4>
-                            <h1>Leader in power Automation </h1>
-                            <a class="btn btn-primary" href="#">Explore now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div>
-        <div class="slider-item">
-            <img src="https://via.placeholder.com/1920x850.png" alt="" class="">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-9">
-                        <div class="slider-content">
-                            <h4>WELCOME TO INDUSTRIS...!</h4>
-                            <h1>Best solution for Industrial &amp; Factories </h1>
-                            <a class="btn btn-primary" href="#">Explore now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    }
 </div>

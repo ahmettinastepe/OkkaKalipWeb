@@ -1,11 +1,11 @@
-﻿
+﻿@model HomeModel
 @{
     ViewData["Title"] = "Okka Kalıp";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!-- Slider -->
-<partial name="Components/_slider" />
+@await Html.PartialAsync("Components/_slider", Model.Sliders)
 
 <!-- Our Services -->
 <partial name="Components/_ourServices" />

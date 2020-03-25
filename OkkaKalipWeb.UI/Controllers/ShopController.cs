@@ -17,8 +17,6 @@ namespace OkkaKalipWeb.UI.Controllers
 
         public IActionResult Index(string category, int page = 1)
         {
-            ViewBag.SelectedMenu = RouteData.Values["controller"];
-
             const int pageSize = 3;
             return View(new ProductListModel()
             {

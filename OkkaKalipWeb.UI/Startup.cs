@@ -77,10 +77,12 @@ namespace OkkaKalipWeb.UI
             services.AddScoped<IProductDal, EfCoreProductDal>();
             services.AddScoped<ICategoryDal, EfCoreCategoryDal>();
             services.AddScoped<ICartDal, EfCoreCartDal>();
+            services.AddScoped<ISliderDal, EfCoreSliderDal>();
 
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICartService, CartManager>();
+            services.AddScoped<ISliderService, SliderManager>();
 
             services.AddTransient<IEmailSender, EmailSender>();
         }
