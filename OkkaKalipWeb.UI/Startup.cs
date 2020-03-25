@@ -103,6 +103,8 @@ namespace OkkaKalipWeb.UI
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(name: "adminSliders", "admin/slider", defaults: new { controller = "Slider", action = "SliderList" });
+                endpoints.MapControllerRoute(name: "adminSliders", "admin/slider/{id?}", defaults: new { controller = "Slider", action = "EditSlider" });
                 endpoints.MapControllerRoute(name: "adminProducts", "admin/products", defaults: new { controller = "Product", action = "ProductList" });
                 endpoints.MapControllerRoute(name: "adminProducts", "admin/products/{id?}", defaults: new { controller = "Product", action = "EditProduct" });
                 endpoints.MapControllerRoute(name: "products", "products/{category?}", defaults: new { controller = "Shop", action = "Index" });

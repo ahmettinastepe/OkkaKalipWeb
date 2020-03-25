@@ -1,8 +1,68 @@
-﻿
+﻿@model SliderListModel
 @{
-    ViewData["Title"] = "SliderList";
+    ViewData["Title"] = "Slider Listesi";
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h1>SliderList</h1>
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title mr-4">Slider Listesi</h3>
+        <a class="btn btn-primary ml-auto" asp-controller="Slider" asp-action="CreateSlider">Slider Ekle</a>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        @if (Model.Sliders.Count() > 0)
+        {
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th width="30">Id</th>
+                        <th width="100">Slider Resmi</th>
+                        <th>Başlık</th>
+                        <th width="130"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Sliders)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>
+                                <img src="~/img/slider/@item.ImageUrl" width="100" />
+                            </td>
+                            <td>@item.Title</td>
+                            <td>
+                                <a class="btn btn-primary btn-sm mr-2" href="/admin/slider/@item.Id">
+                                    <i class="fas fa-pencil-alt"></i>
+                                    Güncelle
+                                </a>
 
+                                <form asp-controller="Slider" asp-action="DeleteSlider" method="post" style="display:inline">
+                                    <input type="hidden" name="Id" value="@item.Id" />
+                                    <button class="btn btn-danger btn-sm" type="submit">
+                                        <i class="fas fa-trash"></i>
+                                        Sil
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th width="30">Id</th>
+                        <th width="100">Slider Resmi</th>
+                        <th>Başlık</th>
+                        <th width="130"></th>
+                    </tr>
+                </tfoot>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-warning">Henüz Bir Slider Eklemediniz.</div>
+        }
+    </div>
+    <!-- /.card-body -->
+</div>

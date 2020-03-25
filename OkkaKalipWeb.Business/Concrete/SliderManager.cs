@@ -56,5 +56,10 @@ namespace OkkaKalipWeb.Business.Concrete
         {
             _sliderDal.Delete(entity);
         }
+
+        public Slider GetById(int id)
+        {
+            return _sliderDal.GetById(id);
+        }
     }
 }

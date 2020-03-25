@@ -24,21 +24,19 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
-                with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
                 @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
                 {
                     <li class="nav-item">
-                        <a 
-                           asp-controller="Admin" asp-action="Index" 
+                        <a asp-controller="Admin" asp-action="Index"
                            asp-active-controllers="Admin" asp-active-actions="Index" asp-active-class="active" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>Yönetim Paneli</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a 
-                           asp-controller="Product" asp-action="ProductList" 
-                           asp-active-controllers="Product" asp-active-actions="ProductList,CreateProduct,EditProduct" asp-active-class="active" 
+                        <a asp-controller="Product" asp-action="ProductList"
+                           asp-active-controllers="Product" asp-active-actions="ProductList,CreateProduct,EditProduct" asp-active-class="active"
                            class="nav-link">
                             <i class="nav-icon fas fa-boxes"></i>
                             <p>
@@ -48,11 +46,17 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a 
-                           asp-controller="Product" asp-action="CategoryList" 
+                        <a asp-controller="Product" asp-action="CategoryList"
                            asp-active-controllers="Product" asp-active-actions="CategoryList,CreateCategory,EditCategory" asp-active-class="active" class="nav-link">
                             <i class="nav-icon fas fa-archive"></i>
                             <p>Kategori</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Slider" asp-action="SliderList"
+                           asp-active-controllers="Slider" asp-active-actions="SliderList" asp-active-class="active" class="nav-link">
+                            <i class="nav-icon fas fa-pager"></i>
+                            <p>Slider</p>
                         </a>
                     </li>
                     <li class="nav-header">EXAMPLES</li>
