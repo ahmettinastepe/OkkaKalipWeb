@@ -37,13 +37,12 @@
                                     Güncelle
                                 </a>
 
-                                <form asp-controller="Slider" asp-action="DeleteSlider" method="post" style="display:inline">
-                                    <input type="hidden" name="Id" value="@item.Id" />
-                                    <button class="btn btn-danger btn-sm" type="submit">
-                                        <i class="fas fa-trash"></i>
-                                        Sil
-                                    </button>
-                                </form>
+                                <button type="button" class="btn btn-danger btn-sm toastrDefaultSuccess" data-toggle="modal" data-target="#modal-danger@(item.Id)">
+                                    <i class="fas fa-trash"></i>
+                                    Sil
+                                </button>
+
+                                @await Html.PartialAsync("Components/AdminComponents/_dangerModal", item)
                             </td>
                         </tr>
                     }

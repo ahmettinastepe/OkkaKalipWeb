@@ -11,6 +11,7 @@
     <!-- Ionicons
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     -->
+    @RenderSection("Links", false)
 
     <link href="~/admin/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
     <link href="~/admin/css/responsive.bootstrap4.min.css" rel="stylesheet" />
@@ -20,6 +21,10 @@
     <link href="~/admin/css/adminlte.min.css" rel="stylesheet" />
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <!-- Toastr -->
+    <link href="~/modules/toastr/build/toastr.min.css" rel="stylesheet" />
+
 </head>
 <body class="hold-transition sidebar-mini layout-navbar-fixed">
     <!-- Site wrapper -->
@@ -66,7 +71,7 @@
                             <!-- Default box -->
                             @if (TempData["message"] != null)
                             {
-                                <partial name="_resultMessage" model="@(TempData.Get<ResultMessage>("message"))" />
+                                <partial name="Components/_resultMessage" model="@(TempData.Get<ResultMessage>("message"))" />
                             }
 
                             @RenderBody()
@@ -107,6 +112,9 @@
     <script src="~/admin/js/dataTables.bootstrap4.min.js"></script>
     <script src="~/admin/js/dataTables.responsive.min.js"></script>
     <script src="~/admin/js/responsive.bootstrap4.min.js"></script>
+    <!-- Toastr -->
+    <script src="~/modules/toastr/build/toastr.min.js"></script>
+    <script src="~/admin/js/toastrConfig.js"></script>
 
     @RenderSection("Scripts", false)
 
@@ -126,5 +134,36 @@
                 "responsive": true,
             });
         });</script>
+
+    @{
+        ToastrService.UserName = User.Identity.Name;
+        List<(DateTime Date, string UserId, Toastr Toastr)> toastrs = ToastrService.ReadAndRemoveUserQueue();
+        <script>
+        @if (toastrs != null && toastrs.Count > 0)
+        {
+            foreach (var item in toastrs)
+            {
+                switch (item.Toastr.ToastrType)
+                {
+                    case ToastrType.Info:
+                        @:toastr.info('@item.Toastr.Message.', '@item.Toastr.Title')
+                        break;
+                    case ToastrType.Success:
+                        @:toastr.success('@item.Toastr.Message.', '@item.Toastr.Title')
+                        break;
+                    case ToastrType.Warning:
+                        @:toastr.warning('@item.Toastr.Message.', '@item.Toastr.Title')
+                        break;
+                    case ToastrType.Error:
+                        @:toastr.error('@item.Toastr.Message.', '@item.Toastr.Title')
+                        break;
+                    default:
+                        @:toastr.info('@item.Toastr.Message.', '@item.Toastr.Title')
+                        break;
+                }
+            }
+        }
+        </script>
+    }
 </body>
 </html>
