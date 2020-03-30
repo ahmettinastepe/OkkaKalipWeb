@@ -42,7 +42,7 @@
                                     Sil
                                 </button>
 
-                                @await Html.PartialAsync("Components/AdminComponents/_dangerModal", item)
+                                @await Html.PartialAsync("Components/AdminComponents/_dangerModal", (item.EntityConvert<SliderModel>()).GetEntityModal(item.Id, item.Title))
                             </td>
                         </tr>
                     }

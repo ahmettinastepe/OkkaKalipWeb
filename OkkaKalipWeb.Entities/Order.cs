@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OkkaKalipWeb.Entities
 {
-    public class Order
+    public class Order : BaseEntity
     {
     }
 }
