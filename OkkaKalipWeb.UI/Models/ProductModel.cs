@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OkkaKalipWeb.UI.Models
 {
-    public class ProductModel
+    public class ProductModel : BaseModel
     {
-        public int Id { get; set; }
+        public override int Id { get; set; }
 
         [Required, StringLength(60, MinimumLength = 10, ErrorMessage = "Ürün İsmi Minimum 10, maksimum 60 karakter olabilir.")]
         public string Name { get; set; }

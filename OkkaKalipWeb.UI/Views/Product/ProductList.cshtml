@@ -7,7 +7,13 @@
 <div class="card">
     <div class="card-header">
         <h3 class="card-title mr-4">Ürün Listesi</h3>
-        <a class="btn btn-primary ml-auto" asp-controller="Product" asp-action="CreateProduct">Ürün Ekle</a>
+
+        <div class="card-tools">
+            <a class="btn btn-success" asp-controller="Product" asp-action="CreateProduct">
+                <i class="fas fa-plus-circle"></i>&nbsp;
+                Yeni Ürün
+            </a>
+        </div>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -36,10 +42,12 @@
                             <td>
                                 <a class="btn btn-primary btn-sm mr-2" href="/admin/products/@item.Id">Güncelle</a>
 
-                                <form action="/product/deleteproduct" method="post" style="display:inline">
-                                    <input type="hidden" name="Id" value="@item.Id" />
-                                    <button class="btn btn-danger btn-sm" type="submit">Sil</button>
-                                </form>
+                                <button type="button" class="btn btn-danger btn-sm toastrDefaultSuccess" data-toggle="modal" data-target="#modal-danger@(item.Id)">
+                                    <i class="fas fa-trash"></i>
+                                    Sil
+                                </button>
+
+                                @await Html.PartialAsync("Components/AdminComponents/_dangerModal", (item.EntityConvert<ProductModel>()).GetEntityModal(item.Id, item.Name, "Product", "DeleteProduct"))
                             </td>
                         </tr>
                     }

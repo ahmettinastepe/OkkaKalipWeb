@@ -15,7 +15,7 @@
             <div class="modal-footer justify-content-between">
                 <button type="button" class="btn btn-outline-light" data-dismiss="modal">Vazgeç</button>
 
-                <form asp-controller="Slider" asp-action="DeleteSlider" method="post" style="display:inline">
+                <form asp-controller="@(Model.Controller)" asp-action="@(Model.Action)" method="post" style="display:inline">
                     <input type="hidden" name="Id" value="@Model.Id" />
                     <button class="btn btn-outline-light" type="submit">
                         <i class="fas fa-trash"></i>

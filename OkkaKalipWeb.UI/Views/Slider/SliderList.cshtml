@@ -6,8 +6,14 @@
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title mr-4">Slider Listesi</h3>
-        <a class="btn btn-primary ml-auto" asp-controller="Slider" asp-action="CreateSlider">Slider Ekle</a>
+        <h3 class="card-title">Title</h3>
+
+        <div class="card-tools">
+            <a class="btn btn-success" asp-controller="Slider" asp-action="CreateSlider">
+                <i class="fas fa-plus-circle"></i>&nbsp;
+                Yeni Slider
+            </a>
+        </div>
     </div>
     <!-- /.card-header -->
     <div class="card-body">
@@ -42,7 +48,7 @@
                                     Sil
                                 </button>
 
-                                @await Html.PartialAsync("Components/AdminComponents/_dangerModal", (item.EntityConvert<SliderModel>()).GetEntityModal(item.Id, item.Title))
+                                @await Html.PartialAsync("Components/AdminComponents/_dangerModal", (item.EntityConvert<SliderModel>()).GetEntityModal(item.Id, item.Title, "Slider", "DeleteSlider"))
                             </td>
                         </tr>
                     }

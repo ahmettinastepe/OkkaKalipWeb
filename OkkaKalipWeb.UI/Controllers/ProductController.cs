@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OkkaKalipWeb.Business.Abstract;
 using OkkaKalipWeb.Entities;
+using OkkaKalipWeb.UI.Enums;
 using OkkaKalipWeb.UI.Models;
+using OkkaKalipWeb.UI.Services;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -51,7 +53,16 @@ namespace OkkaKalipWeb.UI.Controllers
             };
 
             if (_productService.Create(entity))
-                return RedirectToAction("ProductList");
+            {
+                ToastrService.AddToUserQueue(new Toastr()
+                {
+                    Message = Toastr.GetMessage("Ürün"),
+                    Title = Toastr.GetTitle("Ürün"),
+                    ToastrType = ToastrType.Success
+                });
+
+                return View(new ProductModel());
+            }
 
             ViewBag.ErrorMessage = _productService.ErrorMessage;
             return View(model);
@@ -107,6 +118,13 @@ namespace OkkaKalipWeb.UI.Controllers
 
                 _productService.Update(entity, categoryIds);
 
+                ToastrService.AddToUserQueue(new Toastr()
+                {
+                    Message = Toastr.GetMessage("Ürün",EntityStatus.Update),
+                    Title = Toastr.GetTitle("Ürün", EntityStatus.Update),
+                    ToastrType = ToastrType.Info
+                });
+
                 return RedirectToAction("ProductList");
             }
 
@@ -119,7 +137,17 @@ namespace OkkaKalipWeb.UI.Controllers
         {
             var entity = _productService.GetById(id);
             if (entity != null)
+            {
                 _productService.Delete(entity);
+
+                ToastrService.AddToUserQueue(new Toastr()
+                {
+                    Message = Toastr.GetMessage("Ürün", EntityStatus.Delete),
+                    Title = Toastr.GetTitle("Ürün", EntityStatus.Delete),
+                    ToastrType = ToastrType.Error
+                });
+            }
+
 
             return RedirectToAction("ProductList");
         }
@@ -147,7 +175,14 @@ namespace OkkaKalipWeb.UI.Controllers
             };
             _categoryService.Create(entity);
 
-            return RedirectToAction("CategoryList");
+            ToastrService.AddToUserQueue(new Toastr()
+            {
+                Message = Toastr.GetMessage("Kategori"),
+                Title = Toastr.GetTitle("Kategori"),
+                ToastrType = ToastrType.Success
+            });
+
+            return View();
         }
 
         [HttpGet]
@@ -176,6 +211,13 @@ namespace OkkaKalipWeb.UI.Controllers
             entity.Name = model.Name;
             _categoryService.Update(entity);
 
+            ToastrService.AddToUserQueue(new Toastr()
+            {
+                Message = Toastr.GetMessage("Kategori", EntityStatus.Update),
+                Title = Toastr.GetTitle("Kategori", EntityStatus.Update),
+                ToastrType = ToastrType.Info
+            });
+
             return RedirectToAction("CategoryList");
         }
 
@@ -184,7 +226,16 @@ namespace OkkaKalipWeb.UI.Controllers
         {
             var entity = _categoryService.GetById(id);
             if (entity != null)
+            {
                 _categoryService.Delete(entity);
+
+                ToastrService.AddToUserQueue(new Toastr()
+                {
+                    Message = Toastr.GetMessage("Kategori", EntityStatus.Delete),
+                    Title = Toastr.GetTitle("Kategori", EntityStatus.Delete),
+                    ToastrType = ToastrType.Error
+                });
+            }
 
             return RedirectToAction("CategoryList");
         }
@@ -193,6 +244,13 @@ namespace OkkaKalipWeb.UI.Controllers
         public IActionResult DeleteFromCategory(int productId, int categoryId)
         {
             _categoryService.DeleteFromCategory(categoryId, productId);
+
+            ToastrService.AddToUserQueue(new Toastr()
+            {
+                Message = "Seçili Ürün Mevcut Kategoriden Silindi",
+                Title = "Kategoriden Ürün Silme",
+                ToastrType = ToastrType.Error
+            });
 
             return Redirect($"/product/editcategory/{categoryId}");
         }

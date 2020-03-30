@@ -6,13 +6,17 @@ namespace OkkaKalipWeb.UI.Models
     {
         public virtual int Id { get; set; }
         public virtual string Title { get; set; }
+        public string Controller { get; set; }
+        public string Action { get; set; }
 
-        public BaseModel GetEntityModal(int id, string title)
+        public BaseModel GetEntityModal(int id, string title, string controller, string action)
         {
             return new BaseModel()
             {
                 Id = id,
-                Title = title
+                Title = title,
+                Controller = controller,
+                Action = action
             };
         }
     }
