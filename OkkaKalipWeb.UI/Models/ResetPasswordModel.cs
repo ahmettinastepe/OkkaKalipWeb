@@ -2,7 +2,7 @@
 
 namespace OkkaKalipWeb.UI.Models
 {
-    public class ResetPasswordModel
+    public class ResetPasswordModel : BaseModel
     {
         [Required]
         public string Token { get; set; }

@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OkkaKalipWeb.DataAccess.Concrete.EfCore;
 
 namespace OkkaKalipWeb.DataAccess.Migrations
 {
     [DbContext(typeof(NakisKalipContext))]
-    partial class NakisKalipContextModelSnapshot : ModelSnapshot
+    [Migration("20200331164731_AddingInfo")]
+    partial class AddingInfo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace OkkaKalipWeb.UI.Models
 {
-    public class PageInfo
+    public class PageInfo : BaseModel
     {
         public int TotalItems { get; set; }
         public int ItemsPerPage { get; set; }

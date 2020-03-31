@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace OkkaKalipWeb.UI.Models
 {
-    public class HomeModel
+    public class HomeModel : BaseModel
     {
         public List<Slider> Sliders { get; set; }
     }

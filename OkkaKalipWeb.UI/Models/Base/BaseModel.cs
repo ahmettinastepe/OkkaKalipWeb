@@ -1,4 +1,5 @@
-﻿using OkkaKalipWeb.UI.Models.Interfaces;
+﻿using OkkaKalipWeb.Entities;
+using OkkaKalipWeb.UI.Models.Interfaces;
 
 namespace OkkaKalipWeb.UI.Models
 {
@@ -8,6 +9,8 @@ namespace OkkaKalipWeb.UI.Models
         public virtual string Title { get; set; }
         public string Controller { get; set; }
         public string Action { get; set; }
+
+        public Info InfoModel { get; set; }
 
         public BaseModel GetEntityModal(int id, string title, string controller, string action)
         {

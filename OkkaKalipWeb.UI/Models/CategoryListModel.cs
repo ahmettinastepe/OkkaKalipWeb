@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OkkaKalipWeb.UI.Models
 {
-    public class CategoryListModel
+    public class CategoryListModel : BaseModel
     {
         public List<Category> Categories { get; set; }
     }

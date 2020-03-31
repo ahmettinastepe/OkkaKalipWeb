@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace OkkaKalipWeb.Business.Abstract
 {
-    public interface ISliderService:IValidator<Slider>
+    public interface ISliderService : IValidator<Slider>
     {
         Slider GetById(int id);
         List<Slider> GetAll();

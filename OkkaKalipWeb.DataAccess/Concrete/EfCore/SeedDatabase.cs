@@ -24,6 +24,9 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
                 if (context.Sliders.Count() == 0)
                     context.Sliders.AddRange(Sliders);
 
+                if (context.Info.Count() == 0)
+                    context.Info.Add(Info);
+
                 context.SaveChanges();
             }
         }
@@ -60,6 +63,22 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
             new Slider(){Title="Best solution for Industrial & Factories",Description="WELCOME TO INDUSTRIS...!",ImageUrl="slider-1.jpg"},
             new Slider(){Title="The leading provider  of Industrial ",Description="WELCOME TO INDUSTRIS...!",ImageUrl="slider-2.jpg"},
             new Slider(){Title="Leader in power Automation ",Description="WELCOME TO INDUSTRIS...!",ImageUrl="slider-3.jpg"}
+        };
+
+        private static Info Info = new Info
+        {
+            LogoHeader = "logo.png",
+            LogoFooter = "logo-footer.png",
+            Address = "Forusbeen 50, 4035 Stavanger, Norway",
+            Email1 = "Forusbeen 50, 4035 Stavanger, Norway",
+            Email2 = "Forusbeen 50, 4035 Stavanger, Turkey",
+            Tel1 = "+84 0378 260 852",
+            Tel2 = "+90 0378 260 900",
+            FacebookUrl = "www.facebook.com",
+            InstagramUrl = "www.instagram.com",
+            TwitterUrl = "www.twitter.com",
+            YoutubeUrl = "www.youtube.com",
+            MapIframe= "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d99561.99432298371!2d30.555035!3d38.75654!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cf3d7e15ecd85b%3A0xf0c901fb9ada4b16!2sAfyonkarahisar%2C%20Afyonkarahisar%20Merkez%2FAfyonkarahisar!5e0!3m2!1str!2str!4v1585670564385!5m2!1str!2str' width='1170' height='500' frameborder='0' style='border:0;' aria-hidden='false' tabindex='0'></iframe>"
         };
     }
 }

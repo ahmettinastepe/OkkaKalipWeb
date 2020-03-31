@@ -1,12 +1,15 @@
-﻿<section class="bg-contact-info">
+﻿@model Info
+<section class="bg-contact-info">
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-12">
-                <h4 class="text-primary">CONTACT INFO</h4>
+                <h4 class="text-primary">İLETİŞİM BİLGİLERİ</h4>
                 <div class="contact-info">
-                    <h2>Hotline : <span class="text-primary">+84 1900 8198</span> </h2>
-                    <p><i class="icon ion-md-mail"></i> Info.industris@gmail.com</p>
-                    <p><i class="icon ion-md-pin"></i> Crows Nest Apt 69 Sydney, Australia (<a href="#" class="text-primary">View map</a>)</p>
+                    <h3>Arayın : <span class="text-primary">@Model.Tel1</span> </h3>
+                    <p><i class="icon ion-md-phone-landscape"></i> @Model.Tel2</p>
+                    <p><i class="icon ion-md-mail"></i> @Model.Email1</p>
+                    <p><i class="icon ion-md-mail"></i> @Model.Email2</p>
+                    <p><i class="icon ion-md-pin"></i> @Model.Address</p>
                 </div>
                 <div class="space-industris" style="height: 40px;"></div>
                 <hr>

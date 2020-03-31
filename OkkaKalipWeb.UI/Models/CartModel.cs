@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace OkkaKalipWeb.UI.Models
 {
-    public class CartModel
+    public class CartModel : BaseModel
     {
         public int CartId { get; set; }
         public List<CartItemModel> CartItems { get; set; }

@@ -1,4 +1,4 @@
-﻿
+﻿@model ContactModel
 @{
     ViewData["Title"] = "Okka Kalıp - İletişim";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -22,7 +22,7 @@
 </div>
 
 <!-- Contact Info -->
-<partial name="Components/_contactInfo" />
+@await Html.PartialAsync("Components/_contactInfo", Model.InfoModel)
 
 <!-- View Map -->
-<partial name="Components/_viewMap" />
+@await Html.PartialAsync("Components/_viewMap", Model.InfoModel.MapIframe)

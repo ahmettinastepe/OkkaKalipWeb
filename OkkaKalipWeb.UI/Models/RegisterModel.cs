@@ -2,7 +2,7 @@
 
 namespace OkkaKalipWeb.UI.Models
 {
-    public class RegisterModel
+    public class RegisterModel : BaseModel
     {
         [Required(ErrorMessage = "Lütfen tam isminizi girin.")]
         public string FullName { get; set; }
