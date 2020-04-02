@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OkkaKalipWeb.Business.Abstract;
+using OkkaKalipWeb.UI.Controllers.Base;
 using OkkaKalipWeb.UI.EmailServices.Abstract;
 using OkkaKalipWeb.UI.Extensions;
 using OkkaKalipWeb.UI.Identity;
@@ -10,14 +11,14 @@ using OkkaKalipWeb.UI.Models;
 namespace OkkaKalipWeb.UI.Controllers
 {
     [AutoValidateAntiforgeryToken]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private UserManager<ApplicationUser> _userManager;
         private SignInManager<ApplicationUser> _signInManager;
         private IEmailSender _emailSender;
         private ICartService _cartService;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IEmailSender emailSender, ICartService cartService)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IEmailSender emailSender, ICartService cartService, IInfoService infoService) : base(infoService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -27,7 +28,10 @@ namespace OkkaKalipWeb.UI.Controllers
 
         public IActionResult Register()
         {
-            return View(new RegisterModel());
+            return View(new RegisterModel()
+            {
+                InfoModel = GetInfo()
+            });
         }
 
         [HttpPost]
@@ -64,7 +68,8 @@ namespace OkkaKalipWeb.UI.Controllers
         {
             return View(new LoginModel()
             {
-                ReturnUrl = returnUrl
+                ReturnUrl = returnUrl,
+                InfoModel = GetInfo()
             });
         }
 
@@ -157,7 +162,10 @@ namespace OkkaKalipWeb.UI.Controllers
 
         public IActionResult ForgotPassword()
         {
-            return View();
+            return View(new AccountModel()
+            {
+                InfoModel = GetInfo()
+            });
         }
 
         [HttpPost]

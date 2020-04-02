@@ -47,5 +47,10 @@ namespace OkkaKalipWeb.Business.Concrete
 
             return isValid;
         }
+
+        public void Update(Info entity)
+        {
+            _infoDal.Update(entity);
+        }
     }
 }
