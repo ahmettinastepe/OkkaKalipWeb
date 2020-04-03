@@ -1,4 +1,4 @@
-﻿
+﻿@model NewsModel
 @{
     ViewData["Title"] = "Okka Kalıp - Haberler";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -24,15 +24,15 @@
     <div class="container">
         <div class="row">
 
-            <partial name="Components/_sidebar" />
-
-            <div id="primary" class="content-area col-lg-8 col-md-8 col-sm-12 col-xs-12">
+            <div id="primary" class="content-area col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <main id="main" class="site-main">
+                    <div class="row">
 
-                    <partial name="Components/_singleNews" />
-                    <partial name="Components/_singleNews" />
-                    <partial name="Components/_singleNews" />
-                    <partial name="Components/_singleNews" />
+                        @foreach (var news in Model.NewsList)
+                        {
+                            <partial name="Components/_singleNews" for="@news" />
+                        }
+                    </div>
 
                     <partial name="Components/_pagination" />
 

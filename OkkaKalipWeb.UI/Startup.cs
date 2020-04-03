@@ -79,12 +79,14 @@ namespace OkkaKalipWeb.UI
             services.AddScoped<ICartDal, EfCoreCartDal>();
             services.AddScoped<ISliderDal, EfCoreSliderDal>();
             services.AddScoped<IInfoDal, EfCoreInfoDal>();
+            services.AddScoped<INewsDal, EfCoreNewsDal>();
 
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
             services.AddScoped<ICartService, CartManager>();
             services.AddScoped<ISliderService, SliderManager>();
             services.AddScoped<IInfoService, InfoManager>();
+            services.AddScoped<INewsService, NewsManager>();
 
             services.AddTransient<IEmailSender, EmailSender>();
         }
@@ -110,6 +112,7 @@ namespace OkkaKalipWeb.UI
                 endpoints.MapControllerRoute(name: "adminProducts", "admin/products", defaults: new { controller = "Product", action = "ProductList" });
                 endpoints.MapControllerRoute(name: "adminProducts", "admin/products/{id?}", defaults: new { controller = "Product", action = "EditProduct" });
                 endpoints.MapControllerRoute(name: "products", "products/{category?}", defaults: new { controller = "Shop", action = "Index" });
+                endpoints.MapControllerRoute(name: "news", "news", defaults: new { controller = "News", action = "Index" });
                 endpoints.MapControllerRoute(name: "admin", "admin/index", defaults: new { controller = "Admin", action = "Index" });
                 endpoints.MapControllerRoute(name: "default", "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(name: "cart", "cart", defaults: new { controller = "Cart", action = "Index" });

@@ -1,0 +1,46 @@
+﻿@model NewsModel
+@{
+    ViewData["Title"] = Model.News.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div class="page-header" style="background: url('https://via.placeholder.com/1920x450.png') no-repeat center center;">
+        <div class="container">
+            <div class="breadc-box no-line">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="page-title">@Model.News.Title </h2>
+                        <ul id="breadcrumbs" class="breadcrumbs none-style">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="shop.html">Shop</a></li>
+                            <li class="active">@Model.News.Title </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="entry-content">
+        <div class="container">
+            <div class="row">
+
+                <div id="primary" class="content-area col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <main id="main" class="site-main">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h3>@Model.News.Title</h3> - <span class="text-primary">@Model.News.DateTime.ToLongDateString()</span>
+                            </div>
+                            <div class="col-md-4">
+                                <h5 class="float-right">Yazar: <span class="text-primary">@Model.News.Author</span></h5>
+                            </div>
+                        </div>
+                        <div class="industris-space-50"></div>
+                        <div class="row">@Model.News.Description</div>
+                    </main>
+                    <!-- #main -->
+                </div>
+            </div>
+        </div>
+    </div>

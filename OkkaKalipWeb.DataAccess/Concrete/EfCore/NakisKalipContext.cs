@@ -20,5 +20,6 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
         public DbSet<Cart> Carts { get; set; }
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Info> Info { get; set; }
+        public DbSet<News> News { get; set; }
     }
 }

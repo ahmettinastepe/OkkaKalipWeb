@@ -27,6 +27,9 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
                 if (context.Info.Count() == 0)
                     context.Info.Add(Info);
 
+                if (context.News.Count() == 0)
+                    context.News.AddRange(News);
+
                 context.SaveChanges();
             }
         }
@@ -78,7 +81,17 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
             InstagramUrl = "www.instagram.com",
             TwitterUrl = "www.twitter.com",
             YoutubeUrl = "www.youtube.com",
-            MapIframe= "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d99561.99432298371!2d30.555035!3d38.75654!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cf3d7e15ecd85b%3A0xf0c901fb9ada4b16!2sAfyonkarahisar%2C%20Afyonkarahisar%20Merkez%2FAfyonkarahisar!5e0!3m2!1str!2str!4v1585670564385!5m2!1str!2str' width='1170' height='500' frameborder='0' style='border:0;' aria-hidden='false' tabindex='0'></iframe>"
+            MapIframe = "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d99561.99432298371!2d30.555035!3d38.75654!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cf3d7e15ecd85b%3A0xf0c901fb9ada4b16!2sAfyonkarahisar%2C%20Afyonkarahisar%20Merkez%2FAfyonkarahisar!5e0!3m2!1str!2str!4v1585670564385!5m2!1str!2str' width='1170' height='500' frameborder='0' style='border:0;' aria-hidden='false' tabindex='0'></iframe>"
+        };
+
+        private static News[] News =
+        {
+            new News(){ ImageUrl="https://via.placeholder.com/750x350.png", Author="Ahmet Tınastepe", Title="Haber 1 Deneme Başlığı", Description="Telenor Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
+            new News(){ ImageUrl="https://via.placeholder.com/750x350.png", Author="Ahmet Tınastepe", Title="Haber 2 Deneme Başlığı", Description="Helenor Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
+            new News(){ ImageUrl="https://via.placeholder.com/750x350.png", Author="Ahmet Tınastepe", Title="Haber 3 Deneme Başlığı", Description="Worked Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
+            new News(){ ImageUrl="https://via.placeholder.com/750x350.png", Author="Ahmet Tınastepe", Title="Haber 4 Deneme Başlığı", Description="Consulting Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
+            new News(){ ImageUrl="https://via.placeholder.com/750x350.png", Author="Ahmet Tınastepe", Title="Haber 5 Deneme Başlığı", Description="Firm Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
+            new News(){ ImageUrl="https://via.placeholder.com/750x350.png", Author="Ahmet Tınastepe", Title="Haber 6 Deneme Başlığı", Description="Northstream Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" }
         };
     }
 }

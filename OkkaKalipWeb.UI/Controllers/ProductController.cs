@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 namespace OkkaKalipWeb.UI.Controllers
 {
     [Authorize(Roles = "admin")]
+    [AutoValidateAntiforgeryToken]
     public class ProductController : Controller
     {
         private IProductService _productService;
