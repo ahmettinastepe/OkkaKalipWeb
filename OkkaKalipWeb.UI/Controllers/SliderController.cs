@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 namespace OkkaKalipWeb.UI.Controllers
 {
     [Authorize(Roles = "admin")]
+    [AutoValidateAntiforgeryToken]
     public class SliderController : Controller
     {
         private ISliderService _sliderService;

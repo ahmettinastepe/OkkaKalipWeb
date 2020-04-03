@@ -24,7 +24,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
-    with font-awesome or any other icon font library -->
+                with font-awesome or any other icon font library -->
                 @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
                 {
                     <li class="nav-item">
@@ -61,9 +61,16 @@
                     </li>
                     <li class="nav-item">
                         <a asp-controller="Slider" asp-action="SliderList"
-                           asp-active-controllers="Slider" asp-active-actions="SliderList" asp-active-class="active" class="nav-link">
+                           asp-active-controllers="Slider" asp-active-actions="SliderList,CreateSlider,EditSlider" asp-active-class="active" class="nav-link">
                             <i class="nav-icon fas fa-pager"></i>
                             <p>Slider</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="News" asp-action="NewsList"
+                           asp-active-controllers="News" asp-active-actions="NewsList,CreateNews,EditNews" asp-active-class="active" class="nav-link">
+                            <i class="nav-icon fas fa-newspaper"></i>
+                            <p>Haber</p>
                         </a>
                     </li>
                     <li class="nav-header">EXAMPLES</li>

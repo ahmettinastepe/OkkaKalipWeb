@@ -1,11 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using OkkaKalipWeb.Business.Abstract;
 using OkkaKalipWeb.Entities;
 using OkkaKalipWeb.UI.Controllers.Base;
+using OkkaKalipWeb.UI.Enums;
+using OkkaKalipWeb.UI.Functions;
 using OkkaKalipWeb.UI.Models;
+using OkkaKalipWeb.UI.Services;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace OkkaKalipWeb.UI.Controllers
 {
+    [Authorize(Roles = "admin")]
+    [AutoValidateAntiforgeryToken]
     public class NewsController : BaseController
     {
         private INewsService _newsService;
@@ -19,7 +28,7 @@ namespace OkkaKalipWeb.UI.Controllers
         {
             const int pageSize = 4;
 
-            return View(new NewsModel()
+            return View(new NewsListModel()
             {
                 InfoModel = GetInfo(),
                 PageInfo = new PageInfo()
@@ -38,14 +47,135 @@ namespace OkkaKalipWeb.UI.Controllers
         {
             if (id == null) return NotFound();
 
-            News news = _newsService.GetById((int)id);
-            if (news == null) return NotFound();
+            News entity = _newsService.GetById((int)id);
+            if (entity == null) return NotFound();
 
             return View(new NewsModel()
             {
-                News = news,
-                InfoModel = GetInfo()
+                InfoModel = GetInfo(),
+                ImageUrl = entity.ImageUrl,
+                Title = entity.Title,
+                Author = entity.Author,
+                Description = entity.Description,
+                DateTime = entity.DateTime
             });
+        }
+
+        public IActionResult NewsList()
+        {
+            return View(new NewsListModel()
+            {
+                NewsList = _newsService.GetAll()
+            });
+        }
+
+        [HttpGet]
+        public IActionResult CreateNews()
+        {
+            return View(new NewsModel());
+        }
+
+        [HttpPost]
+        public IActionResult CreateNews(NewsModel model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            var entity = new News()
+            {
+                ImageUrl = model.ImageUrl,
+                Title = model.Title,
+                Author = model.Author,
+                Description = model.Description
+            };
+
+            if (_newsService.Create(entity))
+            {
+                ToastrService.AddToUserQueue(new Toastr()
+                {
+                    Message = Toastr.GetMessage("Haber"),
+                    Title = Toastr.GetTitle("Haber"),
+                    ToastrType = ToastrType.Success
+                });
+
+                return View(new NewsModel());
+            }
+
+            ViewBag.ErrorMessage = _newsService.ErrorMessage;
+            return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult EditNews(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var entity = _newsService.GetById((int)id);
+            if (entity == null) return NotFound();
+
+            var model = new NewsModel()
+            {
+                Id = entity.Id,
+                ImageUrl = entity.ImageUrl,
+                Title = entity.Title,
+                Author = entity.Author,
+                Description = entity.Description,
+                DateTime = entity.DateTime
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditNews(NewsModel model, IFormFile file)
+        {
+            var entity = _newsService.GetById(model.Id);
+            if (entity == null) return NotFound();
+
+            if (ModelState.IsValid)
+            {
+                entity.Title = model.Title;
+                entity.Author = model.Author;
+                entity.Description = model.Description;
+                entity.DateTime = model.DateTime;
+
+                if (file != null)
+                {
+                    entity.ImageUrl = file.FileName;
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\img\news", file.FileName);
+                    using (var stream = new FileStream(path, FileMode.Create))
+                        await file.CopyToAsync(stream);
+                }
+
+                _newsService.Update(entity);
+                ToastrService.AddToUserQueue(new Toastr()
+                {
+                    Message = Toastr.GetMessage("Haber", EntityStatus.Update),
+                    Title = Toastr.GetTitle("Haber", EntityStatus.Update),
+                    ToastrType = ToastrType.Info
+                });
+
+                return RedirectToAction("NewsList");
+            }
+
+            ViewBag.ErrorMessage = _newsService.ErrorMessage;
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteNews(int id)
+        {
+            var entity = _newsService.GetById(id);
+            if (entity == null) return NotFound();
+
+            _newsService.Delete(entity);
+            ToastrService.AddToUserQueue(new Toastr()
+            {
+                Message = Toastr.GetMessage("Haber", EntityStatus.Delete),
+                Title = Toastr.GetTitle("Haber", EntityStatus.Delete),
+                ToastrType = ToastrType.Error
+            });
+
+            return RedirectToAction("NewsList");
         }
     }
 }

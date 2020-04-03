@@ -110,7 +110,7 @@ namespace OkkaKalipWeb.UI.Controllers
                 if (file != null)
                 {
                     entity.ImageUrl = file.FileName;
-                    var path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\img", file.FileName);
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\img\product", file.FileName);
                     using (var stream = new FileStream(path, FileMode.Create))
                     {
                         await file.CopyToAsync(stream);

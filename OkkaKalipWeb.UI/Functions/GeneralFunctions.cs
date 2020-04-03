@@ -22,7 +22,7 @@ namespace OkkaKalipWeb.UI.Functions
 
         public static string ToSubstring(this string text)
         {
-            return text.Length > 100 ? text.Substring(0, 100) : text;
+            return text.Length > 100 ? text.Substring(0, 100).Trim('\n') : text;
         }
     }
 }

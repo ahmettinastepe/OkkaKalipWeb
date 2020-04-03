@@ -2,8 +2,8 @@
 <div class="col-md-6 col-sm-6 col-xs-12">
     <article class="post-box post type-post entry">
         <div class="entry-media">
-            <a href="post.html">
-                <img src="@Model.ImageUrl" alt="@Model.Title">
+            <a asp-controller="News" asp-action="Detail" asp-route-id="@Model.Id">
+                <img src="~/img/news/@Model.ImageUrl" alt="@Model.Title">
             </a>
         </div>
         <div class="inner-post">
@@ -23,7 +23,7 @@
             <!-- .entry-header -->
 
             <div class="entry-summary">
-                <p> @(Model.Description.ToSubstring())...</p>
+                <p> @(Html.Raw(Model.Description.ToSubstring()))...</p>
             </div>
             <!-- .entry-content -->
 
