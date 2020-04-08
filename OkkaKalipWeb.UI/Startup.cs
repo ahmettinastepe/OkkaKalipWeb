@@ -80,6 +80,7 @@ namespace OkkaKalipWeb.UI
             services.AddScoped<ISliderDal, EfCoreSliderDal>();
             services.AddScoped<IInfoDal, EfCoreInfoDal>();
             services.AddScoped<INewsDal, EfCoreNewsDal>();
+            services.AddScoped<IAboutDal, EfCoreAboutDal>();
 
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
@@ -87,6 +88,7 @@ namespace OkkaKalipWeb.UI
             services.AddScoped<ISliderService, SliderManager>();
             services.AddScoped<IInfoService, InfoManager>();
             services.AddScoped<INewsService, NewsManager>();
+            services.AddScoped<IAboutService, AboutManager>();
 
             services.AddTransient<IEmailSender, EmailSender>();
         }
@@ -118,7 +120,7 @@ namespace OkkaKalipWeb.UI
                 endpoints.MapControllerRoute(name: "cart", "cart", defaults: new { controller = "Cart", action = "Index" });
             });
 
-            SeedIdentity.Seed(userManager, roleManager, Configuration).Wait();
+         //   SeedIdentity.Seed(userManager, roleManager, Configuration).Wait();
         }
     }
 }

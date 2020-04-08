@@ -20,9 +20,9 @@ namespace OkkaKalipWeb.UI.Functions
             return reMapUrl.Replace('"', Convert.ToChar("'"));
         }
 
-        public static string ToSubstring(this string text)
+        public static string ToSubstring(this string text, int lenght = 100)
         {
-            return text.Length > 100 ? text.Substring(0, 100).Trim('\n') : text;
+            return text.Length > lenght ? text.Substring(0, lenght).Trim('\n') : text;
         }
     }
 }

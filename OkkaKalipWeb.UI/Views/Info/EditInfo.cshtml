@@ -4,6 +4,11 @@
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
+@section Scripts{
+    <script src="~/modules/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+}
+
 <form asp-controller="Info" asp-action="EditInfo" method="post" enctype="multipart/form-data">
     <div class="col-12 col-md-12">
         <div asp-validation-summary="All" class="text-danger"></div>

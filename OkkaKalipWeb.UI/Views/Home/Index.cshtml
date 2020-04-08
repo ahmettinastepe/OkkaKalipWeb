@@ -11,13 +11,11 @@
 <partial name="Components/_ourServices" />
 
 <!-- Our Story And Recruitment And Get a Quote -->
-<partial name="Components/_ourStory" />
+@await Html.PartialAsync("Components/_ourStory", Model.AboutModel)
 
-<!-- Featured Project -->
-<partial name="Components/_featuredProject" />
-
-<!-- Testimonial -->
+<!-- Testimonial
 <partial name="Components/_testimonial" />
+-->
 
 <!-- The News -->
-<partial name="Components/_theNews" />
+@await Html.PartialAsync("Components/_theNews", Model.NewsListModel)

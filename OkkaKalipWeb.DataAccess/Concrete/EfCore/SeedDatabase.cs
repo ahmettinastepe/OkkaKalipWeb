@@ -30,6 +30,9 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
                 if (context.News.Count() == 0)
                     context.News.AddRange(News);
 
+                if (context.About.Count() == 0)
+                    context.About.Add(About);
+
                 context.SaveChanges();
             }
         }
@@ -86,12 +89,32 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 
         private static News[] News =
         {
-            new News(){ ImageUrl="https://via.placeholder.com/750x350.png", Author="Ahmet Tınastepe", Title="Haber 1 Deneme Başlığı", Description="Telenor Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
-            new News(){ ImageUrl="https://via.placeholder.com/750x350.png", Author="Ahmet Tınastepe", Title="Haber 2 Deneme Başlığı", Description="Helenor Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
-            new News(){ ImageUrl="https://via.placeholder.com/750x350.png", Author="Ahmet Tınastepe", Title="Haber 3 Deneme Başlığı", Description="Worked Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
-            new News(){ ImageUrl="https://via.placeholder.com/750x350.png", Author="Ahmet Tınastepe", Title="Haber 4 Deneme Başlığı", Description="Consulting Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
-            new News(){ ImageUrl="https://via.placeholder.com/750x350.png", Author="Ahmet Tınastepe", Title="Haber 5 Deneme Başlığı", Description="Firm Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
-            new News(){ ImageUrl="https://via.placeholder.com/750x350.png", Author="Ahmet Tınastepe", Title="Haber 6 Deneme Başlığı", Description="Northstream Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" }
+            new News(){ ImageUrl="news-img-1.jpg", Author="Ahmet Tınastepe", Title="Haber 1 Deneme Başlığı", Description="Telenor Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
+            new News(){ ImageUrl="news-img-2.jpg", Author="Ahmet Tınastepe", Title="Haber 2 Deneme Başlığı", Description="Helenor Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
+            new News(){ ImageUrl="news-img-3.jpg", Author="Ahmet Tınastepe", Title="Haber 3 Deneme Başlığı", Description="Worked Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
+            new News(){ ImageUrl="news-img-4.jpg", Author="Ahmet Tınastepe", Title="Haber 4 Deneme Başlığı", Description="Consulting Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
+            new News(){ ImageUrl="news-img-1.jpg", Author="Ahmet Tınastepe", Title="Haber 5 Deneme Başlığı", Description="Firm Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
+            new News(){ ImageUrl="news-img-2.jpg", Author="Ahmet Tınastepe", Title="Haber 6 Deneme Başlığı", Description="Northstream Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" }
+        };
+
+        private static About About = new About
+        {
+            ImageUrl="about-img.jpg",
+            AboutTitle= "Industris 1994-2019",
+            ExperienceYear=20,
+            AboutDescription= "We’re Industris, a broad energy company with a proud history. We are 20,000 committed colleagues developing oil, gas, wind and solar energy in more than 30 countries worldwide. We’re the largest operator in Norway, one of the world’s largest offshore operators, and a growing force in renewables. Driven by our Nordic urge to explore beyond the horizon and dedication to safety, equality and sustainability, we’re developing the energy of the future.",
+            ValuesTitle= "Our values",
+            ValuesDescription= "We are the leading operator on the Norwegian continental shelf and have substantial international activities. We are engaged in exploration, development and production of oil and gas, as well as wind and solar power. We sell crude oil and are a major supplier of natural gas, with activities in processing, refining, and trading. Our activities are managed through eight business areas, staffs and support divisions, and we have operations in North and South America, Africa, Asia, Europe and Oceania, and Norway.",
+            Founder= "Arya Star",
+            Rank= "CEO, Founder",
+            Vision= "When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary, I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown",
+            Mission= "When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary, I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown",
+            WorkProcess= "Over the course of more than 25 years of hard work with many large and small projects. We have worked out the best working process.",
+            YoutubeUrl= "https://youtu.be/YrbQIN2TBhM",
+            YoutubeTitle= "VISION & MISSION STATTEMENT",
+            YoutubeDescription= "Connecting things, It’s all about people.",
+            YoutubeImageUrl="bg-about-video-jpg",
+            YoutubeHomeImageUrl="home-video-img.jpg"
         };
     }
 }

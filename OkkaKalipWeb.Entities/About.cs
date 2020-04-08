@@ -1,6 +1,6 @@
-﻿namespace OkkaKalipWeb.UI.Models
+﻿namespace OkkaKalipWeb.Entities
 {
-    public class AboutModel : BaseModel
+    public class About : BaseEntity
     {
         public string ImageUrl { get; set; }
         public string AboutTitle { get; set; }

@@ -1,26 +1,27 @@
-﻿<section>
+﻿@model AboutModel
+<section>
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-sm-12">
-                <h4 class="text-primary">OUR STORY</h4>
-                <h2>Industris 1994-2019</h2>
-                <p>We’re Industris, a broad energy company with a proud history. We are 20,000 committed colleagues developing oil, gas, wind and solar energy in more than 30 countries worldwide. We’re the largest operator in Norway, one of the world’s largest offshore operators, and a growing force in renewables. Driven by our Nordic urge to explore beyond the horizon and dedication to safety, equality and sustainability, we’re developing the energy of the future.</p>
+                <h4 class="text-primary">BİZİM HİKAYEMİZ</h4>
+                <h2>@Model.AboutTitle</h2>
+                <p>@Model.AboutDescription</p>
                 <br>
                 <p>
-                    Contacting Industris — <br>
-                    addresses and information on how best to contact us.
+                    Bağlantı Kurun — <br>
+                    Bizimle Nasıl İletişim Kuracağınızı Öğrenin.
                 </p>
-                <a href="#" class="btn btn-primary">Contact us</a>
+                <a asp-controller="Contact" asp-action="Index" class="btn btn-primary">Bize Ulaşın</a>
                 <div class="industris-space-sm"></div>
             </div>
             <div class="col-md-offset-1 col-md-5 col-sm-12 sm-center">
                 <div class="about-img-right">
-                    <img src="https://via.placeholder.com/750x864.png" alt="">
+                    <img src="~/img/about/@(Model.ImageUrl)" alt="">
                     <div class="about-img-small">
-                        <div class="overlay"><img src="https://via.placeholder.com/211x211.png" class="circle-img" alt=""></div>
+                        <div class="overlay"><img src="~/img/about/about-circle.png" class="circle-img" alt=""></div>
                         <div class="about-content">
-                            <h2 class="text-primary">24+</h2>
-                            <p class="text-white">Years of Experience</p>
+                            <h2 class="text-primary">@Model.ExperienceYear+</h2>
+                            <p class="text-white">Yılların Deneyimi</p>
                         </div>
                     </div>
                 </div>
@@ -30,76 +31,50 @@
 
     <div class="industris-space-60"></div>
     <div class="industris-space"></div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-sm-6">
-                <div class="icon-box">
-                    <div class="icon-box-title">
-                        <i class="icon ion-md-ribbon"></i><h4>Our Awards <span class="number" data-to="12" data-speed="2000">(0</span><span>+)</span></h4>
-                    </div>
-                    <p>Over 25 years with 12 different awards, we are extremely proud of that</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="icon-box">
-                    <div class="icon-box-title">
-                        <i class="icon ion-ios-briefcase"></i><h4>Our Work <span class="number" data-to="100" data-speed="2000">(0</span><span>+)</span></h4>
-                    </div>
-                    <p>More than 100 large and small projects are completed. It is an attempt to work with effort and passion</p>
-                </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-                <div class="icon-box">
-                    <div class="icon-box-title">
-                        <i class="icon ion-ios-contacts"></i><h4>member <span class="number" data-to="1000" data-speed="2000">(0</span><span>+)</span></h4>
-                    </div>
-                    <p>The team of more than 1000 engineers and leading experts are working day and night</p>
-                </div>
-            </div>
-        </div>
-    </div>
 </section>
 
 <section class="video-about">
     <div class="container-custom">
-        <div class="bg-about-video"><img src="https://via.placeholder.com/1678x700.png" alt=""></div>
+        <div class="bg-about-video"><img src="@(Url.Content("~/img/about/bg-about-video.jpg"))" alt=""></div>
         <div class="container">
             <div class="breadc-box">
                 <div class="row">
                     <div class="col-md-5 col-sm-8 col-xs-12">
-                        <h4 class="text-white">VISION & MISSION STATTEMENT</h4>
-                        <h2 class="text-white">Connecting things, It’s all about people.</h2>
+                        <h4 class="text-white">@Model.YoutubeTitle</h4>
+                        <h2 class="text-white">@Model.YoutubeDescription</h2>
                     </div>
                     <div class="col-md-offset-1 col-md-6 col-sm-4 col-xs-12 text-right">
                         <div class="about-video video-player">
-                            <a class="play-btn" href="https://www.youtube.com/watch?v=SyRchIzIq9I"><i class="icon ion-ios-play"></i></a>
+                            <a class="play-btn" href="@(Model.YoutubeUrl)"><i class="icon ion-ios-play"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="industris-space-60"></div>
+    <div class="industris-space"></div>
 </section>
 
 <section class="bg-light">
     <div class="container">
         <div class="row">
             <div class="col-md-7">
-                <h3>Our values</h3>
-                <p>We are the leading operator on the Norwegian continental shelf and have substantial international activities. We are engaged in exploration, development and production of oil and gas, as well as wind and solar power. We sell crude oil and are a major supplier of natural gas, with activities in processing, refining, and trading. Our activities are managed through eight business areas, staffs and support divisions, and we have operations in North and South America, Africa, Asia, Europe and Oceania, and Norway.</p>
-                <img src="images/sign.png" alt="">
+                <h3>@Model.ValuesTitle</h3>
+                <p>@Model.ValuesDescription</p>
+                <img src="@(Model.InfoModel.LogoHeader)" alt="">
                 <div class="row">
                     <div class="col-md-offset-1 col-md-6 no-padding-sm-left">
                         <div class="about-author">
                             <div class="about-author-info">
-                                <h4><strong>Arya Star</strong></h4>
-                                <p>CEO, Founder</p>
+                                <h4><strong>@Model.Founder</strong></h4>
+                                <p>@Model.Rank</p>
                             </div>
                             <div class="about-author-media">
-                                <a href="#"><i class="icon ion-logo-linkedin"></i></a>
-                                <a href="#"><i class="icon ion-logo-twitter"></i></a>
-                                <a href="#"><i class="icon ion-logo-skype"></i></a>
+                                <a href="@(Model.InfoModel.FacebookUrl)"><i class="icon ion-logo-facebook"></i></a>
+                                <a href="@(Model.InfoModel.TwitterUrl)"><i class="icon ion-logo-twitter"></i></a>
+                                <a href="@(Model.InfoModel.InstagramUrl)"><i class="icon ion-logo-instagram"></i></a>
                             </div>
                         </div>
                     </div>
@@ -119,4 +94,29 @@
             </div>
         </div>
     </div>
+    <div class="industris-space-60"></div>
+    <div class="industris-space"></div>
+</section>
+
+<section class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <h3>VİZYONUMUZ</h3>
+                <img src="~/img/about/vision.jpg" alt="">
+                <div class="industris-space-60"></div>
+                <p>@Model.Vision</p>
+                <div class="industris-space-sm"></div>
+            </div>
+            <div class="col-md-offset-1 col-md-5 about-border-left">
+                <h3>MİSYONUMUZ</h3>
+                <img src="~/img/about/mission.jpg" alt="">
+                <div class="industris-space-60"></div>
+                <p>@Model.Mission</p>
+                <div class="industris-space-sm"></div>
+            </div>
+        </div>
+    </div>
+    <div class="industris-space-60"></div>
+    <div class="industris-space"></div>
 </section>

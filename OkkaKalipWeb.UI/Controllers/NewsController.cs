@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 
 namespace OkkaKalipWeb.UI.Controllers
 {
-    [Authorize(Roles = "admin")]
     [AutoValidateAntiforgeryToken]
     public class NewsController : BaseController
     {
@@ -61,6 +60,7 @@ namespace OkkaKalipWeb.UI.Controllers
             });
         }
 
+        [Authorize(Roles = "admin")]
         public IActionResult NewsList()
         {
             return View(new NewsListModel()
@@ -70,12 +70,14 @@ namespace OkkaKalipWeb.UI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public IActionResult CreateNews()
         {
             return View(new NewsModel());
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public IActionResult CreateNews(NewsModel model)
         {
             if (!ModelState.IsValid) return View(model);
@@ -105,6 +107,7 @@ namespace OkkaKalipWeb.UI.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "admin")]
         public IActionResult EditNews(int? id)
         {
             if (id == null) return NotFound();
@@ -126,6 +129,7 @@ namespace OkkaKalipWeb.UI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> EditNews(NewsModel model, IFormFile file)
         {
             var entity = _newsService.GetById(model.Id);
@@ -162,6 +166,7 @@ namespace OkkaKalipWeb.UI.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public IActionResult DeleteNews(int id)
         {
             var entity = _newsService.GetById(id);

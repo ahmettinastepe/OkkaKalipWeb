@@ -19,6 +19,66 @@ namespace OkkaKalipWeb.DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("OkkaKalipWeb.Entities.About", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AboutDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AboutTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ExperienceYear")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Founder")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mission")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Rank")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ValuesDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ValuesTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Vision")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("WorkProcess")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("YoutubeDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("YoutubeHomeImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("YoutubeImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("YoutubeTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("YoutubeUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("About");
+                });
+
             modelBuilder.Entity("OkkaKalipWeb.Entities.Cart", b =>
                 {
                     b.Property<int>("Id")
