@@ -13,19 +13,22 @@ namespace OkkaKalipWeb.UI.Controllers
         private ISliderService _sliderService;
         private IAboutService _aboutService;
         private INewsService _newsService;
+        private IAboutServicesService _aboutServicesService;
 
-
-        public HomeController(ISliderService sliderService, IAboutService aboutService, INewsService newsService, IInfoService infoService) : base(infoService)
+        public HomeController(ISliderService sliderService, IAboutService aboutService, INewsService newsService, IAboutServicesService aboutServicesService, IInfoService infoService) : base(infoService)
         {
             _sliderService = sliderService;
             _aboutService = aboutService;
             _newsService = newsService;
+            _aboutServicesService = aboutServicesService;
         }
 
         public IActionResult Index()
         {
             var aboutEntity = _aboutService.GetAbout();
             List<News> newsModelList = _newsService.GetAll().TakeLast(3).ToList();
+
+            var serviceList = _aboutServicesService.GetAll();
 
             return View(new HomeModel()
             {
@@ -43,7 +46,8 @@ namespace OkkaKalipWeb.UI.Controllers
                     Vision = aboutEntity.Vision,
                     WorkProcess = aboutEntity.WorkProcess
                 },
-                NewsListModel = newsModelList
+                NewsListModel = newsModelList,
+                Services = serviceList
             });
         }
     }

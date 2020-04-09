@@ -5,7 +5,6 @@ using OkkaKalipWeb.Business.Abstract;
 using OkkaKalipWeb.Entities;
 using OkkaKalipWeb.UI.Controllers.Base;
 using OkkaKalipWeb.UI.Enums;
-using OkkaKalipWeb.UI.Functions;
 using OkkaKalipWeb.UI.Models;
 using OkkaKalipWeb.UI.Services;
 using System.IO;

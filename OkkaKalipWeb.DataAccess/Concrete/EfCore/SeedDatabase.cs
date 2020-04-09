@@ -33,6 +33,9 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
                 if (context.About.Count() == 0)
                     context.About.Add(About);
 
+                if (context.Services.Count() == 0)
+                    context.Services.AddRange(Services);
+
                 context.SaveChanges();
             }
         }
@@ -99,22 +102,32 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 
         private static About About = new About
         {
-            ImageUrl="about-img.jpg",
-            AboutTitle= "Industris 1994-2019",
-            ExperienceYear=20,
-            AboutDescription= "We’re Industris, a broad energy company with a proud history. We are 20,000 committed colleagues developing oil, gas, wind and solar energy in more than 30 countries worldwide. We’re the largest operator in Norway, one of the world’s largest offshore operators, and a growing force in renewables. Driven by our Nordic urge to explore beyond the horizon and dedication to safety, equality and sustainability, we’re developing the energy of the future.",
-            ValuesTitle= "Our values",
-            ValuesDescription= "We are the leading operator on the Norwegian continental shelf and have substantial international activities. We are engaged in exploration, development and production of oil and gas, as well as wind and solar power. We sell crude oil and are a major supplier of natural gas, with activities in processing, refining, and trading. Our activities are managed through eight business areas, staffs and support divisions, and we have operations in North and South America, Africa, Asia, Europe and Oceania, and Norway.",
-            Founder= "Arya Star",
-            Rank= "CEO, Founder",
-            Vision= "When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary, I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown",
-            Mission= "When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary, I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown",
-            WorkProcess= "Over the course of more than 25 years of hard work with many large and small projects. We have worked out the best working process.",
-            YoutubeUrl= "https://youtu.be/YrbQIN2TBhM",
-            YoutubeTitle= "VISION & MISSION STATTEMENT",
-            YoutubeDescription= "Connecting things, It’s all about people.",
-            YoutubeImageUrl="bg-about-video-jpg",
-            YoutubeHomeImageUrl="home-video-img.jpg"
+            ImageUrl = "about-img.jpg",
+            AboutTitle = "Industris 1994-2019",
+            ExperienceYear = 20,
+            AboutDescription = "We’re Industris, a broad energy company with a proud history. We are 20,000 committed colleagues developing oil, gas, wind and solar energy in more than 30 countries worldwide. We’re the largest operator in Norway, one of the world’s largest offshore operators, and a growing force in renewables. Driven by our Nordic urge to explore beyond the horizon and dedication to safety, equality and sustainability, we’re developing the energy of the future.",
+            ValuesTitle = "Our values",
+            ValuesDescription = "We are the leading operator on the Norwegian continental shelf and have substantial international activities. We are engaged in exploration, development and production of oil and gas, as well as wind and solar power. We sell crude oil and are a major supplier of natural gas, with activities in processing, refining, and trading. Our activities are managed through eight business areas, staffs and support divisions, and we have operations in North and South America, Africa, Asia, Europe and Oceania, and Norway.",
+            Founder = "Arya Star",
+            Rank = "CEO, Founder",
+            Vision = "When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary, I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown",
+            Mission = "When, while the lovely valley teems with vapour around me, and the meridian sun strikes the upper surface of the impenetrable foliage of my trees, and but a few stray gleams steal into the inner sanctuary, I throw myself down among the tall grass by the trickling stream; and, as I lie close to the earth, a thousand unknown",
+            WorkProcess = "Over the course of more than 25 years of hard work with many large and small projects. We have worked out the best working process.",
+            YoutubeUrl = "https://youtu.be/YrbQIN2TBhM",
+            YoutubeTitle = "VISION & MISSION STATTEMENT",
+            YoutubeDescription = "Connecting things, It’s all about people.",
+            YoutubeImageUrl = "bg-about-video-jpg",
+            YoutubeHomeImageUrl = "home-video-img.jpg"
+        };
+
+        private static Service[] Services =
+        {
+            new Service(){ImageUrl="services-icon-1.png", Title="Industrial Construction", Description="Diam vehicula platea blandit malesua quam hac vehicula id non leo dui et dapibu turpis quis, tempor augue duis ut justo..."},
+            new Service(){ImageUrl="services-icon-2.png", Title="Manufacture", Description="Diam vehicula platea blandit malesua quam hac vehicula id non leo dui et dapibu turpis quis, tempor augue duis ut justo..."},
+            new Service(){ImageUrl="services-icon-3.png", Title="Green Energy", Description="Diam vehicula platea blandit malesua quam hac vehicula id non leo dui et dapibu turpis quis, tempor augue duis ut justo..."},
+            new Service(){ImageUrl="services-icon-4.png", Title="Transtportation & Distribution", Description="Diam vehicula platea blandit malesua quam hac vehicula id non leo dui et dapibu turpis quis, tempor augue duis ut justo..."},
+            new Service(){ImageUrl="services-icon-5.png", Title="Oil & Gas", Description="Diam vehicula platea blandit malesua quam hac vehicula id non leo dui et dapibu turpis quis, tempor augue duis ut justo..."},
+            new Service(){ImageUrl="services-icon-6.png", Title="Automative Manufacturing", Description="Diam vehicula platea blandit malesua quam hac vehicula id non leo dui et dapibu turpis quis, tempor augue duis ut justo..."}
         };
     }
 }

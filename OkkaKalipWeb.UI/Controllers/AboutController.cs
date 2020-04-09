@@ -8,10 +8,12 @@ namespace OkkaKalipWeb.UI.Controllers
     public class AboutController : BaseController
     {
         private IAboutService _aboutService;
+        private IAboutServicesService _aboutServicesService;
 
-        public AboutController(IAboutService aboutService, IInfoService infoService) : base(infoService)
+        public AboutController(IAboutService aboutService, IAboutServicesService aboutServicesService, IInfoService infoService) : base(infoService)
         {
             _aboutService = aboutService;
+            _aboutServicesService = aboutServicesService;
         }
         public IActionResult Index()
         {
@@ -30,11 +32,11 @@ namespace OkkaKalipWeb.UI.Controllers
                 Vision = entity.Vision,
                 Mission = entity.Mission,
                 WorkProcess = entity.WorkProcess,
-                YoutubeTitle=entity.YoutubeTitle,
-                YoutubeDescription=entity.YoutubeDescription,
-                YoutubeUrl=entity.YoutubeUrl,
-                YoutubeImageUrl=entity.YoutubeImageUrl,
-                YoutubeHomeImageUrl=entity.YoutubeHomeImageUrl
+                YoutubeTitle = entity.YoutubeTitle,
+                YoutubeDescription = entity.YoutubeDescription,
+                YoutubeUrl = entity.YoutubeUrl,
+                YoutubeImageUrl = entity.YoutubeImageUrl,
+                YoutubeHomeImageUrl = entity.YoutubeHomeImageUrl
             });
         }
 
@@ -48,6 +50,28 @@ namespace OkkaKalipWeb.UI.Controllers
         public IActionResult AboutManage(AboutModel model)
         {
             return View();
+        }
+
+        //Services
+        public IActionResult ServiceList()
+        {
+            return View();
+        }
+
+        public IActionResult ServiceDetail(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var entity = _aboutServicesService.GetById((int)id);
+            if (entity == null) return NotFound();
+
+            return View(new AboutServiceModel()
+            {
+                InfoModel = GetInfo(),
+                ImageUrl = entity.ImageUrl,
+                Title = entity.Title,
+                Description = entity.Description
+            });
         }
     }
 }

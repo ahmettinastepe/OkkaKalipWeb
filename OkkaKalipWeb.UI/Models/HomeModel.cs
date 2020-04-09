@@ -8,5 +8,6 @@ namespace OkkaKalipWeb.UI.Models
         public List<Slider> Sliders { get; set; }
         public AboutModel AboutModel { get; set; }
         public List<News> NewsListModel { get; set; }
+        public List<Service> Services { get; set; }
     }
 }

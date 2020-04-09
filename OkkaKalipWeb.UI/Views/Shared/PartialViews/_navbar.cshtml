@@ -32,8 +32,8 @@
                 <div class="col-md-9">
                     <div class="main-navigation">
                         <ul id="primary-menu" class="menu">
-                            <li class="menu-item @(ViewBag.SelectedMenu=="Home"?"current-menu-ancestor current-menu-parent":"")">
-                                <a href="/">Anasayfa</a>
+                            <li asp-active-controllers="Home" asp-active-actions="Index" asp-active-class="current-menu-ancestor current-menu-parent" class="menu-item">
+                                <a asp-controller="Home" asp-action="Index">Anasayfa</a>
                                 <!--
                 <ul class="sub-menu">
             <li class="menu-item current-menu-item page_item current_page_item"><a href="index.html">Home 1</a></li>

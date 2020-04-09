@@ -1,6 +1,6 @@
 ﻿@model HomeModel
 @{
-    ViewData["Title"] = "Okka Kalıp";
+    ViewData["Title"] = "Nakış Kalıp";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -8,14 +8,10 @@
 @await Html.PartialAsync("Components/_slider", Model.Sliders)
 
 <!-- Our Services -->
-<partial name="Components/_ourServices" />
+@await Html.PartialAsync("Components/_ourServices", Model.Services)
 
 <!-- Our Story And Recruitment And Get a Quote -->
 @await Html.PartialAsync("Components/_ourStory", Model.AboutModel)
-
-<!-- Testimonial
-<partial name="Components/_testimonial" />
--->
 
 <!-- The News -->
 @await Html.PartialAsync("Components/_theNews", Model.NewsListModel)

@@ -50,6 +50,8 @@ namespace OkkaKalipWeb.Business.Concrete
             _newsDal.Update(entity);
         }
 
+        public string ErrorMessage { get; set; }
+
         public bool Validate(News entity)
         {
             var isValid = true;
@@ -72,8 +74,5 @@ namespace OkkaKalipWeb.Business.Concrete
         {
             return _newsDal.GetNewsByPageSize(page, pageSize);
         }
-
-        public string ErrorMessage { get; set; }
-
     }
 }
