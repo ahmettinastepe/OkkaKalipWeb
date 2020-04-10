@@ -5,21 +5,23 @@
 }
 
 <!-- Site Page Route Banner -->
-    <div class="page-header" style="background: url('@Url.Content("~/img/info/subheader-about.jpg")') no-repeat center center;">
-        <div class="container">
-            <div class="breadc-box no-line">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h2 class="page-title">Kurumsal</h2>
-                        <ul id="breadcrumbs" class="breadcrumbs none-style">
-                            <li><a href="/">Anasayfa</a></li>
-                            <li class="active">Kurumsal</li>
-                        </ul>
-                    </div>
+<div class="page-header" style="background: url('@Url.Content("~/img/banner/"+Model.GetBannerImageUrl()??"main-banner.jpg")') no-repeat center center;">
+    <div class="container">
+        <div class="breadc-box no-line">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="page-title">Kurumsal</h2>
+                    <ul id="breadcrumbs" class="breadcrumbs none-style">
+                        <li asp-active-controllers="Home" asp-active-actions="Index" asp-active-class="current-menu-ancestor current-menu-parent">
+                            <a asp-controller="Home" asp-action="Index">Anasayfa</a>
+                        </li>
+                        <li class="active">Kurumsal</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 <!-- About Story -->
 @await Html.PartialAsync("Components/_aboutOurStory", Model)

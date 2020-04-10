@@ -30,7 +30,8 @@ namespace OkkaKalipWeb.UI.Controllers
         {
             return View(new RegisterModel()
             {
-                InfoModel = GetInfo()
+                InfoModel = GetInfo(),
+                BannerImages = GetBannerImages()
             });
         }
 
@@ -69,7 +70,8 @@ namespace OkkaKalipWeb.UI.Controllers
             return View(new LoginModel()
             {
                 ReturnUrl = returnUrl,
-                InfoModel = GetInfo()
+                InfoModel = GetInfo(),
+                BannerImages = GetBannerImages()
             });
         }
 
@@ -164,7 +166,8 @@ namespace OkkaKalipWeb.UI.Controllers
         {
             return View(new AccountModel()
             {
-                InfoModel = GetInfo()
+                InfoModel = GetInfo(),
+                BannerImages = GetBannerImages()
             });
         }
 

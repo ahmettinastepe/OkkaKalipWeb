@@ -1,6 +1,7 @@
 ﻿using OkkaKalipWeb.Business.Abstract;
 using OkkaKalipWeb.DataAccess.Abstract;
 using OkkaKalipWeb.Entities;
+using System.Collections.Generic;
 
 namespace OkkaKalipWeb.Business.Concrete
 {
@@ -51,6 +52,11 @@ namespace OkkaKalipWeb.Business.Concrete
         public void Update(Info entity)
         {
             _infoDal.Update(entity);
+        }
+
+        public List<BannerImage> GetAllBannerIamges()
+        {
+            return _infoDal.GetAllBannerIamges();
         }
     }
 }

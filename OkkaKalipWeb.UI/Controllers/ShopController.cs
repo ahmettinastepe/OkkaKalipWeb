@@ -22,6 +22,7 @@ namespace OkkaKalipWeb.UI.Controllers
             return View(new ProductListModel()
             {
                 InfoModel = GetInfo(),
+                BannerImages = GetBannerImages(),
                 PageInfo = new PageInfo()
                 {
                     TotalItems = _productService.GetCountByCategory(category),
@@ -47,6 +48,7 @@ namespace OkkaKalipWeb.UI.Controllers
             return View(new ProductDetailsModel()
             {
                 InfoModel = GetInfo(),
+                BannerImages = GetBannerImages(),
                 Product = product,
                 Categories = product.ProductCategories.Select(x => x.Category).ToList()
             });

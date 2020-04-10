@@ -83,6 +83,7 @@ namespace OkkaKalipWeb.UI
             services.AddScoped<IAboutDal, EfCoreAboutDal>();
             services.AddScoped<IServiceDal, EfCoreServiceDal>();
             services.AddScoped<IClientsLogoDal, EfCoreClientsLogoDal>();
+            services.AddScoped<IBannerImageDal, EfCoreBannerImageDal>();
 
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<ICategoryService, CategoryManager>();
@@ -93,6 +94,7 @@ namespace OkkaKalipWeb.UI
             services.AddScoped<IAboutService, AboutManager>();
             services.AddScoped<IAboutServicesService, AboutServicesManager>();
             services.AddScoped<IClientsLogoService, ClientsLogoManager>();
+            services.AddScoped<IBannerImageService, BannerImageManager>();
 
             services.AddTransient<IEmailSender, EmailSender>();
         }

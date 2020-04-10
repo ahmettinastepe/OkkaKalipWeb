@@ -39,6 +39,9 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
                 if (context.ClientsLogos.Count() == 0)
                     context.ClientsLogos.AddRange(ClientsLogos);
 
+                if (context.BannerImages.Count() == 0)
+                    context.BannerImages.AddRange(BannerImages);
+
                 context.SaveChanges();
             }
         }
@@ -140,6 +143,15 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
             new ClientsLogo() { ImageUrl = "partner-logo-3.png" },
             new ClientsLogo() { ImageUrl = "partner-logo-4.png" },
             new ClientsLogo() { ImageUrl = "partner-logo-5.png" }
+        };
+
+        private static BannerImage[] BannerImages =
+        {
+            new BannerImage() { ImageUrl="banner-1.jpg" },
+            new BannerImage() { ImageUrl="banner-2.jpg" },
+            new BannerImage() { ImageUrl="banner-3.jpg" },
+            new BannerImage() { ImageUrl="banner-4.jpg" },
+            new BannerImage() { ImageUrl="banner-5.jpg" }
         };
     }
 }

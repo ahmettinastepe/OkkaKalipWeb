@@ -3,16 +3,20 @@
     ViewData["Title"] = Model.Product.Name;
 }
 
-<div class="page-header" style="background: url('https://via.placeholder.com/1920x450.png') no-repeat center center;">
+<div class="page-header" style="background: url('@Url.Content("~/img/banner/"+Model.GetBannerImageUrl()??"main-banner.jpg")') no-repeat center center;">
     <div class="container">
         <div class="breadc-box no-line">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="page-title">@Model.Product.Name </h2>
+                    <h2 class="page-title">@Model.Product.Name</h2>
                     <ul id="breadcrumbs" class="breadcrumbs none-style">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="shop.html">Shop</a></li>
-                        <li class="active">@Model.Product.Name </li>
+                        <li asp-active-controllers="Home" asp-active-actions="Index" asp-active-class="current-menu-ancestor current-menu-parent">
+                            <a asp-controller="Home" asp-action="Index">Anasayfa</a>
+                        </li>
+                        <li asp-active-controllers="Shop" asp-active-actions="Index" asp-active-class="current-menu-ancestor current-menu-parent">
+                            <a asp-controller="Shop" asp-action="Index">Ürünler</a>
+                        </li>
+                        <li class="active">@Model.Product.Name</li>
                     </ul>
                 </div>
             </div>
@@ -20,4 +24,4 @@
     </div>
 </div>
 
-<partial name="Components/_productDetail" for="@Model"/>
+<partial name="Components/_productDetail" for="@Model" />

@@ -14,7 +14,8 @@ namespace OkkaKalipWeb.UI.Controllers
         {
             return View(new ContactModel()
             {
-                InfoModel = GetInfo()
+                InfoModel = GetInfo(),
+                BannerImages = GetBannerImages()
             });
         }
     }

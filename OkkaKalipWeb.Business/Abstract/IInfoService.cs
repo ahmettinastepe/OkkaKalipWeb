@@ -1,4 +1,5 @@
 ﻿using OkkaKalipWeb.Entities;
+using System.Collections.Generic;
 
 namespace OkkaKalipWeb.Business.Abstract
 {
@@ -6,5 +7,6 @@ namespace OkkaKalipWeb.Business.Abstract
     {
         Info GetInfo(int id = 1);
         void Update(Info entity);
+        List<BannerImage> GetAllBannerIamges();
     }
 }

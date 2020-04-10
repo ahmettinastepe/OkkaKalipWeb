@@ -5,16 +5,17 @@
 }
 
 <div id="content" class="site-content">
-    <div class="page-header" style="background: url('https://via.placeholder.com/1920x450.png') no-repeat center center;">
+    <div class="page-header" style="background: url('@Url.Content("~/img/banner/"+Model.GetBannerImageUrl()??"main-banner.jpg")') no-repeat center center;">
         <div class="container">
             <div class="breadc-box no-line">
                 <div class="row">
                     <div class="col-md-12">
-                        <h2 class="page-title">Cart </h2>
+                        <h2 class="page-title">Sepet</h2>
                         <ul id="breadcrumbs" class="breadcrumbs none-style">
-                            <li><a href="index.html">Home</a></li>
-                            <li><a href="shop.html">Shop</a></li>
-                            <li class="active">Cart </li>
+                            <li asp-active-controllers="Home" asp-active-actions="Index" asp-active-class="current-menu-ancestor current-menu-parent">
+                                <a asp-controller="Home" asp-action="Index">Anasayfa</a>
+                            </li>
+                            <li class="active">Sepet</li>
                         </ul>
                     </div>
                 </div>

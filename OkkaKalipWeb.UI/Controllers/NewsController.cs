@@ -29,6 +29,7 @@ namespace OkkaKalipWeb.UI.Controllers
             return View(new NewsListModel()
             {
                 InfoModel = GetInfo(),
+                BannerImages = GetBannerImages(),
                 PageInfo = new PageInfo()
                 {
                     TotalItems = _newsService.GetAll().Count,
@@ -51,6 +52,7 @@ namespace OkkaKalipWeb.UI.Controllers
             return View(new NewsModel()
             {
                 InfoModel = GetInfo(),
+                BannerImages = GetBannerImages(),
                 ImageUrl = entity.ImageUrl,
                 Title = entity.Title,
                 Author = entity.Author,

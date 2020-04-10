@@ -21,6 +21,7 @@ namespace OkkaKalipWeb.UI.Controllers
             return View(new AboutModel()
             {
                 InfoModel = GetInfo(),
+                BannerImages = GetBannerImages(),
                 ImageUrl = entity.ImageUrl,
                 AboutTitle = entity.AboutTitle,
                 ExperienceYear = entity.ExperienceYear,

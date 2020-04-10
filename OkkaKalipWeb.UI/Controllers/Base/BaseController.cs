@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OkkaKalipWeb.Business.Abstract;
 using OkkaKalipWeb.Entities;
+using System.Collections.Generic;
 
 namespace OkkaKalipWeb.UI.Controllers.Base
 {
@@ -16,6 +17,11 @@ namespace OkkaKalipWeb.UI.Controllers.Base
         public Info GetInfo()
         {
             return _infoService.GetInfo();
+        }
+
+        public List<BannerImage> GetBannerImages()
+        {
+            return _infoService.GetAllBannerIamges();
         }
     }
 }
