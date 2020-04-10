@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ClientsLogo>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="partner-slider image-carousel text-center" data-show="5" data-arrow="false">
+                    @foreach (var item in Model)
+                    {
+                        <div>
+                            <div class="partner-item text-center clearfix">
+                                <div class="inner">
+                                    <div class="thumb">
+                                        <img src="~/img/about/partners/@(item.ImageUrl)" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

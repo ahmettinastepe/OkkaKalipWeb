@@ -23,5 +23,6 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
         public DbSet<News> News { get; set; }
         public DbSet<About> About { get; set; }
         public DbSet<Service> Services { get; set; }
+        public DbSet<ClientsLogo> ClientsLogos { get; set; }
     }
 }

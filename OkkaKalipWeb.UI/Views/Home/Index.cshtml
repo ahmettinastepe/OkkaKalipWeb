@@ -13,5 +13,11 @@
 <!-- Our Story And Recruitment And Get a Quote -->
 @await Html.PartialAsync("Components/_ourStory", Model.AboutModel)
 
+<!-- Clients Logo -->
+@await Html.PartialAsync("Components/_clientsLogo", Model.ClientsLogos)
+
+<!-- Vision And Mission -->
+@await Html.PartialAsync("Components/_visionMission", Model.AboutModel)
+
 <!-- The News -->
 @await Html.PartialAsync("Components/_theNews", Model.NewsListModel)

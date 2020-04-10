@@ -9,5 +9,6 @@ namespace OkkaKalipWeb.UI.Models
         public AboutModel AboutModel { get; set; }
         public List<News> NewsListModel { get; set; }
         public List<Service> Services { get; set; }
+        public List<ClientsLogo> ClientsLogos { get; set; }
     }
 }

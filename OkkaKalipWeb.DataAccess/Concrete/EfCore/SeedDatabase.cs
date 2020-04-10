@@ -36,42 +36,45 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
                 if (context.Services.Count() == 0)
                     context.Services.AddRange(Services);
 
+                if (context.ClientsLogos.Count() == 0)
+                    context.ClientsLogos.AddRange(ClientsLogos);
+
                 context.SaveChanges();
             }
         }
 
         private static Category[] Categories =
         {
-            new Category() {Name="Telefon"},
-            new Category() {Name="Bilgisayar"},
-            new Category() {Name="Elektronik"}
+            new Category() { Name = "Telefon" },
+            new Category() { Name = "Bilgisayar" },
+            new Category() { Name = "Elektronik" }
         };
 
         private static Product[] Products =
         {
-            new Product() {Name="Samsung S5",Price=1000,ImageUrl="urun-resim-yok.png", Description="Güzel Ürün 1"},
-            new Product() {Name="Samsung S6",Price=2000,ImageUrl="urun-resim-yok.png", Description="Güzel Ürün 2"},
-            new Product() {Name="Samsung S7",Price=3000,ImageUrl="urun-resim-yok.png", Description="Güzel Ürün 3"},
-            new Product() {Name="Samsung S8",Price=4000,ImageUrl="urun-resim-yok.png", Description="Güzel Ürün 4"},
-            new Product() {Name="Samsung S9",Price=5000,ImageUrl="urun-resim-yok.png", Description="Güzel Ürün 5"}
+            new Product() { Name = "Samsung S5", Price = 1000, ImageUrl = "urun-resim-yok.png", Description = "Güzel Ürün 1" },
+            new Product() { Name = "Samsung S6", Price = 2000, ImageUrl = "urun-resim-yok.png", Description = "Güzel Ürün 2" },
+            new Product() { Name = "Samsung S7", Price = 3000, ImageUrl = "urun-resim-yok.png", Description = "Güzel Ürün 3" },
+            new Product() { Name = "Samsung S8", Price = 4000, ImageUrl = "urun-resim-yok.png", Description = "Güzel Ürün 4" },
+            new Product() { Name = "Samsung S9", Price = 5000, ImageUrl = "urun-resim-yok.png", Description = "Güzel Ürün 5" }
         };
 
         private static ProductCategory[] ProductCategoies =
         {
-            new ProductCategory() { Product= Products[0],Category= Categories[0]},
-            new ProductCategory() { Product= Products[0],Category= Categories[2]},
-            new ProductCategory() { Product= Products[1],Category= Categories[0]},
-            new ProductCategory() { Product= Products[1],Category= Categories[1]},
-            new ProductCategory() { Product= Products[2],Category= Categories[0]},
-            new ProductCategory() { Product= Products[2],Category= Categories[2]},
-            new ProductCategory() { Product= Products[3],Category= Categories[1]}
+            new ProductCategory() { Product = Products[0], Category = Categories[0] },
+            new ProductCategory() { Product = Products[0], Category = Categories[2] },
+            new ProductCategory() { Product = Products[1], Category = Categories[0] },
+            new ProductCategory() { Product = Products[1], Category = Categories[1] },
+            new ProductCategory() { Product = Products[2], Category = Categories[0] },
+            new ProductCategory() { Product = Products[2], Category = Categories[2] },
+            new ProductCategory() { Product = Products[3], Category = Categories[1] }
         };
 
         private static Slider[] Sliders =
         {
-            new Slider(){Title="Best solution for Industrial & Factories",Description="WELCOME TO INDUSTRIS...!",ImageUrl="slider-1.jpg"},
-            new Slider(){Title="The leading provider  of Industrial ",Description="WELCOME TO INDUSTRIS...!",ImageUrl="slider-2.jpg"},
-            new Slider(){Title="Leader in power Automation ",Description="WELCOME TO INDUSTRIS...!",ImageUrl="slider-3.jpg"}
+            new Slider() { Title = "Best solution for Industrial & Factories", Description = "WELCOME TO INDUSTRIS...!", ImageUrl = "slider-1.jpg" },
+            new Slider() { Title = "The leading provider  of Industrial ", Description = "WELCOME TO INDUSTRIS...!", ImageUrl = "slider-2.jpg" },
+            new Slider() { Title = "Leader in power Automation ", Description = "WELCOME TO INDUSTRIS...!", ImageUrl = "slider-3.jpg" }
         };
 
         private static Info Info = new Info
@@ -92,12 +95,12 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 
         private static News[] News =
         {
-            new News(){ ImageUrl="news-img-1.jpg", Author="Ahmet Tınastepe", Title="Haber 1 Deneme Başlığı", Description="Telenor Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
-            new News(){ ImageUrl="news-img-2.jpg", Author="Ahmet Tınastepe", Title="Haber 2 Deneme Başlığı", Description="Helenor Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
-            new News(){ ImageUrl="news-img-3.jpg", Author="Ahmet Tınastepe", Title="Haber 3 Deneme Başlığı", Description="Worked Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
-            new News(){ ImageUrl="news-img-4.jpg", Author="Ahmet Tınastepe", Title="Haber 4 Deneme Başlığı", Description="Consulting Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
-            new News(){ ImageUrl="news-img-1.jpg", Author="Ahmet Tınastepe", Title="Haber 5 Deneme Başlığı", Description="Firm Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
-            new News(){ ImageUrl="news-img-2.jpg", Author="Ahmet Tınastepe", Title="Haber 6 Deneme Başlığı", Description="Northstream Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" }
+            new News() { ImageUrl = "news-img-1.jpg", Author = "Ahmet Tınastepe", Title = "Haber 1 Deneme Başlığı", Description = "Telenor Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
+            new News() { ImageUrl = "news-img-2.jpg", Author = "Ahmet Tınastepe", Title = "Haber 2 Deneme Başlığı", Description = "Helenor Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
+            new News() { ImageUrl = "news-img-3.jpg", Author = "Ahmet Tınastepe", Title = "Haber 3 Deneme Başlığı", Description = "Worked Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
+            new News() { ImageUrl = "news-img-4.jpg", Author = "Ahmet Tınastepe", Title = "Haber 4 Deneme Başlığı", Description = "Consulting Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
+            new News() { ImageUrl = "news-img-1.jpg", Author = "Ahmet Tınastepe", Title = "Haber 5 Deneme Başlığı", Description = "Firm Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" },
+            new News() { ImageUrl = "news-img-2.jpg", Author = "Ahmet Tınastepe", Title = "Haber 6 Deneme Başlığı", Description = "Northstream Connexion has worked with analysts from Stockholm-based consulting firm Northstream to" }
         };
 
         private static About About = new About
@@ -122,12 +125,21 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 
         private static Service[] Services =
         {
-            new Service(){ImageUrl="services-icon-1.png", Title="Industrial Construction", Description="Diam vehicula platea blandit malesua quam hac vehicula id non leo dui et dapibu turpis quis, tempor augue duis ut justo..."},
-            new Service(){ImageUrl="services-icon-2.png", Title="Manufacture", Description="Diam vehicula platea blandit malesua quam hac vehicula id non leo dui et dapibu turpis quis, tempor augue duis ut justo..."},
-            new Service(){ImageUrl="services-icon-3.png", Title="Green Energy", Description="Diam vehicula platea blandit malesua quam hac vehicula id non leo dui et dapibu turpis quis, tempor augue duis ut justo..."},
-            new Service(){ImageUrl="services-icon-4.png", Title="Transtportation & Distribution", Description="Diam vehicula platea blandit malesua quam hac vehicula id non leo dui et dapibu turpis quis, tempor augue duis ut justo..."},
-            new Service(){ImageUrl="services-icon-5.png", Title="Oil & Gas", Description="Diam vehicula platea blandit malesua quam hac vehicula id non leo dui et dapibu turpis quis, tempor augue duis ut justo..."},
-            new Service(){ImageUrl="services-icon-6.png", Title="Automative Manufacturing", Description="Diam vehicula platea blandit malesua quam hac vehicula id non leo dui et dapibu turpis quis, tempor augue duis ut justo..."}
+            new Service() { ImageUrl = "services-icon-1.png", Title = "Industrial Construction", Description = "Diam vehicula platea blandit malesua quam hac vehicula id non leo dui et dapibu turpis quis, tempor augue duis ut justo..." },
+            new Service() { ImageUrl = "services-icon-2.png", Title = "Manufacture", Description = "Diam vehicula platea blandit malesua quam hac vehicula id non leo dui et dapibu turpis quis, tempor augue duis ut justo..." },
+            new Service() { ImageUrl = "services-icon-3.png", Title = "Green Energy", Description = "Diam vehicula platea blandit malesua quam hac vehicula id non leo dui et dapibu turpis quis, tempor augue duis ut justo..." },
+            new Service() { ImageUrl = "services-icon-4.png", Title = "Transtportation & Distribution", Description = "Diam vehicula platea blandit malesua quam hac vehicula id non leo dui et dapibu turpis quis, tempor augue duis ut justo..." },
+            new Service() { ImageUrl = "services-icon-5.png", Title = "Oil & Gas", Description = "Diam vehicula platea blandit malesua quam hac vehicula id non leo dui et dapibu turpis quis, tempor augue duis ut justo..." },
+            new Service() { ImageUrl = "services-icon-6.png", Title = "Automative Manufacturing", Description = "Diam vehicula platea blandit malesua quam hac vehicula id non leo dui et dapibu turpis quis, tempor augue duis ut justo..." }
+        };
+
+        private static ClientsLogo[] ClientsLogos =
+        {
+            new ClientsLogo() { ImageUrl = "partner-logo-1.png" },
+            new ClientsLogo() { ImageUrl = "partner-logo-2.png" },
+            new ClientsLogo() { ImageUrl = "partner-logo-3.png" },
+            new ClientsLogo() { ImageUrl = "partner-logo-4.png" },
+            new ClientsLogo() { ImageUrl = "partner-logo-5.png" }
         };
     }
 }
