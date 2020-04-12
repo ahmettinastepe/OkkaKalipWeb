@@ -6,6 +6,7 @@ namespace OkkaKalipWeb.Entities
     {
         public string ImageUrl { get; set; }
         public string Title { get; set; }
+        public bool IsActive { get; set; } = true;
         public string Author { get; set; }
         public string Description { get; set; }
         public DateTime DateTime { get; set; } = DateTime.Now;

@@ -18,5 +18,7 @@
         public string YoutubeDescription { get; set; }
         public string YoutubeImageUrl { get; set; }
         public string YoutubeHomeImageUrl { get; set; }
+        public string DifferentText { get; set; }
+        public string DifferentKeywords { get; set; }
     }
 }
