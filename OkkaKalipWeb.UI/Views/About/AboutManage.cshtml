@@ -4,12 +4,39 @@
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
+@section Links{
+
+    <link href="~/admin/css/bootstrap-tagsinput.css" rel="stylesheet" />
+}
+
 @section Scripts{
     <script src="~/modules/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/admin/js/bootstrap-maxlength.min.js"></script>
+    <script src="~/admin/js/bootstrap-tagsinput.js"></script>
     <script src="~/modules/ckeditor4/ckeditor.js"></script>
     <script>
         CKEDITOR.replace("editor");
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#showhide").click(function () {
+                $("#contactform").toggle("slow");
+            });
+
+            $('textarea#alloptions').maxlength({
+                alwaysShow: true,
+                warningClass: "badge badge-success",
+                limitReachedClass: "badge badge-danger",
+                separator: ' - Maksimum Karakter: ',
+                preText: 'Yazılan: ',
+                postText: '',
+                validate: true
+            });
+
+            hljs.initHighlightingOnLoad();
+
+        });
     </script>
 }
 
@@ -26,10 +53,16 @@
                         <a class="nav-link" id="custom-tabs-three-values-tab" data-toggle="pill" href="#custom-tabs-three-values" role="tab" aria-controls="custom-tabs-values" aria-selected="false">Değerlerimiz</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-three-youtube-tab" data-toggle="pill" href="#custom-tabs-three-youtube" role="tab" aria-controls="custom-tabs-youtube" aria-selected="false">Video Tanıtım</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" id="custom-tabs-three-vizmis-tab" data-toggle="pill" href="#custom-tabs-three-vizmis" role="tab" aria-controls="custom-tabs-three-vizmis" aria-selected="false">Vizyon - Misyon</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="custom-tabs-three-process-tab" data-toggle="pill" href="#custom-tabs-three-process" role="tab" aria-controls="custom-tabs-three-process" aria-selected="false">Çalışma Süreci</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-three-different-tab" data-toggle="pill" href="#custom-tabs-three-different" role="tab" aria-controls="custom-tabs-three-different" aria-selected="false">Neden Farklıyız?</a>
                     </li>
                 </ul>
             </div>
@@ -44,9 +77,9 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Resim</label>
-                                                    <input type="hidden" name="file" value="@Model.ImageUrl" />
-                                                    <img src="~/img/about/@Model.ImageUrl" />
-                                                    <input type="file" name="file" value="" />
+                                                    <input type="hidden" name="about" value="@Model.ImageUrl" />
+                                                    <img width="100" src="~/img/about/@Model.ImageUrl" />
+                                                    <input type="file" name="about" value="" />
                                                     <span asp-validation-for="ImageUrl" class="text-danger"></span>
                                                 </div>
                                                 <div class="form-group">
@@ -108,6 +141,50 @@
                         </section>
                     </div>
 
+                    <div class="tab-pane fade" id="custom-tabs-three-youtube" role="tabpanel" aria-labelledby="custom-tabs-three-youtube-tab">
+                        <section class="content">
+                            <div class="container-fluid">
+                                <div class="card card-default">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Video Resmi</label>
+                                                    <input type="hidden" name="youtubeImage" value="@Model.YoutubeImageUrl" />
+                                                    <img width="100" src="~/img/about/@Model.YoutubeImageUrl" />
+                                                    <input type="file" name="youtubeImage" value="" />
+                                                    <span asp-validation-for="YoutubeImageUrl" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Anasayfa Video Resmi</label>
+                                                    <input type="hidden" name="youtubeHomeImage" value="@Model.YoutubeHomeImageUrl" />
+                                                    <img width="100" src="~/img/about/@Model.YoutubeHomeImageUrl" />
+                                                    <input type="file" name="youtubeHomeImage" value="" />
+                                                    <span asp-validation-for="YoutubeHomeImageUrl" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Video Başlığı</label>
+                                                    <input asp-for="YoutubeTitle" value="@Model.YoutubeTitle" type="text" class="form-control" placeholder="Video başlığını giriniz ...">
+                                                    <span asp-validation-for="YoutubeTitle" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Video Linki</label>
+                                                    <input asp-for="YoutubeUrl" value="@Model.YoutubeUrl" type="text" class="form-control" placeholder="Video linkini giriniz ...">
+                                                    <span asp-validation-for="YoutubeUrl" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Video Açıklaması</label>
+                                                    <textarea asp-for="YoutubeDescription" value="@Model.YoutubeDescription" class="form-control" rows="3" maxlength="300" id="alloptions"></textarea>
+                                                    <span asp-validation-for="YoutubeDescription" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
                     <div class="tab-pane fade" id="custom-tabs-three-vizmis" role="tabpanel" aria-labelledby="custom-tabs-three-vizmis-tab">
                         <section class="content">
                             <div class="container-fluid">
@@ -155,6 +232,34 @@
                             </div>
                         </section>
                     </div>
+
+                    <div class="tab-pane fade" id="custom-tabs-three-different" role="tabpanel" aria-labelledby="custom-tabs-three-different-tab">
+                        <section class="content">
+                            <div class="container-fluid">
+
+                                <div class="card card-default">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Özellikleri Girin</label>
+                                                    <input asp-for="DifferentKeywords" value="@Model.DifferentKeywords" type="text" data-role="tagsinput" class="form-control">
+                                                    <span asp-validation-for="DifferentKeywords" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Açıklama</label>
+                                                    <textarea asp-for="DifferentText" value="@Model.DifferentText" class="form-control" rows="3" maxlength="300" id="alloptions"></textarea>
+                                                    <span asp-validation-for="DifferentText" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+                    </div>
+
                 </div>
             </div>
             <!-- /.card -->

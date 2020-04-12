@@ -4,21 +4,23 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="page-header" style="background: url('https://via.placeholder.com/1920x450.png') no-repeat center center;">
-    <div class="container">
-        <div class="breadc-box no-line">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="page-title">@Model.Title </h2>
-                    <ul id="breadcrumbs" class="breadcrumbs none-style">
-                        <li><a href="/">Anasayfa</a></li>
-                        <li class="active">@Model.Title </li>
-                    </ul>
+    <div class="page-header" style="background: url('@Url.Content("~/img/banner/"+Model.GetBannerImageUrl()??"main-banner.jpg")') no-repeat center center;">
+        <div class="container">
+            <div class="breadc-box no-line">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="page-title">Servislerimiz</h2>
+                        <ul id="breadcrumbs" class="breadcrumbs none-style">
+                            <li asp-active-controllers="Home" asp-active-actions="Index" asp-active-class="current-menu-ancestor current-menu-parent">
+                                <a asp-controller="Home" asp-action="Index">Anasayfa</a>
+                            </li>
+                            <li class="active">Servislerimiz</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 <div class="entry-content">
     <div class="container">

@@ -25,28 +25,8 @@ namespace OkkaKalipWeb.UI.Controllers
         [HttpGet]
         public IActionResult EditInfo()
         {
-            var info = _infoService.GetInfo();
-
-            return View(new InfoModel()
-            {
-                Id = info.Id,
-                LogoHeader = info.LogoHeader,
-                LogoFooter = info.LogoFooter,
-                Address = info.Address,
-                Email1 = info.Email1,
-                Email2 = info.Email2,
-                Tel1 = info.Tel1,
-                Tel2 = info.Tel2,
-                FacebookUrl = info.FacebookUrl,
-                InstagramUrl = info.InstagramUrl,
-                TwitterUrl = info.TwitterUrl,
-                YoutubeUrl = info.YoutubeUrl,
-                MapIframe = info.MapIframe,
-                SiteTitle = info.SiteTitle,
-                Author = info.Author,
-                Keywords = info.Keywords,
-                Description = info.Description
-            });
+            var entity = _infoService.GetInfo();
+            return View(entity.EntityConvert<InfoModel>());
         }
 
         [HttpPost]

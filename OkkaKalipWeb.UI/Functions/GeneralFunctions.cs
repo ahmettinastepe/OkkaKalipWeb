@@ -27,6 +27,11 @@ namespace OkkaKalipWeb.UI.Functions
             return text.Length > lenght ? text.Substring(0, lenght).Trim('\n') : text;
         }
 
+        public static string[] ToSplit(this string text)
+        {
+            return text.Split(',');
+        }
+
         public static T GetRandomEntity<T>(this List<T> entities) where T : class
         {
             if (entities == null)

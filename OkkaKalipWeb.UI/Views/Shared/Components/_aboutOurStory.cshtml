@@ -60,38 +60,67 @@
 <section class="bg-light">
     <div class="container">
         <div class="row">
-            <div class="col-md-7">
-                <h3>@Model.ValuesTitle</h3>
-                <p>@Model.ValuesDescription</p>
-                <img src="@(Model.InfoModel.LogoHeader)" alt="">
-                <div class="row">
-                    <div class="col-md-offset-1 col-md-6 no-padding-sm-left">
-                        <div class="about-author">
-                            <div class="about-author-info">
-                                <h4><strong>@Model.Founder</strong></h4>
-                                <p>@Model.Rank</p>
-                            </div>
-                            <div class="about-author-media">
-                                <a href="@(Model.InfoModel.FacebookUrl)"><i class="icon ion-logo-facebook"></i></a>
-                                <a href="@(Model.InfoModel.TwitterUrl)"><i class="icon ion-logo-twitter"></i></a>
-                                <a href="@(Model.InfoModel.InstagramUrl)"><i class="icon ion-logo-instagram"></i></a>
+            @if (!(string.IsNullOrEmpty(Model.DifferentText) || string.IsNullOrEmpty(Model.DifferentKeywords)))
+            {
+
+
+                <div class="col-md-7">
+                    <h3>@Model.ValuesTitle</h3>
+                    <p>@Model.ValuesDescription</p>
+                    <img src="@(Model.InfoModel.LogoHeader)" alt="">
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-6 no-padding-sm-left">
+                            <div class="about-author">
+                                <div class="about-author-info">
+                                    <h4><strong>@Model.Founder</strong></h4>
+                                    <p>@Model.Rank</p>
+                                </div>
+                                <div class="about-author-media">
+                                    <a href="@(Model.InfoModel.FacebookUrl)"><i class="icon ion-logo-facebook"></i></a>
+                                    <a href="@(Model.InfoModel.TwitterUrl)"><i class="icon ion-logo-twitter"></i></a>
+                                    <a href="@(Model.InfoModel.InstagramUrl)"><i class="icon ion-logo-instagram"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <div class="industris-space-sm"></div>
                 </div>
-                <div class="industris-space-sm"></div>
-            </div>
-            <div class="col-md-offset-1 col-md-4 about-border-left">
-                <h3>Why we’re different</h3>
-                <p>As fellow entrepreneurs, we understand the need for space which gives your business room</p>
-                <ul class="unstyle">
-                    <li><i class="icon ion-md-checkmark-circle"></i><a href="#">Flexible solutions</a></li>
-                    <li><i class="icon ion-md-checkmark-circle"></i><a href="#">Free technology</a></li>
-                    <li><i class="icon ion-md-checkmark-circle"></i><a href="#">Improved operating conditions</a></li>
-                    <li><i class="icon ion-md-checkmark-circle"></i><a href="#">Transparent costs</a></li>
-                </ul>
-                <a href="#" class="btn btn-primary">Get a quote</a>
-            </div>
+                <div class="col-md-offset-1 col-md-4 about-border-left">
+                    <h3>Neden Farklıyız?</h3>
+                    <p>@Model.DifferentText</p>
+                    <ul class="unstyle">
+                        @foreach (var item in Model.DifferentKeywords.ToSplit())
+                        {
+                            <li><i class="icon ion-md-checkmark-circle"></i><a href="#">@item</a></li>
+                        }
+                    </ul>
+                    <a asp-controller="Contact" asp-action="Index" class="btn btn-primary">Bizimle İlteişime Geçin</a>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-12">
+                    <h3>@Model.ValuesTitle</h3>
+                    <p>@Model.ValuesDescription</p>
+                    <img src="@(Model.InfoModel.LogoHeader)" alt="">
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-6 no-padding-sm-left">
+                            <div class="about-author">
+                                <div class="about-author-info">
+                                    <h4><strong>@Model.Founder</strong></h4>
+                                    <p>@Model.Rank</p>
+                                </div>
+                                <div class="about-author-media">
+                                    <a href="@(Model.InfoModel.FacebookUrl)"><i class="icon ion-logo-facebook"></i></a>
+                                    <a href="@(Model.InfoModel.TwitterUrl)"><i class="icon ion-logo-twitter"></i></a>
+                                    <a href="@(Model.InfoModel.InstagramUrl)"><i class="icon ion-logo-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="industris-space-sm"></div>
+                </div>
+            }
         </div>
     </div>
     <div class="industris-space-60"></div>
