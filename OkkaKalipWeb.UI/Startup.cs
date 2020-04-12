@@ -100,7 +100,7 @@ namespace OkkaKalipWeb.UI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<ApplicationUser> userManager,RoleManager<IdentityRole> roleManager)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             if (env.IsDevelopment())
             {
@@ -126,7 +126,7 @@ namespace OkkaKalipWeb.UI
                 endpoints.MapControllerRoute(name: "cart", "cart", defaults: new { controller = "Cart", action = "Index" });
             });
 
-         //   SeedIdentity.Seed(userManager, roleManager, Configuration).Wait();
+            SeedIdentity.Seed(userManager, roleManager, Configuration).Wait();
         }
     }
 }

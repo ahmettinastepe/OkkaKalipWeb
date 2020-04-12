@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OkkaKalipWeb.Business.Abstract;
@@ -13,6 +11,7 @@ using OkkaKalipWeb.UI.Services;
 
 namespace OkkaKalipWeb.UI.Controllers
 {
+    [Authorize(Roles = "admin")]
     [AutoValidateAntiforgeryToken]
     public class InfoController : Controller
     {
@@ -42,7 +41,11 @@ namespace OkkaKalipWeb.UI.Controllers
                 InstagramUrl = info.InstagramUrl,
                 TwitterUrl = info.TwitterUrl,
                 YoutubeUrl = info.YoutubeUrl,
-                MapIframe = info.MapIframe
+                MapIframe = info.MapIframe,
+                SiteTitle = info.SiteTitle,
+                Author = info.Author,
+                Keywords = info.Keywords,
+                Description = info.Description
             });
         }
 
@@ -63,6 +66,10 @@ namespace OkkaKalipWeb.UI.Controllers
                 entity.TwitterUrl = model.TwitterUrl;
                 entity.YoutubeUrl = model.YoutubeUrl;
                 entity.MapIframe = model.MapIframe.ChangeMapUrl();
+                entity.SiteTitle = model.SiteTitle;
+                entity.Author = model.Author;
+                entity.Keywords = model.Keywords;
+                entity.Description = model.Description;
 
                 if (logoHeader != null)
                     if (logoHeader.Length > 0)

@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using OkkaKalipWeb.UI.Enums;
 
 namespace OkkaKalipWeb.Entities
 {
-    class Image
+    public class Image : BaseEntity
     {
+        public string ImageUrl { get; set; }
+        public int ProductId { get; set; }
+        public ImageType ImageType { get; set; }
     }
 }

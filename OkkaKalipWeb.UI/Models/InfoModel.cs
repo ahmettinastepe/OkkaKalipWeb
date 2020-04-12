@@ -26,5 +26,9 @@ namespace OkkaKalipWeb.UI.Models
         public string TwitterUrl { get; set; }
         public string YoutubeUrl { get; set; }
         public string MapIframe { get; set; }
+        public string SiteTitle { get; set; }
+        public string Keywords { get; set; }
+        public string Author { get; set; }
+        public string Description { get; set; }
     }
 }

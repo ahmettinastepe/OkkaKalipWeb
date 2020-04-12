@@ -13,6 +13,8 @@ namespace OkkaKalipWeb.Entities
         public decimal Price { get; set; }
         public string Properties { get; set; }
 
+        public ICollection<Image> Images { get; set; }
+
         public List<ProductCategory> ProductCategories { get; set; }
     }
 }

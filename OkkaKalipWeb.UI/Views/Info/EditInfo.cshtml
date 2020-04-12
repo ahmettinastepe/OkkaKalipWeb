@@ -4,9 +4,36 @@
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
+@section Links{
+
+    <link href="~/admin/css/bootstrap-tagsinput.css" rel="stylesheet" />
+}
+
 @section Scripts{
     <script src="~/modules/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/admin/js/bootstrap-maxlength.min.js"></script>
+    <script src="~/admin/js/bootstrap-tagsinput.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#showhide").click(function () {
+                $("#contactform").toggle("slow");
+            });
+
+            $('textarea#alloptions').maxlength({
+                alwaysShow: true,
+                warningClass: "badge badge-success",
+                limitReachedClass: "badge badge-danger",
+                separator: ' - Maksimum Karakter: ',
+                preText: 'Yazılan: ',
+                postText: '',
+                validate: true
+            });
+
+            hljs.initHighlightingOnLoad();
+
+        });
+    </script>
 }
 
 <form asp-controller="Info" asp-action="EditInfo" method="post" enctype="multipart/form-data">
@@ -29,6 +56,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="custom-tabs-three-map-tab" data-toggle="pill" href="#custom-tabs-three-map" role="tab" aria-controls="custom-tabs-three-map" aria-selected="false">Harita</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-three-meta-tab" data-toggle="pill" href="#custom-tabs-three-meta" role="tab" aria-controls="custom-tabs-three-meta" aria-selected="false">Meta Bilgileri</a>
                     </li>
                 </ul>
             </div>
@@ -195,6 +225,43 @@
                                                 <div class="form-group">
                                                     <label asp-for="MapIframe">Firma Açık Adresi</label>
                                                     <textarea asp-for="MapIframe" value="@Model.MapIframe" class="form-control" rows="3" placeholder="Harita Linki ..."></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="tab-pane fade" id="custom-tabs-three-meta" role="tabpanel" aria-labelledby="custom-tabs-three-meta-tab">
+                        <section class="content">
+                            <div class="container-fluid">
+
+                                <div class="card card-default">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Site Adı</label>
+                                                    <input asp-for="SiteTitle" value="@Model.SiteTitle" type="text" class="form-control" placeholder="Site Adını Giriniz">
+                                                    <span asp-validation-for="SiteTitle" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Site Yazarı</label>
+                                                    <input asp-for="Author" value="@Model.Author" type="text" class="form-control" placeholder="John Doe">
+                                                    <span asp-validation-for="Author" class="text-danger"></span>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Anahtar Kelimeler</label>
+                                                    <input asp-for="Keywords" value="@Model.Keywords" type="text" data-role="tagsinput" class="form-control">
+                                                    <span asp-validation-for="Keywords" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Site Açıklaması</label>
+                                                    <textarea asp-for="Description" value="@Model.Description" class="form-control" rows="3" maxlength="140" id="alloptions"></textarea>
+                                                    <span asp-validation-for="Description" class="text-danger"></span>
                                                 </div>
                                             </div>
                                         </div>

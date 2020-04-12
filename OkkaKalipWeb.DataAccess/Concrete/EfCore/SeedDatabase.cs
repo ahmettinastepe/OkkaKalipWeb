@@ -55,11 +55,11 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 
         private static Product[] Products =
         {
-            new Product() { Name = "Samsung S5", Price = 1000, ImageUrl = "urun-resim-yok.png", Description = "Güzel Ürün 1" },
-            new Product() { Name = "Samsung S6", Price = 2000, ImageUrl = "urun-resim-yok.png", Description = "Güzel Ürün 2" },
-            new Product() { Name = "Samsung S7", Price = 3000, ImageUrl = "urun-resim-yok.png", Description = "Güzel Ürün 3" },
-            new Product() { Name = "Samsung S8", Price = 4000, ImageUrl = "urun-resim-yok.png", Description = "Güzel Ürün 4" },
-            new Product() { Name = "Samsung S9", Price = 5000, ImageUrl = "urun-resim-yok.png", Description = "Güzel Ürün 5" }
+            new Product() { Name = "Samsung S5", Price = 1000, ImageUrl = "urun-resim-yok.png", Description = "Güzel Ürün 1", Properties = "telefon,mobil,teknoloji" },
+            new Product() { Name = "Samsung S6", Price = 2000, ImageUrl = "urun-resim-yok.png", Description = "Güzel Ürün 2", Properties = "telefon,mobil,teknoloji" },
+            new Product() { Name = "Samsung S7", Price = 3000, ImageUrl = "urun-resim-yok.png", Description = "Güzel Ürün 3", Properties = "telefon,mobil,teknoloji" },
+            new Product() { Name = "Samsung S8", Price = 4000, ImageUrl = "urun-resim-yok.png", Description = "Güzel Ürün 4", Properties = "telefon,mobil,teknoloji" },
+            new Product() { Name = "Samsung S9", Price = 5000, ImageUrl = "urun-resim-yok.png", Description = "Güzel Ürün 5", Properties = "telefon,mobil,teknoloji" }
         };
 
         private static ProductCategory[] ProductCategoies =
@@ -93,7 +93,11 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
             InstagramUrl = "www.instagram.com",
             TwitterUrl = "www.twitter.com",
             YoutubeUrl = "www.youtube.com",
-            MapIframe = "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d99561.99432298371!2d30.555035!3d38.75654!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cf3d7e15ecd85b%3A0xf0c901fb9ada4b16!2sAfyonkarahisar%2C%20Afyonkarahisar%20Merkez%2FAfyonkarahisar!5e0!3m2!1str!2str!4v1585670564385!5m2!1str!2str' width='1170' height='500' frameborder='0' style='border:0;' aria-hidden='false' tabindex='0'></iframe>"
+            MapIframe = "<iframe src='https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d99561.99432298371!2d30.555035!3d38.75654!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cf3d7e15ecd85b%3A0xf0c901fb9ada4b16!2sAfyonkarahisar%2C%20Afyonkarahisar%20Merkez%2FAfyonkarahisar!5e0!3m2!1str!2str!4v1585670564385!5m2!1str!2str' width='1170' height='500' frameborder='0' style='border:0;' aria-hidden='false' tabindex='0'></iframe>",
+            SiteTitle = "Nakış Kalıp",
+            Author = "Nakış Kalıp Yazar",
+            Keywords = "Nakış Kalıp,Nakis Kalip,Nakis,Kalip",
+            Description = "Nakış Kalıp Web Sitesi Açıklaması"
         };
 
         private static News[] News =
@@ -123,7 +127,9 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
             YoutubeTitle = "VISION & MISSION STATTEMENT",
             YoutubeDescription = "Connecting things, It’s all about people.",
             YoutubeImageUrl = "bg-about-video-jpg",
-            YoutubeHomeImageUrl = "home-video-img.jpg"
+            YoutubeHomeImageUrl = "home-video-img.jpg",
+            DifferentText = "Neden Farklıyız?",
+            DifferentKeywords = "Yenilikçi,İnovasyon Sahibi,Gelişime Açık"
         };
 
         private static Service[] Services =

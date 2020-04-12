@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OkkaKalipWeb.UI", "OkkaKali
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OkkaKalipWeb.DataAccess", "OkkaKalipWeb.DataAccess\OkkaKalipWeb.DataAccess.csproj", "{F98A2D6C-8474-44B2-8EC2-AF71A01FA718}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OkkaKalipWeb.Business", "OkkaKalipWeb.Business\OkkaKalipWeb.Business.csproj", "{830CF3B5-28C1-404D-86CC-0C5F06E26808}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OkkaKalipWeb.Business", "OkkaKalipWeb.Business\OkkaKalipWeb.Business.csproj", "{830CF3B5-28C1-404D-86CC-0C5F06E26808}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OkkaKalipWeb.Common", "OkkaKalipWeb.Common\OkkaKalipWeb.Common.csproj", "{19B0C977-2006-4207-90A2-3FE48F960D5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{830CF3B5-28C1-404D-86CC-0C5F06E26808}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{830CF3B5-28C1-404D-86CC-0C5F06E26808}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{830CF3B5-28C1-404D-86CC-0C5F06E26808}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19B0C977-2006-4207-90A2-3FE48F960D5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19B0C977-2006-4207-90A2-3FE48F960D5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19B0C977-2006-4207-90A2-3FE48F960D5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19B0C977-2006-4207-90A2-3FE48F960D5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

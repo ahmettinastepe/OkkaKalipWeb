@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using OkkaKalipWeb.Business.Abstract;
 using OkkaKalipWeb.UI.Controllers.Base;
 using OkkaKalipWeb.UI.Models;
@@ -41,12 +42,14 @@ namespace OkkaKalipWeb.UI.Controllers
             });
         }
 
+        [Authorize(Roles = "admin")]
         [HttpGet]
         public IActionResult AboutManage()
         {
             return View();
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public IActionResult AboutManage(AboutModel model)
         {

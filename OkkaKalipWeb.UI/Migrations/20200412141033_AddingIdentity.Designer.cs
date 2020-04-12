@@ -10,7 +10,7 @@ using OkkaKalipWeb.UI.Identity;
 namespace OkkaKalipWeb.UI.Migrations
 {
     [DbContext(typeof(ApplicationIdentityDbContext))]
-    [Migration("20200318110726_AddingIdentity")]
+    [Migration("20200412141033_AddingIdentity")]
     partial class AddingIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
