@@ -24,7 +24,7 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
-                with font-awesome or any other icon font library -->
+    with font-awesome or any other icon font library -->
                 @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
                 {
                     <li class="nav-item">
@@ -41,16 +41,6 @@
                             <p>Firma Bilgileri</p>
                         </a>
                     </li>
-                    <!--
-                    <li class="nav-item">
-                        <a asp-controller="About" asp-action="AboutManage"
-                           asp-active-controllers="About" asp-active-actions="AboutManage" asp-active-class="active" class="nav-link">
-                            <i class="nav-icon fas fa-dumpster"></i>
-                            <p>Kurumsal Bilgiler</p>
-                        </a>
-                    </li>
-                    -->
-
                     <li class="nav-item"
                         asp-active-controllers="About" asp-active-actions="AboutManage,ServiceManageList,CreateService,EditService" asp-active-class="has-treeview menu-open">
                         <a asp-controller="About" asp-action="AboutManage" class="nav-link"
@@ -108,7 +98,14 @@
                             <p>Haber</p>
                         </a>
                     </li>
-                    <li class="nav-header">EXAMPLES</li>
+                    <li class="nav-header">Diğer Ayarlar</li>
+                    <li class="nav-item">
+                        <a asp-controller="ClientsLogo" asp-action="ClientsLogoList"
+                           asp-active-controllers="ClientsLogo" asp-active-actions="ClientsLogoList" asp-active-class="active" class="nav-link">
+                            <i class="nav-icon fas fa-newspaper"></i>
+                            <p>Partner Logoları</p>
+                        </a>
+                    </li>
                 }
             </ul>
         </nav>

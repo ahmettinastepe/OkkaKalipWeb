@@ -5,7 +5,7 @@
             <div class="col-md-6 col-sm-12">
                 <h4 class="text-primary">BİZİM HİKAYEMİZ</h4>
                 <h2>@Model.AboutTitle</h2>
-                <p>@Model.AboutDescription</p>
+                <p>@Html.Raw(Model.AboutDescription)</p>
                 <br>
                 <p>
                     Bağlantı Kurun — <br>
@@ -94,7 +94,7 @@
                             <li><i class="icon ion-md-checkmark-circle"></i><a href="#">@item</a></li>
                         }
                     </ul>
-                    <a asp-controller="Contact" asp-action="Index" class="btn btn-primary">Bizimle İlteişime Geçin</a>
+                    <a asp-controller="Contact" asp-action="Index" class="btn btn-primary">Bizimle İletişime Geçin</a>
                 </div>
             }
             else
