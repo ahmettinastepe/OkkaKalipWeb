@@ -1,6 +1,6 @@
-﻿@model ClientsLogoList
+﻿@model BannerImageListModel
 @{
-    ViewData["Title"] = "Partner Listesi";
+    ViewData["Title"] = "Banner Resimleri";
     Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
@@ -15,7 +15,7 @@
             <h3 class="card-title">Partner Listesi</h3>
         </div>
         <div class="card-tools mt-4 mb-4 d-flex justify-content-center">
-            <form asp-controller="ClientsLogo" asp-action="CreateClientsLogo" class="form-inline" enctype="multipart/form-data">
+            <form asp-controller="Banner" asp-action="CreateBanner" class="form-inline" enctype="multipart/form-data">
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group mb-2 mr-4">
                     <div class="custom-file">
@@ -32,7 +32,7 @@
 
         <!-- /.card-header -->
         <div class="card-body">
-            @if (Model.ClientsLogos.Count() > 0)
+            @if (Model.BannerImages.Count() > 0)
             {
                 <table id="example1" class="table table-bordered table-striped col-md-6">
                     <thead>
@@ -43,19 +43,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.ClientsLogos)
+                        @foreach (var item in Model.BannerImages)
                         {
                             <tr>
                                 <td>@item.Id</td>
                                 <td>
-                                    <img src="~/img/about/partners/@item.ImageUrl" width="100" />
+                                    <img src="~/img/banner/@item.ImageUrl" width="300" />
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal@(item.Id)"><i class="fas fa-wrench"></i>Güncelle</button>
 
                                     <div class="modal fade" id="exampleModal@(item.Id)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog" role="document">
-                                            <form asp-controller="ClientsLogo" asp-action="UpdateClientsLogo" enctype="multipart/form-data">
+                                            <form asp-controller="Banner" asp-action="UpdateBanner" enctype="multipart/form-data">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabel">Seçili Logoyu Güncelle</h5>
@@ -80,7 +80,7 @@
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
                                                         <button type="submit" class="btn btn-primary"><i class="fas fa-wrench"></i>&nbsp;Güncelle</button>
-                                                      </div>
+                                                    </div>
                                                 </div>
                                             </form>
                                         </div>
@@ -91,7 +91,7 @@
                                         Sil
                                     </button>
 
-                                    @await Html.PartialAsync("Components/AdminComponents/_dangerModal", (item.EntityConvert<NewsModel>()).GetEntityModal(item.Id, $"{item.Id} nolu partner logosu", "ClientsLogo", "DeleteClientLogo"))
+                                    @await Html.PartialAsync("Components/AdminComponents/_dangerModal", (item.EntityConvert<NewsModel>()).GetEntityModal(item.Id, $"{item.Id} nolu partner logosu", "Banner", "DeleteBanner"))
                                 </td>
                             </tr>
                         }
@@ -108,7 +108,7 @@
             }
             else
             {
-                <div class="alert alert-warning">Henüz Bir Logo Eklemediniz.</div>
+                <div class="alert alert-warning">Henüz Bir Banner Resmi Eklemediniz.</div>
             }
         </div>
         <!-- /.card-body -->
