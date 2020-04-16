@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OkkaKalipWeb.Business.Abstract;
+using OkkaKalipWeb.Entities;
 using OkkaKalipWeb.UI.Controllers.Base;
 using OkkaKalipWeb.UI.Enums;
 using OkkaKalipWeb.UI.Functions;
@@ -149,6 +150,127 @@ namespace OkkaKalipWeb.UI.Controllers
                 Title = entity.Title,
                 Description = entity.Description
             });
+        }
+
+        [Authorize(Roles = "admin")]
+        public IActionResult ServiceManageList()
+        {
+            var list = _aboutServicesService.GetAll();
+            return View(new ServiceListModel() { Services = list });
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "admin")]
+        public IActionResult CreateService()
+        {
+            return View(new ServiceModel());
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> CreateService(ServiceModel model, IFormFile file)
+        {
+            if (!ModelState.IsValid) return View(model);
+            var entity = new Service();
+
+            if (file != null)
+            {
+                entity.ImageUrl = file.FileName;
+                var path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\img\about\service", file.FileName);
+                using (var stream = new FileStream(path, FileMode.Create))
+                    await file.CopyToAsync(stream);
+            }
+
+            entity.Title = model.Title;
+            entity.Description = model.Description;            
+
+            if (_aboutServicesService.Create(entity))
+            {
+                ToastrService.AddToUserQueue(new Toastr()
+                {
+                    Message = Toastr.GetMessage("Servis"),
+                    Title = Toastr.GetTitle("Servis"),
+                    ToastrType = ToastrType.Success
+                });
+
+                return View(new ServiceModel());
+            }
+
+            ViewBag.ErrorMessage = _aboutServicesService.ErrorMessage;
+            return View(model);
+        }
+
+        [HttpGet]
+        [Authorize(Roles = "admin")]
+        public IActionResult EditService(int? id)
+        {
+            if (id == null) return NotFound();
+
+            var entity = _aboutServicesService.GetById((int)id);
+            if (entity == null) return NotFound();
+
+            var model = new ServiceModel()
+            {
+                Id = entity.Id,
+                ImageUrl = entity.ImageUrl,
+                Title = entity.Title,
+                Description = entity.Description
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> EditService(ServiceModel model, IFormFile file)
+        {
+            var entity = _aboutServicesService.GetById(model.Id);
+            if (entity == null) return NotFound();
+
+            if (ModelState.IsValid)
+            {
+                entity.Title = model.Title;
+                entity.Description = model.Description;
+
+                if (file != null)
+                {
+                    entity.ImageUrl = file.FileName;
+                    var path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\img\about\service", file.FileName);
+                    using (var stream = new FileStream(path, FileMode.Create))
+                        await file.CopyToAsync(stream);
+                }
+
+                _aboutServicesService.Update(entity);
+                ToastrService.AddToUserQueue(new Toastr()
+                {
+                    Message = Toastr.GetMessage("Servis", EntityStatus.Update),
+                    Title = Toastr.GetTitle("Servis", EntityStatus.Update),
+                    ToastrType = ToastrType.Info
+                });
+
+                return RedirectToAction("ServiceManageList");
+            }
+
+            ViewBag.ErrorMessage = _aboutServicesService.ErrorMessage;
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public IActionResult DeleteService(int id)
+        {
+            var entity = _aboutServicesService.GetById(id);
+            if (entity == null) return NotFound();
+
+            _aboutServicesService.Delete(entity);
+            ToastrService.AddToUserQueue(new Toastr()
+            {
+                Message = Toastr.GetMessage("Servis", EntityStatus.Delete),
+                Title = Toastr.GetTitle("Servis", EntityStatus.Delete),
+                ToastrType = ToastrType.Error
+            });
+
+            return RedirectToAction("ServiceManageList");
         }
     }
 }
