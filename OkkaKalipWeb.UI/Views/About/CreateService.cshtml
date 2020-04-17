@@ -13,58 +13,63 @@
     </script>
 }
 
-<div class="row">
-    <div class="col-md-12">
-        <div class="card card-primary card-outline">
-            <div class="card-header">
-                <h3 class="card-title">
-                    <i class="fas fa-plus-square"></i>
-                    Yeni Servis Ekle
-                </h3>
-            </div>
-            <div class="card-body">
-
-                @if (ViewBag.ErrorMessage != null)
-                {
-                    <div class="text-danger">@ViewBag.ErrorMessage</div>
-                }
-
-                <!-- form start -->
-                <form asp-controller="About" asp-action="CreateService" method="post" enctype="multipart/form-data">
-                    <div asp-validation-summary="All" class="text-danger"></div>
-                    <div class="card-body">
-                        <div class="form-group row">
-                            <label asp-for="ImageUrl">Resim</label>
-                            <div class="custom-file">
-                                <input type="file" name="file" class="custom-file-input" id="customFile">
-                                <label class="custom-file-label" for="customFile">Resim Seç</label>
-                            </div>
-                            <span asp-validation-for="ImageUrl" class="text-danger"></span>
-                        </div>
-                        <div class="form-group row">
-                            <label asp-for="Title">Haber Başlığı</label>
-                            <input asp-for="Title" value="@Model.Title" class="form-control" placeholder="Haber Başlığını Giriniz...">
-                            <span asp-validation-for="Title" class="text-danger"></span>
-                        </div>
-                        <div class="form-group row">
-                            <label asp-for="Title">Açıklama</label>
-                            <textarea asp-for="Description" value="@Model.Description" id="editor" class="form-control col-md-12" style="margin-top:-90px;" rows="3"></textarea>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-save"></i>
-                            Kaydet
-                        </button>
-                        <a class="btn btn-outline-info ml-6" asp-controller="About" asp-action="ServiceManageList">
-                            <i class="fas fa-chevron-left"></i>
-                            Listeye Dön
-                        </a>
-                    </div>
-                </form>
-            </div>
-            <!-- /.card -->
+<div class="col-md-12">
+    <div class="card card-primary card-outline">
+        <div class="card-header">
+            <h3 class="card-title">
+                <i class="fas fa-plus-square"></i>
+                Yeni Servis Ekle
+            </h3>
         </div>
+        <div class="card-body">
+            <section class="content">
+                <div class="container-fluid">
+                    <div class="card card-default">
+                        <form asp-controller="About" asp-action="CreateService" method="post" enctype="multipart/form-data">
+                            @if (ViewBag.ErrorMessage != null)
+                            {
+                                <div class="badge badge-danger">@ViewBag.ErrorMessage</div>
+                                <div asp-validation-summary="All" class="badge badge-danger"></div>
+                            }
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+
+                                        <div class="form-group">
+                                            <label asp-for="ImageUrl">Resim</label>
+                                            <div class="custom-file">
+                                                <input type="file" name="file" class="custom-file-input" id="customFile">
+                                                <label class="custom-file-label" for="customFile">Resim Seç</label>
+                                            </div>
+                                            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Title">Haber Başlığı</label>
+                                            <input asp-for="Title" value="@Model.Title" class="form-control" placeholder="Haber Başlığını Giriniz...">
+                                            <span asp-validation-for="Title" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Title">Açıklama</label>
+                                            <textarea asp-for="Description" value="@Model.Description" id="editor" class="form-control col-md-12" style="margin-top:-90px;" rows="3"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i>
+                                    Kaydet
+                                </button>
+                                <a class="btn btn-outline-info ml-6" asp-controller="About" asp-action="ServiceManageList">
+                                    <i class="fas fa-chevron-left"></i>
+                                    Listeye Dön
+                                </a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- /.card -->
     </div>
-    <!-- /.col -->
 </div>
