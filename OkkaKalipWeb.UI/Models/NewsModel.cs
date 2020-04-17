@@ -8,7 +8,6 @@ namespace OkkaKalipWeb.UI.Models
 {
     public class NewsModel : BaseModel
     {
-        [Required(ErrorMessage = "Bir haber resmi seçmek zorunludur.")]
         public string ImageUrl { get; set; }
 
         [Required(ErrorMessage = "Bir haber başlığı zorunludur."), StringLength(200, ErrorMessage = "Haber başlığı maksimum 200 karakter olabilir.")]

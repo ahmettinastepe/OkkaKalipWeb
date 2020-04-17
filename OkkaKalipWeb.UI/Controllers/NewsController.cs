@@ -9,6 +9,7 @@ using OkkaKalipWeb.UI.Models;
 using OkkaKalipWeb.UI.Services;
 using System.IO;
 using System.Threading.Tasks;
+using OkkaKalipWeb.Common.Functions;
 
 namespace OkkaKalipWeb.UI.Controllers
 {
@@ -79,17 +80,23 @@ namespace OkkaKalipWeb.UI.Controllers
 
         [HttpPost]
         [Authorize(Roles = "admin")]
-        public IActionResult CreateNews(NewsModel model)
+        public async Task<IActionResult> CreateNews(NewsModel model, IFormFile file)
         {
             if (!ModelState.IsValid) return View(model);
 
-            var entity = new News()
+            var entity = new News();
+
+            if (file != null)
             {
-                ImageUrl = model.ImageUrl,
-                Title = model.Title,
-                Author = model.Author,
-                Description = model.Description
-            };
+                entity.ImageUrl = file.FileName;
+                var path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\img\news", file.FileName);
+                using (var stream = new FileStream(path, FileMode.Create))
+                    await file.CopyToAsync(stream);
+            }
+
+            entity.Title = model.Title;
+            entity.Author = model.Author;
+            entity.Description = model.Description;
 
             if (_newsService.Create(entity))
             {
@@ -145,6 +152,8 @@ namespace OkkaKalipWeb.UI.Controllers
 
                 if (file != null)
                 {
+                    FileFunctions.DeletePreviousImage(Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\img\news", entity.ImageUrl));               
+
                     entity.ImageUrl = file.FileName;
                     var path = Path.Combine(Directory.GetCurrentDirectory(), @"wwwroot\img\news", file.FileName);
                     using (var stream = new FileStream(path, FileMode.Create))

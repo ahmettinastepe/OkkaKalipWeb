@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OkkaKalipWeb.Business\OkkaKalipWeb.Business.csproj" />
+    <ProjectReference Include="..\OkkaKalipWeb.Common\OkkaKalipWeb.Common.csproj" />
     <ProjectReference Include="..\OkkaKalipWeb.DataAccess\OkkaKalipWeb.DataAccess.csproj" />
   </ItemGroup>
 
