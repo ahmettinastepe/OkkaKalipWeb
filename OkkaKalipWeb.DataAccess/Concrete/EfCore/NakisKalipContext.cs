@@ -7,7 +7,7 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\v11.0;Database=NakisKalipDb;Integrated Security=true;");
+            optionsBuilder.UseSqlServer(@"Server=46.45.178.125; Database=NakisKalipDb; User Id=ozelsebe_dbuser; Password=Sabh4257.;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
