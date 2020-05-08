@@ -1,0 +1,116 @@
+﻿@model ClientsLogoList
+@{
+    ViewData["Title"] = "Partner Listesi";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+@section Scripts{
+    <script src="~/modules/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<div class="d-flex justify-content-center">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Partner Listesi</h3>
+        </div>
+        <div class="card-tools mt-4 mb-4 d-flex justify-content-center">
+            <form asp-controller="ClientsLogo" asp-action="CreateClientsLogo" class="form-inline" enctype="multipart/form-data">
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group mb-2 mr-4">
+                    <div class="custom-file">
+                        <input type="file" name="file" class="custom-file-input" id="customFile">
+                        <label class="custom-file-label" for="customFile">Yeni Logo Seç</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-success">
+                    <i class="fas fa-plus-circle"></i>&nbsp;
+                    Yeni Ekle
+                </button>
+            </form>
+        </div>
+
+        <!-- /.card-header -->
+        <div class="card-body">
+            @if (Model.ClientsLogos.Count() > 0)
+            {
+                <table id="example1" class="table table-bordered table-striped col-md-6">
+                    <thead>
+                        <tr>
+                            <th width="30">Id</th>
+                            <th width="100">Logo</th>
+                            <th width="130"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ClientsLogos)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>
+                                    <img src="~/img/about/partners/@item.ImageUrl" width="100" />
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal@(item.Id)"><i class="fas fa-wrench"></i>Güncelle</button>
+
+                                    <div class="modal fade" id="exampleModal@(item.Id)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <form asp-controller="ClientsLogo" asp-action="UpdateClientsLogo" enctype="multipart/form-data">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Seçili Logoyu Güncelle</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+
+                                                        <div asp-validation-summary="All" class="text-danger"></div>
+                                                        <input type="hidden" name="id" value="@item.Id" />
+                                                        <div class="form-group row mb-4 justify-content-center">
+                                                            <img src="~/img/about/partners/@item.ImageUrl" width="200" />
+                                                        </div>
+                                                        <div class="form-group row mb-2 mr-4">
+                                                            <div class="custom-file">
+                                                                <input type="file" name="file" class="custom-file-input" id="customFile">
+                                                                <label class="custom-file-label" for="customFile">Yeni Logo Seç</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                                                        <button type="submit" class="btn btn-primary"><i class="fas fa-wrench"></i>&nbsp;Güncelle</button>
+                                                      </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn btn-danger btn-sm toastrDefaultSuccess" data-toggle="modal" data-target="#modal-danger@(item.Id)">
+                                        <i class="fas fa-trash"></i>
+                                        Sil
+                                    </button>
+
+                                    @await Html.PartialAsync("Components/AdminComponents/_dangerModal", (item.EntityConvert<NewsModel>()).GetEntityModal(item.Id, $"{item.Id} nolu partner logosu", "ClientsLogo", "DeleteClientLogo"))
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th width="30">Id</th>
+                            <th width="100">Haber Resmi</th>
+                            <th width="130"></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-warning">Henüz Bir Logo Eklemediniz.</div>
+            }
+        </div>
+        <!-- /.card-body -->
+    </div>
+</div>

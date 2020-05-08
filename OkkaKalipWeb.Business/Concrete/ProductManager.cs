@@ -14,9 +14,15 @@ namespace OkkaKalipWeb.Business.Concrete
             _productDal = productDal;
         }
 
-        public void Create(Product entity)
+        public bool Create(Product entity)
         {
-            _productDal.Create(entity);
+            if (Validate(entity))
+            {
+                _productDal.Create(entity);
+                return true;
+            }
+            else
+                return false;
         }
 
         public void Delete(Product entity)
@@ -27,6 +33,10 @@ namespace OkkaKalipWeb.Business.Concrete
         public void Update(Product entity)
         {
             _productDal.Update(entity);
+        }
+        public void Update(Product entity, int[] categoryIds)
+        {
+            _productDal.Update(entity, categoryIds);
         }
 
         public List<Product> GetAll()
@@ -53,5 +63,26 @@ namespace OkkaKalipWeb.Business.Concrete
         {
             return _productDal.GetProductsByCategory(category);
         }
+
+        public Product GetByIdWithCategories(int id)
+        {
+            return _productDal.GetByIdWithCategories(id);
+        }
+
+        public bool Validate(Product entity)
+        {
+            var isValid = true;
+
+            if (string.IsNullOrEmpty(entity.Name))
+            {
+                ErrorMessage += "Ürün ismi girmelisiniz.";
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        public string ErrorMessage { get; set; }
+
     }
 }

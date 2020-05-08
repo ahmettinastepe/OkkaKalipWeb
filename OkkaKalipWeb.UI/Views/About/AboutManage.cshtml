@@ -1,0 +1,274 @@
+﻿@model AboutModel
+@{
+    ViewData["Title"] = "Kurumsal Bilgiler";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+@section Links{
+
+    <link href="~/admin/css/bootstrap-tagsinput.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    <script src="~/modules/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/admin/js/bootstrap-maxlength.min.js"></script>
+    <script src="~/admin/js/bootstrap-tagsinput.js"></script>
+    <script src="~/modules/ckeditor4/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace("editor");
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#showhide").click(function () {
+                $("#contactform").toggle("slow");
+            });
+
+            $('textarea#alloptions').maxlength({
+                alwaysShow: true,
+                warningClass: "badge badge-success",
+                limitReachedClass: "badge badge-danger",
+                separator: ' - Maksimum Karakter: ',
+                preText: 'Yazılan: ',
+                postText: '',
+                validate: true
+            });
+
+            hljs.initHighlightingOnLoad();
+
+        });
+    </script>
+}
+
+<form asp-controller="About" asp-action="AboutManage" method="post" enctype="multipart/form-data">
+    <div class="col-12 col-md-12">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="card card-primary card-outline card-outline-tabs">
+            <div class="card-header p-0 border-bottom-0">
+                <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="custom-tabs-three-home-tab" data-toggle="pill" href="#custom-tabs-three-home" role="tab" aria-controls="custom-tabs-three-home" aria-selected="true">Firma Özgeçmişi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-three-values-tab" data-toggle="pill" href="#custom-tabs-three-values" role="tab" aria-controls="custom-tabs-values" aria-selected="false">Değerlerimiz</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-three-youtube-tab" data-toggle="pill" href="#custom-tabs-three-youtube" role="tab" aria-controls="custom-tabs-youtube" aria-selected="false">Video Tanıtım</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-three-vizmis-tab" data-toggle="pill" href="#custom-tabs-three-vizmis" role="tab" aria-controls="custom-tabs-three-vizmis" aria-selected="false">Vizyon - Misyon</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-three-process-tab" data-toggle="pill" href="#custom-tabs-three-process" role="tab" aria-controls="custom-tabs-three-process" aria-selected="false">Çalışma Süreci</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="custom-tabs-three-different-tab" data-toggle="pill" href="#custom-tabs-three-different" role="tab" aria-controls="custom-tabs-three-different" aria-selected="false">Neden Farklıyız?</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content" id="custom-tabs-three-tabContent">
+                    <div class="tab-pane fade active show" id="custom-tabs-three-home" role="tabpanel" aria-labelledby="custom-tabs-three-home-tab">
+                        <section class="content">
+                            <div class="container-fluid">
+                                <div class="card card-default">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Resim</label>
+                                                    <input type="hidden" name="about" value="@Model.ImageUrl" />
+                                                    <img width="100" src="~/img/about/@Model.ImageUrl" />
+                                                    <input type="file" name="about" value="" />
+                                                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Başlık</label>
+                                                    <input asp-for="AboutTitle" value="@Model.AboutTitle" type="text" class="form-control" placeholder="Özgeçmiş başlığını giriniz ...">
+                                                    <span asp-validation-for="AboutTitle" class="text-danger"></span>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Deneyim Süresi</label>
+                                                    <input asp-for="ExperienceYear" value="@Model.ExperienceYear" type="text" class="form-control" placeholder="Lütfen deneyim yılınızı giriniz ...">
+                                                    <span asp-validation-for="ExperienceYear" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Özgeçmişiniz</label>
+                                                    <textarea asp-for="AboutDescription" value="@Model.AboutDescription" id="editor" class="form-control" rows="3" placeholder="Özgeçmişinizi yazınız ..."></textarea>
+                                                    <span asp-validation-for="AboutDescription" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="tab-pane fade" id="custom-tabs-three-values" role="tabpanel" aria-labelledby="custom-tabs-three-values-tab">
+                        <section class="content">
+                            <div class="container-fluid">
+                                <div class="card card-default">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Başlık</label>
+                                                    <input asp-for="ValuesTitle" value="@Model.ValuesTitle" type="text" class="form-control" placeholder="Değerler başlığını giriniz ...">
+                                                    <span asp-validation-for="ValuesTitle" class="text-danger"></span>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label>Firma Kurucusu veya Yetkili</label>
+                                                    <input asp-for="Founder" value="@Model.Founder" type="text" class="form-control" placeholder="Firma kurucusunun veya yetkili kişinin adını giriniz ...">
+                                                    <span asp-validation-for="Founder" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Yetkisi</label>
+                                                    <input asp-for="Rank" value="@Model.Rank" type="text" class="form-control" placeholder="Firma kişi yetkisini giriniz ...">
+                                                    <span asp-validation-for="Rank" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Açıklama</label>
+                                                    <textarea asp-for="ValuesDescription" value="@Model.ValuesDescription" id="editor" class="form-control" rows="3" placeholder="Değerler açıklaması yazınız ..."></textarea>
+                                                    <span asp-validation-for="ValuesDescription" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="tab-pane fade" id="custom-tabs-three-youtube" role="tabpanel" aria-labelledby="custom-tabs-three-youtube-tab">
+                        <section class="content">
+                            <div class="container-fluid">
+                                <div class="card card-default">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Video Resmi</label>
+                                                    <input type="hidden" name="youtubeImage" value="@Model.YoutubeImageUrl" />
+                                                    <img width="100" src="~/img/about/@Model.YoutubeImageUrl" />
+                                                    <input type="file" name="youtubeImage" value="" />
+                                                    <span asp-validation-for="YoutubeImageUrl" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Anasayfa Video Resmi</label>
+                                                    <input type="hidden" name="youtubeHomeImage" value="@Model.YoutubeHomeImageUrl" />
+                                                    <img width="100" src="~/img/about/@Model.YoutubeHomeImageUrl" />
+                                                    <input type="file" name="youtubeHomeImage" value="" />
+                                                    <span asp-validation-for="YoutubeHomeImageUrl" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Video Başlığı</label>
+                                                    <input asp-for="YoutubeTitle" value="@Model.YoutubeTitle" type="text" class="form-control" placeholder="Video başlığını giriniz ...">
+                                                    <span asp-validation-for="YoutubeTitle" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Video Linki</label>
+                                                    <input asp-for="YoutubeUrl" value="@Model.YoutubeUrl" type="text" class="form-control" placeholder="Video linkini giriniz ...">
+                                                    <span asp-validation-for="YoutubeUrl" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Video Açıklaması</label>
+                                                    <textarea asp-for="YoutubeDescription" value="@Model.YoutubeDescription" class="form-control" rows="3" maxlength="300" id="alloptions"></textarea>
+                                                    <span asp-validation-for="YoutubeDescription" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="tab-pane fade" id="custom-tabs-three-vizmis" role="tabpanel" aria-labelledby="custom-tabs-three-vizmis-tab">
+                        <section class="content">
+                            <div class="container-fluid">
+
+                                <div class="card card-default">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Vizyon</label>
+                                                    <textarea asp-for="Vision" value="@Model.Vision" class="form-control" rows="5" placeholder="Vizyonunuzu yazınız ..."></textarea>
+                                                    <span asp-validation-for="Vision" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Misyon</label>
+                                                    <textarea asp-for="Mission" value="@Model.Mission" class="form-control" rows="5" placeholder="Misyonunuzu yazınız ..."></textarea>
+                                                    <span asp-validation-for="Mission" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="tab-pane fade" id="custom-tabs-three-process" role="tabpanel" aria-labelledby="custom-tabs-three-process-tab">
+                        <section class="content">
+                            <div class="container-fluid">
+
+                                <div class="card card-default">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Çalışma Süreci</label>
+                                                    <textarea asp-for="WorkProcess" value="@Model.WorkProcess" class="form-control" rows="5" placeholder="Çalışma Aşamalarını yazınız ..."></textarea>
+                                                    <span asp-validation-for="WorkProcess" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+                    </div>
+
+                    <div class="tab-pane fade" id="custom-tabs-three-different" role="tabpanel" aria-labelledby="custom-tabs-three-different-tab">
+                        <section class="content">
+                            <div class="container-fluid">
+
+                                <div class="card card-default">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Özellikleri Girin</label>
+                                                    <input asp-for="DifferentKeywords" value="@Model.DifferentKeywords" type="text" data-role="tagsinput" class="form-control">
+                                                    <span asp-validation-for="DifferentKeywords" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Açıklama</label>
+                                                    <textarea asp-for="DifferentText" value="@Model.DifferentText" class="form-control" rows="3" maxlength="300" id="alloptions"></textarea>
+                                                    <span asp-validation-for="DifferentText" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <button type="submit" class="btn btn-success float-right">Tüm Değişiklikleri Kaydet</button>
+        </div>
+    </div>
+</form>

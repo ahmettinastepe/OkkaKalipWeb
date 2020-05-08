@@ -1,0 +1,65 @@
+﻿@model CategoryListModel
+@{
+    ViewData["Title"] = "Kategori Listesi";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title mr-4">Ürün Listesi</h3>
+
+        <div class="card-tools">
+            <a class="btn btn-success" asp-controller="Product" asp-action="CreateCategory">
+                <i class="fas fa-plus-circle"></i>&nbsp;
+                Yeni Kategori
+            </a>
+        </div>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body">
+        @if (Model.Categories.Count() > 0)
+        {
+            <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th width="30">Id</th>
+                        <th>Kategori İsmi</th>
+                        <th width="130"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Categories)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>
+                                <a class="btn btn-primary btn-sm mr-2" href="/product/editcategory/@item.Id">Güncelle</a>
+
+                                <button type="button" class="btn btn-danger btn-sm toastrDefaultSuccess" data-toggle="modal" data-target="#modal-danger@(item.Id)">
+                                    <i class="fas fa-trash"></i>
+                                    Sil
+                                </button>
+
+                                @await Html.PartialAsync("Components/AdminComponents/_dangerModal", (item.EntityConvert<CategoryModel>()).GetEntityModal(item.Id, item.Name, "Product", "DeleteCategory"))
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th width="30">Id</th>
+                        <th>Kategori İsmi</th>
+                        <th width="130"></th>
+                    </tr>
+                </tfoot>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-warning">Henüz Bir Ürün Eklemediniz.</div>
+        }
+    </div>
+    <!-- /.card-body -->
+</div>

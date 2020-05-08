@@ -1,126 +1,57 @@
-﻿<section class="bg-light padding-bottom-medium">
+﻿@model IEnumerable<News>
+<section class="bg-light padding-bottom-medium">
     <div class="container">
         <div class="row flex-row">
 
             <div class="col-md-6">
-                <h4 class="text-primary">THE NEWS</h4>
-                <h2 class="no-margin-bottom">Lates News form us</h2>
+                <h4 class="text-primary">HABER</h4>
+                <h2 class="no-margin-bottom">Blog Haberlerimiz</h2>
             </div>
             <div class="col-md-6 text-right align-self-end">
-                <a class="industris-lineheight" href="news.html">View all post<i class="icon ion-md-add-circle-outline"></i></a>
+                <a class="industris-lineheight" asp-controller="News" asp-action="Index">Tüm Blog Haberlerini Gör<i class="icon ion-md-add-circle-outline"></i></a>
             </div>
         </div>
         <div class="industris-space-50"></div>
 
         <div class="row">
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <article class="post-box post type-post entry">
-                    <div class="entry-media">
-                        <a href="post.html">
-                            <img src="https://via.placeholder.com/720x400.png" alt="">
-                        </a>
-                    </div>
-                    <div class="inner-post">
-                        <header class="entry-header">
-
-                            <div class="entry-meta">
-                                <span class="posted-on">
-                                    <span class="entry-date published">May 30, 2019</span>
-                                </span>
-                                <span class="posted-in">
-                                    <a href="#" rel="category tag">Oil & Gas</a>
-                                </span>
-                            </div>
-                            <!-- .entry-meta -->
-                            <h3 class="entry-title"><a href="post.html" rel="bookmark">Five Predictions for IoT in 2019 and beyond</a></h3>
-                        </header>
-                        <!-- .entry-header -->
-
-                        <div class="entry-summary">
-                            <p> Telenor Connexion has worked with analysts from Stockholm-based consulting firm Northstream to...</p>
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <article class="post-box post type-post entry">
+                        <div class="entry-media">
+                            <a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id">
+                                <img src="~/img/news/@item.ImageUrl" alt="@item.Title">
+                            </a>
                         </div>
-                        <!-- .entry-content -->
+                        <div class="inner-post">
+                            <header class="entry-header">
 
-                        <footer class="entry-footer">
-                            <a class="post-link" href="post.html">Read more<i class="icon ion-md-add-circle-outline"></i></a>
-                        </footer>
-                        <!-- .entry-footer -->
-                    </div>
-                </article>
-            </div>
+                                <div class="entry-meta">
+                                    <span class="posted-on">
+                                        <span class="entry-date published">@item.DateTime.ToShortDateString()</span>
+                                    </span>
+                                    <span class="posted-in">
+                                        <a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id" rel="category tag">@item.Author</a>
+                                    </span>
+                                </div>
+                                <!-- .entry-meta -->
+                                <h3 class="entry-title"><a asp-controller="News" asp-action="Detail" asp-route-id="@item.Id" rel="bookmark">@item.Title</a></h3>
+                            </header>
+                            <!-- .entry-header -->
 
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <article class="post-box post type-post entry">
-                    <div class="entry-media">
-                        <a href="post.html">
-                            <img src="https://via.placeholder.com/720x400.png" alt="">
-                        </a>
-                    </div>
-                    <div class="inner-post">
-                        <header class="entry-header">
-
-                            <div class="entry-meta">
-                                <span class="posted-on">
-                                    <span class="entry-date published">May 30, 2019</span>
-                                </span>
-                                <span class="posted-in">
-                                    <a href="#" rel="category tag">Oil & Gas</a>
-                                </span>
+                            <div class="entry-summary">
+                                <p> @(Html.Raw(item.Description.ToSubstring()))...</p>
                             </div>
-                            <!-- .entry-meta -->
-                            <h3 class="entry-title"><a href="post.html" rel="bookmark">Wrap-up: The Japan-Sweden Business Summit</a></h3>
-                        </header>
-                        <!-- .entry-header -->
+                            <!-- .entry-content -->
 
-                        <div class="entry-summary">
-                            <p> “Future technologies will continue to increase the possibilities within IoT in general, and transportation...</p>
+                            <footer class="entry-footer">
+                                <a class="post-link" asp-controller="News" asp-action="Detail" asp-route-id="@item.Id">Haber Detayıına Git<i class="icon ion-md-add-circle-outline"></i></a>
+                            </footer>
+                            <!-- .entry-footer -->
                         </div>
-                        <!-- .entry-content -->
-
-                        <footer class="entry-footer">
-                            <a class="post-link" href="post.html">Read more<i class="icon ion-md-add-circle-outline"></i></a>
-                        </footer>
-                        <!-- .entry-footer -->
-                    </div>
-                </article>
-            </div>
-
-            <div class="col-md-4 col-sm-6 col-xs-12">
-                <article class="post-box post type-post entry">
-                    <div class="entry-media">
-                        <a href="post.html">
-                            <img src="https://via.placeholder.com/720x400.png" alt="">
-                        </a>
-                    </div>
-                    <div class="inner-post">
-                        <header class="entry-header">
-
-                            <div class="entry-meta">
-                                <span class="posted-on">
-                                    <span class="entry-date published">May 30, 2019</span>
-                                </span>
-                                <span class="posted-in">
-                                    <a href="#" rel="category tag">Oil & Gas</a>
-                                </span>
-                            </div>
-                            <!-- .entry-meta -->
-                            <h3 class="entry-title"><a href="post.html" rel="bookmark">The brains behind Uber’s autonomous future</a></h3>
-                        </header>
-                        <!-- .entry-header -->
-
-                        <div class="entry-summary">
-                            <p> Uber technology chief Raquel Urtasun is certain of one thing — that there will be self-driving cars, trucks...</p>
-                        </div>
-                        <!-- .entry-content -->
-
-                        <footer class="entry-footer">
-                            <a class="post-link" href="post.html">Read more<i class="icon ion-md-add-circle-outline"></i></a>
-                        </footer>
-                        <!-- .entry-footer -->
-                    </div>
-                </article>
-            </div>
-
+                    </article>
+                </div>
+            }
         </div>
     </div>
 </section>

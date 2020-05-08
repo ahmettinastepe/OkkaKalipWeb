@@ -1,33 +1,35 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OkkaKalipWeb.Business.Abstract;
 using OkkaKalipWeb.Entities;
+using OkkaKalipWeb.UI.Controllers.Base;
 using OkkaKalipWeb.UI.Models;
 using System.Linq;
 
 namespace OkkaKalipWeb.UI.Controllers
 {
-    public class ShopController : Controller
+    public class ShopController : BaseController
     {
         private IProductService _productService;
 
-        public ShopController(IProductService productService)
+        public ShopController(IProductService productService, IInfoService infoService) : base(infoService)
         {
             _productService = productService;
         }
 
         public IActionResult Index(string category, int page = 1)
         {
-            ViewBag.SelectedMenu = RouteData.Values["controller"];
-
             const int pageSize = 3;
             return View(new ProductListModel()
             {
+                InfoModel = GetInfo(),
+                BannerImages = GetBannerImages(),
                 PageInfo = new PageInfo()
                 {
                     TotalItems = _productService.GetCountByCategory(category),
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
-                    CurrentCategory = category
+                    CurrentCategory = category,
+                    Controller = "products"
                 },
 
                 Products = _productService.GetProductsByCategory(category, page, pageSize)
@@ -45,6 +47,8 @@ namespace OkkaKalipWeb.UI.Controllers
 
             return View(new ProductDetailsModel()
             {
+                InfoModel = GetInfo(),
+                BannerImages = GetBannerImages(),
                 Product = product,
                 Categories = product.ProductCategories.Select(x => x.Category).ToList()
             });

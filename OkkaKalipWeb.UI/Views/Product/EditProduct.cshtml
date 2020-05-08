@@ -1,0 +1,109 @@
+﻿@model ProductModel
+@{
+    ViewData["Title"] = Model.Name + " adlı ürün için güncelleme işlemi";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+
+    var counter = 0;
+}
+
+@section Scripts{
+    <script src="~/modules/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/modules/ckeditor4/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace("editor");
+    </script>
+}
+
+<form asp-controller="Product" asp-action="EditProduct" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Ürün İşlemleri</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+
+                <input type="hidden" asp-for="Id" value="@Model.Id" />
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label asp-for="Name">Ürün Adı</label>
+                        <input asp-for="Name" value="@Model.Name" class="form-control" placeholder="Ürün Adı Giriniz...">
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="ImageUrl">Image</label>
+                        <input type="hidden" name="ImageUrl" value="@Model.ImageUrl" />
+                        <img src="~/img/product/@Model.ImageUrl" width="100" />
+                        <input type="file" name="file" value="" />
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Price">Fiyatı</label>
+                        <input type="number" asp-for="Price" value="@Model.Price" class="form-control" placeholder="Ürün Fiyatı Giriniz...">
+                    </div>
+                    <div class="form-group row">
+                        <label asp-for="Description">Açıklama</label>
+                        <textarea asp-for="Description" value="@Model.Description" id="editor" class="form-control" rows="3" placeholder="Ürün Açıklaması ..."></textarea>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Kaydet
+                    </button>
+                    <a class="btn btn-outline-info ml-6" href='javascript:history.go(-1)'>
+                        <i class="fas fa-chevron-left"></i>
+                        Listeye Dön
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="card card-success">
+                <div class="card-header">
+                    <h3 class="card-title">Tüm Kategoriler</h3>
+                </div>
+                <div class="card-body">
+                    <!-- Minimal style -->
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <!-- checkbox -->
+                            <div class="form-group clearfix">
+                                @foreach (var item in (List<Category>)ViewBag.Categories)
+                                {
+                                    var isChecked = "";
+                                    if (Model.SelectedCategories.Any(x => x.Id == item.Id))
+                                    {
+                                        isChecked = "checked";
+                                        <input type="hidden" name="SelectedCategories[@counter].Id" value="@item.Id" />
+                                        <input type="hidden" name="SelectedCategories[@counter].Name" value="@item.Name" />
+
+                                        counter++;
+                                    }
+                                    else
+                                    {
+                                        isChecked = "";
+                                    }
+
+                                    <div class="icheck-primary">
+                                        <input type="checkbox" name="categoryIds" value="@item.Id"
+                                               id="category@(item.Id)" @isChecked />
+                                        <label for="category@(item.Id)">@item.Name</label>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    Ürüne ait kategorileri seçiniz.
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>

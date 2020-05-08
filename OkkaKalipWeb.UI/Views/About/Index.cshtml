@@ -1,19 +1,21 @@
-﻿
+﻿@model AboutModel
 @{
-    ViewData["Title"] = "Okka Kalıp - Hakkında";
+    ViewData["Title"] = "Okka Kalıp - Kurumsal";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!-- Site Page Route Banner -->
-<div class="page-header" style="background: url('https://via.placeholder.com/1920x450.png') no-repeat center center;">
+<div class="page-header" style="background: url('@Url.Content("~/img/banner/"+Model.GetBannerImageUrl()??"main-banner.jpg")') no-repeat center center;">
     <div class="container">
         <div class="breadc-box no-line">
             <div class="row">
                 <div class="col-md-12">
-                    <h2 class="page-title">About Us</h2>
+                    <h2 class="page-title">Kurumsal</h2>
                     <ul id="breadcrumbs" class="breadcrumbs none-style">
-                        <li><a href="index.html">Home</a></li>
-                        <li class="active">About Us</li>
+                        <li asp-active-controllers="Home" asp-active-actions="Index" asp-active-class="current-menu-ancestor current-menu-parent">
+                            <a asp-controller="Home" asp-action="Index">Anasayfa</a>
+                        </li>
+                        <li class="active">Kurumsal</li>
                     </ul>
                 </div>
             </div>
@@ -22,7 +24,7 @@
 </div>
 
 <!-- About Story -->
-<partial name="Components/_aboutOurStory" />
+@await Html.PartialAsync("Components/_aboutOurStory", Model)
 
-<!-- About Page Clients Info-->
-<partial name="Components/_clients" />
+<!-- About Page Clients Info
+<partial name="Components/_clients" />-->

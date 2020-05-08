@@ -1,0 +1,76 @@
+﻿@model NewsListModel
+@{
+    ViewData["Title"] = "Haber Listesi";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Haberler</h3>
+
+            <div class="card-tools">
+                <a class="btn btn-success" asp-controller="News" asp-action="CreateNews">
+                    <i class="fas fa-plus-circle"></i>&nbsp;
+                    Yeni Haber
+                </a>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body">
+            @if (Model.NewsList.Count() > 0)
+            {
+                <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th width="30">Id</th>
+                            <th width="100">Haber Resmi</th>
+                            <th>Başlık</th>
+                            <th>Eklenme Tarihi</th>
+                            <th width="130"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.NewsList)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>
+                                    <img src="~/img/news/@item.ImageUrl" width="100" />
+                                </td>
+                                <td>@item.Title</td>
+                                <td>@item.DateTime.ToLongDateString()</td>
+                                <td>
+                                    <a class="btn btn-primary btn-sm mr-2" asp-controller="News" asp-action="EditNews" asp-route-id="@item.Id">
+                                        <i class="fas fa-pencil-alt"></i>
+                                        Güncelle
+                                    </a>
+
+                                    <button type="button" class="btn btn-danger btn-sm toastrDefaultSuccess" data-toggle="modal" data-target="#modal-danger@(item.Id)">
+                                        <i class="fas fa-trash"></i>
+                                        Sil
+                                    </button>
+
+                                    @await Html.PartialAsync("Components/AdminComponents/_dangerModal", (item.EntityConvert<NewsModel>()).GetEntityModal(item.Id, item.Title, "News", "DeleteNews"))
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th width="30">Id</th>
+                            <th width="100">Haber Resmi</th>
+                            <th>Başlık</th>
+                            <th>Eklenme Tarihi</th>
+                            <th width="130"></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-warning">Henüz Bir Haber Eklemediniz.</div>
+            }
+        </div>
+        <!-- /.card-body -->
+    </div>

@@ -21,7 +21,7 @@ namespace OkkaKalipWeb.UI.TagHelpers
                 stringBuilder.Append("<li>");
 
                 if (string.IsNullOrEmpty(PageModel.CurrentCategory))
-                    stringBuilder.AppendFormat("<a class='page-numbers {0}' href='/products?page={1}'>{1}</a>", i == PageModel.CurrentPage ? "current-paging" : "", i);
+                    stringBuilder.AppendFormat("<a class='page-numbers {0}' href='/" + PageModel.Controller + "?page={1}'>{1}</a>", i == PageModel.CurrentPage ? "current-paging" : "", i);
                 else
                     stringBuilder.AppendFormat("<a class='page-numbers {0}' href='/products/{1}?page={2}'>{2}</a>", i == PageModel.CurrentPage ? "current-paging" : "", PageModel.CurrentCategory, i);
 

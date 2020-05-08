@@ -1,23 +1,23 @@
-﻿
+﻿@model HomeModel
 @{
-    ViewData["Title"] = "Okka Kalıp";
+    ViewData["Title"] = "Nakış Kalıp";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!-- Slider -->
-<partial name="Components/_slider" />
+@await Html.PartialAsync("Components/_slider", Model.Sliders)
 
 <!-- Our Services -->
-<partial name="Components/_ourServices" />
+@await Html.PartialAsync("Components/_ourServices", Model.Services)
 
 <!-- Our Story And Recruitment And Get a Quote -->
-<partial name="Components/_ourStory" />
+@await Html.PartialAsync("Components/_ourStory", Model.AboutModel)
 
-<!-- Featured Project -->
-<partial name="Components/_featuredProject" />
+<!-- Clients Logo -->
+@await Html.PartialAsync("Components/_clientsLogo", Model.ClientsLogos)
 
-<!-- Testimonial -->
-<partial name="Components/_testimonial" />
+<!-- Vision And Mission -->
+@await Html.PartialAsync("Components/_visionMission", Model.AboutModel)
 
 <!-- The News -->
-<partial name="Components/_theNews" />
+@await Html.PartialAsync("Components/_theNews", Model.NewsListModel)

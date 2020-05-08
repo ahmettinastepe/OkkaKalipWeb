@@ -1,28 +1,30 @@
-﻿
+﻿@model ContactModel
 @{
     ViewData["Title"] = "Okka Kalıp - İletişim";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!-- Url Route Banner -->
-<div class="page-header" style="background: url('https://via.placeholder.com/1920x450.png') no-repeat center center;">
-    <div class="container">
-        <div class="breadc-box no-line">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="page-title">Contact Us</h2>
-                    <ul id="breadcrumbs" class="breadcrumbs none-style">
-                        <li><a href="index.html">Home</a></li>
-                        <li class="active">Contact Us</li>
-                    </ul>
+    <div class="page-header" style="background: url('@Url.Content("~/img/banner/"+Model.GetBannerImageUrl()??"main-banner.jpg")') no-repeat center center;">
+        <div class="container">
+            <div class="breadc-box no-line">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="page-title">İletişim</h2>
+                        <ul id="breadcrumbs" class="breadcrumbs none-style">
+                            <li asp-active-controllers="Home" asp-active-actions="Index" asp-active-class="current-menu-ancestor current-menu-parent">
+                                <a asp-controller="Home" asp-action="Index">Anasayfa</a>
+                            </li>
+                            <li class="active">İletişim</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 <!-- Contact Info -->
-<partial name="Components/_contactInfo" />
+@await Html.PartialAsync("Components/_contactInfo", Model.InfoModel)
 
 <!-- View Map -->
-<partial name="Components/_viewMap" />
+@await Html.PartialAsync("Components/_viewMap", Model.InfoModel.MapIframe)

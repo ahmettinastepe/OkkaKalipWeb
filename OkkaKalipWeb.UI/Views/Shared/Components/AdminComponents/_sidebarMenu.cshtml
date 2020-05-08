@@ -1,0 +1,122 @@
+﻿<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#" class="brand-link elevation-4">
+        <img src="~/admin/img/AdminLTELogo.png"
+             alt="AdminLTE Logo"
+             class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">AdminLTE 3</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <!-- Sidebar user (optional) -->
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+                <img src="~/admin/img/avatar.png" class="img-circle elevation-2" alt="User Image">
+            </div>
+            <div class="info">
+                <a href="#" class="d-block">Alexander Pierce</a>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
+                @if (User.Identity.IsAuthenticated && User.IsInRole("admin"))
+                {
+                    <li class="nav-item">
+                        <a asp-controller="Admin" asp-action="Index"
+                           asp-active-controllers="Admin" asp-active-actions="Index" asp-active-class="active" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Yönetim Paneli</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Info" asp-action="EditInfo"
+                           asp-active-controllers="Info" asp-active-actions="EditInfo" asp-active-class="active" class="nav-link">
+                            <i class="nav-icon fas fa-info-circle"></i>
+                            <p>Firma Bilgileri</p>
+                        </a>
+                    </li>
+                    <li class="nav-item"
+                        asp-active-controllers="About" asp-active-actions="AboutManage,ServiceManageList,CreateService,EditService" asp-active-class="has-treeview menu-open">
+                        <a asp-controller="About" asp-action="AboutManage" class="nav-link"
+                           asp-active-controllers="About" asp-active-actions="AboutManage,ServiceManageList,CreateService,EditService" asp-active-class="active">
+                            <i class="nav-icon fas fa-dumpster"></i>
+                            <p>
+                                Kurumsal Bilgiler
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a asp-controller="About" asp-action="AboutManage" class="nav-link"
+                                   asp-active-controllers="About" asp-active-actions="AboutManage" asp-active-class="active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Bilgileri Güncelle</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="About" asp-action="ServiceManageList" class="nav-link"
+                                   asp-active-controllers="About" asp-active-actions="ServiceManageList,CreateService,EditService" asp-active-class="active">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Servis Bilgileri</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a asp-controller="Product" asp-action="ProductList"
+                           asp-active-controllers="Product" asp-active-actions="ProductList,CreateProduct,EditProduct" asp-active-class="active"
+                           class="nav-link">
+                            <i class="nav-icon fas fa-boxes"></i>
+                            <p>Ürün</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Product" asp-action="CategoryList"
+                           asp-active-controllers="Product" asp-active-actions="CategoryList,CreateCategory,EditCategory" asp-active-class="active" class="nav-link">
+                            <i class="nav-icon fas fa-archive"></i>
+                            <p>Kategori</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Slider" asp-action="SliderList"
+                           asp-active-controllers="Slider" asp-active-actions="SliderList,CreateSlider,EditSlider" asp-active-class="active" class="nav-link">
+                            <i class="nav-icon fas fa-pager"></i>
+                            <p>Slider</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="News" asp-action="NewsList"
+                           asp-active-controllers="News" asp-active-actions="NewsList,CreateNews,EditNews" asp-active-class="active" class="nav-link">
+                            <i class="nav-icon fas fa-newspaper"></i>
+                            <p>Haber</p>
+                        </a>
+                    </li>
+                    <li class="nav-header">Diğer Ayarlar</li>
+                    <li class="nav-item">
+                        <a asp-controller="ClientsLogo" asp-action="ClientsLogoList"
+                           asp-active-controllers="ClientsLogo" asp-active-actions="ClientsLogoList" asp-active-class="active" class="nav-link">
+                            <i class="nav-icon fas fa-image"></i>
+                            <p>Partner Logoları</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a asp-controller="Banner" asp-action="BannerList"
+                           asp-active-controllers="Banner" asp-active-actions="BannerList" asp-active-class="active" class="nav-link">
+                            <i class="nav-icon fas fa-desktop"></i>
+                            <p>Banner Resimleri</p>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </nav>
+        <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+</aside>

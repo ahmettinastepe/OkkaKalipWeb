@@ -1,12 +1,35 @@
-﻿using OkkaKalipWeb.DataAccess.Abstract;
+﻿using Microsoft.EntityFrameworkCore;
+using OkkaKalipWeb.DataAccess.Abstract;
 using OkkaKalipWeb.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 {
-    public class EfCoreCategoryDal : EfCoreRepository<Category, OkkaKalipContext>, ICategoryDal
+    public class EfCoreCategoryDal : EfCoreRepository<Category, NakisKalipContext>, ICategoryDal
     {
+        public void DeleteFromCategory(int categoryId, int productId)
+        {
+            using (var context = new NakisKalipContext())
+            {
+                var entity = context.Set<ProductCategory>().Where(x => x.CategoryId == categoryId && x.ProductId == productId).FirstOrDefault();
+                if (entity != null)
+                {
+                    context.Set<ProductCategory>().Remove(entity);
+                    context.SaveChanges();
+                }
+            }
+        }
+
+        public Category GetByIdWithProducts(int id)
+        {
+            using (var context = new NakisKalipContext())
+            {
+                return context.Categories
+                    .Where(x => x.Id == id)
+                    .Include(x => x.ProductCategories)
+                    .ThenInclude(x => x.Product)
+                    .FirstOrDefault();
+            }
+        }
     }
 }

@@ -1,33 +1,36 @@
-﻿<article class="post-box post type-post entry">
-    <div class="entry-media">
-        <a href="post.html">
-            <img src="https://via.placeholder.com/750x350.png" alt="">
-        </a>
-    </div>
-    <div class="inner-post">
-        <header class="entry-header">
-
-            <div class="entry-meta">
-                <span class="posted-on">
-                    <span class="entry-date published">May 30, 2019</span>
-                </span>
-                <span class="posted-in">
-                    <a href="#" rel="category tag">Oil & Gas</a>
-                </span>
-            </div>
-            <!-- .entry-meta -->
-            <h3 class="entry-title"><a href="post.html" rel="bookmark">Five Predictions for IoT in 2019 and beyond</a></h3>
-        </header>
-        <!-- .entry-header -->
-
-        <div class="entry-summary">
-            <p> Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum.</p>
+﻿@model News
+<div class="col-md-6 col-sm-6 col-xs-12">
+    <article class="post-box post type-post entry">
+        <div class="entry-media">
+            <a asp-controller="News" asp-action="Detail" asp-route-id="@Model.Id">
+                <img src="~/img/news/@Model.ImageUrl" alt="@Model.Title">
+            </a>
         </div>
-        <!-- .entry-content -->
+        <div class="inner-post">
+            <header class="entry-header">
 
-        <footer class="entry-footer">
-            <a class="post-link" href="post.html">Read more<i class="icon ion-md-add-circle-outline"></i></a>
-        </footer>
-        <!-- .entry-footer -->
-    </div>
-</article>
+                <div class="entry-meta">
+                    <span class="posted-on">
+                        <span class="entry-date published">@Model.DateTime.ToLongDateString()</span>
+                    </span>
+                    <span class="posted-in">
+                        <a asp-controller="News" asp-action="Detail" asp-route-id="@Model.Id" rel="category tag">@Model.Author</a>
+                    </span>
+                </div>
+                <!-- .entry-meta -->
+                <h3 class="entry-title"><a asp-controller="News" asp-action="Detail" asp-route-id="@Model.Id" rel="bookmark">@Model.Title</a></h3>
+            </header>
+            <!-- .entry-header -->
+
+            <div class="entry-summary">
+                <p> @(Html.Raw(Model.Description.ToSubstring()))...</p>
+            </div>
+            <!-- .entry-content -->
+
+            <footer class="entry-footer">
+                <a class="post-link" asp-controller="News" asp-action="Detail" asp-route-id="@Model.Id">Haber Detayıına Git<i class="icon ion-md-add-circle-outline"></i></a>
+            </footer>
+            <!-- .entry-footer -->
+        </div>
+    </article>
+</div>

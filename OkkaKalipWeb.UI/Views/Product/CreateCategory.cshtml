@@ -1,0 +1,42 @@
+﻿@model CategoryModel
+@{
+    ViewData["Title"] = "Yeni Kategori Ekle";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+@section Scripts{
+    <script src="~/modules/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/modules/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Ürün İşlemleri</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form asp-controller="Product" asp-action="CreateCategory" method="post">
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label asp-for="Name">Kategori Adı</label>
+                        <input asp-for="Name" class="form-control" placeholder="Kategori Adı Giriniz...">
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        Kaydet
+                    </button>
+                    <a class="btn btn-outline-info ml-6" href='javascript:history.go(-1)'>
+                        <i class="fas fa-chevron-left"></i>
+                        Listeye Dön
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

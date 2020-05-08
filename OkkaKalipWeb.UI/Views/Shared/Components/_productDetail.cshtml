@@ -5,10 +5,10 @@
             <div class="col-md-6">
                 <div class="slider-product">
                     <div class="item">
-                        <img src="https://via.placeholder.com/750x750.png" alt="product image">
+                        <img src="~/img/product/@Model.Product.ImageUrl" alt="product image">
                     </div>
                     <div class="item">
-                        <img src="https://via.placeholder.com/750x750.png" alt="product image">
+                        <img src="~/img/product/@Model.Product.ImageUrl" alt="product image">
                     </div>
                     <div class="item">
                         <img src="https://via.placeholder.com/750x750.png" alt="product image">
@@ -22,10 +22,10 @@
                 </div>
                 <div class="slider-product-nav">
                     <div class="item">
-                        <img src="https://via.placeholder.com/88x88.png" alt="product image" draggable="false">
+                        <img src="~/img/product/@Model.Product.ImageUrl" alt="product image" draggable="false">
                     </div>
                     <div class="item">
-                        <img src="https://via.placeholder.com/88x88.png" alt="product image" draggable="false">
+                        <img src="~/img/product/@Model.Product.ImageUrl" alt="product image" draggable="false">
                     </div>
                     <div class="item">
                         <img src="https://via.placeholder.com/88x88.png" alt="product image" draggable="false">
@@ -55,8 +55,14 @@
                 <div class="industris-space-30"></div>
                 <div class="industris-space-5"></div>
                 <div class="quantity-choose">
-                    <input type="number" name="number" class="form-control" value="1">
-                    <a href="#" class="btn btn-primary">Sepete Ekle</a>
+                    <form asp-controller="Cart" asp-action="AddToCart" method="post" class="form-inline">
+                        <input type="hidden" name="productId" value="@Model.Product.Id" />
+                        <input type="number" name="quantity" value="1" min="1" step="1" />
+                        <button class="btn btn-primary" type="submit">
+                            <i class="ion-md-cart"></i> &nbsp;
+                            Sepete Ekle
+                        </button>
+                    </form>
                 </div>
                 <div class="industris-space-60"></div>
                 <div class="product-info">

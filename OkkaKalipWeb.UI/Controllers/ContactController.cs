@@ -1,17 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using OkkaKalipWeb.Business.Abstract;
+using OkkaKalipWeb.UI.Controllers.Base;
+using OkkaKalipWeb.UI.Models;
 
 namespace OkkaKalipWeb.UI.Controllers
 {
-    public class ContactController : Controller
+    public class ContactController : BaseController
     {
+        public ContactController(IInfoService infoService) : base(infoService)
+        {
+        }
         public IActionResult Index()
         {
-            ViewBag.SelectedMenu = RouteData.Values["controller"];
-            return View();
+            return View(new ContactModel()
+            {
+                InfoModel = GetInfo(),
+                BannerImages = GetBannerImages()
+            });
         }
     }
 }

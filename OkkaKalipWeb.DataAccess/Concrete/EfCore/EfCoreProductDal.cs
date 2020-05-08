@@ -6,11 +6,23 @@ using System.Linq;
 
 namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 {
-    public class EfCoreProductDal : EfCoreRepository<Product, OkkaKalipContext>, IProductDal
+    public class EfCoreProductDal : EfCoreRepository<Product, NakisKalipContext>, IProductDal
     {
+        public Product GetByIdWithCategories(int id)
+        {
+            using (var context = new NakisKalipContext())
+            {
+                return context.Products
+                    .Where(x => x.Id == id)
+                    .Include(x => x.ProductCategories)
+                    .ThenInclude(x => x.Category)
+                    .FirstOrDefault();
+            }
+        }
+
         public Product GetProductDetails(int id)
         {
-            using (var context = new OkkaKalipContext())
+            using (var context = new NakisKalipContext())
             {
                 return context.Products
                     .Where(x => x.Id == id)
@@ -22,7 +34,7 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 
         public List<Product> GetProductsByCategory(string category, int page, int pageSize)
         {
-            using (var context = new OkkaKalipContext())
+            using (var context = new NakisKalipContext())
             {
                 var products = context.Products.AsQueryable();
 
@@ -38,7 +50,7 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 
         public int GetProductsByCategory(string category)
         {
-            using (var context = new OkkaKalipContext())
+            using (var context = new NakisKalipContext())
             {
                 var products = context.Products.AsQueryable();
 
@@ -49,6 +61,32 @@ namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
                         .Where(x => x.ProductCategories.Any(c => c.Category.Name.ToLower() == category.ToLower()));
 
                 return products.Count();
+            }
+        }
+
+        public void Update(Product entity, int[] categoryIds)
+        {
+            using (var context = new NakisKalipContext())
+            {
+                var product = context.Products
+                    .Include(x => x.ProductCategories)
+                    .FirstOrDefault(x => x.Id == entity.Id);
+
+                if (product != null)
+                {
+                    product.Name = entity.Name;
+                    product.Description = entity.Description;
+                    product.ImageUrl = entity.ImageUrl;
+                    product.Price = entity.Price;
+
+                    product.ProductCategories = categoryIds.Select(x => new ProductCategory()
+                    {
+                        CategoryId = x,
+                        ProductId = entity.Id
+                    }).ToList();
+
+                    context.SaveChanges();
+                }
             }
         }
     }

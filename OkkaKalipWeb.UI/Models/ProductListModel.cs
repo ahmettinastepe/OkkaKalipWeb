@@ -1,12 +1,11 @@
 ﻿using OkkaKalipWeb.Entities;
+using OkkaKalipWeb.UI.Models.Base;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace OkkaKalipWeb.UI.Models
 {
-    public class PageInfo
+    public class PageInfo : BaseModel
     {
         public int TotalItems { get; set; }
         public int ItemsPerPage { get; set; }
@@ -19,9 +18,8 @@ namespace OkkaKalipWeb.UI.Models
         }
     }
 
-    public class ProductListModel
+    public class ProductListModel : BaseListModel
     {
-        public PageInfo PageInfo { get; set; }
         public List<Product> Products { get; set; }
     }
 }

@@ -5,6 +5,11 @@
   "devDependencies": {
   },
   "dependencies": {
-    "ckeditor4": "4.14.0"
+    "ckeditor4": "4.14.0",
+    "jquery": "3.4.1",
+    "bootstrap": "4.4.1",
+    "jquery-validation": "1.19.1",
+    "jquery-validation-unobtrusive": "3.2.11",
+    "toastr": "2.1.4"
   }
 }

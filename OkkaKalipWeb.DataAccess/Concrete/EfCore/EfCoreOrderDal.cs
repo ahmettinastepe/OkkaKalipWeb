@@ -6,7 +6,7 @@ using System.Text;
 
 namespace OkkaKalipWeb.DataAccess.Concrete.EfCore
 {
-    public class EfCoreOrderDal : EfCoreRepository<Order, OkkaKalipContext>, IOrderDal
+    public class EfCoreOrderDal : EfCoreRepository<Order, NakisKalipContext>, IOrderDal
     {
     }
 }

@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Concrete\Memory\**" />
+    <EmbeddedResource Remove="Concrete\Memory\**" />
+    <None Remove="Concrete\Memory\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.2">
       <PrivateAssets>all</PrivateAssets>
@@ -15,10 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\OkkaKalipWeb.Entities\OkkaKalipWeb.Entities.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Concrete\Memory\" />
   </ItemGroup>
 
 </Project>

@@ -5,12 +5,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.1" />
+    <PackageReference Include="SendGrid" Version="9.13.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\OkkaKalipWeb.Business\OkkaKalipWeb.Business.csproj" />
+    <ProjectReference Include="..\OkkaKalipWeb.Common\OkkaKalipWeb.Common.csproj" />
     <ProjectReference Include="..\OkkaKalipWeb.DataAccess\OkkaKalipWeb.DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\img\about\partners\" />
+    <Folder Include="wwwroot\img\news\" />
   </ItemGroup>
 
 </Project>
